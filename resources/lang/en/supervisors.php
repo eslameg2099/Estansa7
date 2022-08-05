@@ -1,0 +1,60 @@
+<?php
+
+return [
+    'plural' => 'Supervisors',
+    'singular' => 'Supervisor',
+    'empty' => 'There are no supervisors',
+    'select' => 'Select Supervisor',
+    'permission' => 'Manage Supervisors',
+    'trashed' => 'Trashed Supervisors',
+    'perPage' => 'Count Results Per Page',
+    'actions' => [
+        'list' => 'List Supervisors',
+        'show' => 'Show Supervisor',
+        'create' => 'Create',
+        'new' => 'New',
+        'edit' => 'Edit Supervisor',
+        'delete' => 'Delete Supervisor',
+        'restore' => 'Restore',
+        'forceDelete' => 'Force Delete',
+        'save' => 'Save',
+        'filter' => 'Filter',
+    ],
+    'messages' => [
+        'created' => 'The supervisor has been created successfully.',
+        'updated' => 'The supervisor has been updated successfully.',
+        'deleted' => 'The supervisor has been deleted successfully.',
+        'restored' => 'The supervisor has been restored successfully.',
+    ],
+    'attributes' => [
+        'name' => 'Name',
+        'phone' => 'Phone',
+        'email' => 'Email',
+        'created_at' => 'The Date Of Join',
+        'old_password' => 'Old Password',
+        'password' => 'Password',
+        'password_confirmation' => 'Password Confirmation',
+        'type' => 'User Type',
+        'avatar' => 'Avatar',
+    ],
+    'dialogs' => [
+        'delete' => [
+            'title' => 'Warning !',
+            'info' => 'Are you sure you want to delete the supervisor ?',
+            'confirm' => 'Delete',
+            'cancel' => 'Cancel',
+        ],
+        'restore' => [
+            'title' => 'Warning !',
+            'info' => 'Are you sure you want to restore the supervisor ?',
+            'confirm' => 'Restore',
+            'cancel' => 'Cancel',
+        ],
+        'forceDelete' => [
+            'title' => 'Warning !',
+            'info' => 'Are you sure you want to force delete the supervisor ?',
+            'confirm' => 'Force',
+            'cancel' => 'Cancel',
+        ],
+    ],
+];
