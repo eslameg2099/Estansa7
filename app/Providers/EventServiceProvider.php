@@ -25,7 +25,14 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\VerificationCreated::class => [
             \App\Listeners\SendVerificationCode::class,
         ],
+        \App\Events\updateavailable_times::class => [
+            \App\Listeners\updateavailable_time::class,
+        ],
+        \App\Events\updaterate::class => [
+            \App\Listeners\updateratelistener::class,
+        ],
     ];
+
 
     /**
      * Register any events for your application.

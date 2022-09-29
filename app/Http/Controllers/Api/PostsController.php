@@ -10,6 +10,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Http\Resources\PostResource;
 
 use App\Http\Requests\Api\PostRequest;
+use App\Http\Requests\Api\UpdatePostRequest;
 
 
 class PostsController extends Controller
@@ -70,8 +71,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($slug)
     {
+        $post = Post::where('slug',$slug)->firstorfail(); 
+        $post->incrementReadCount();
         return new PostResource($post);
     }
 
@@ -93,15 +96,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, Post $post)
+    public function update(UpdatePostRequest $request,$slug)
     {
-        if($post->user_id != auth()->user()->id)
-        {
-            return response()->json([
-                'message' => "غير متاح لك",
-            ],401); 
-        }
-        else
+        $post = $request->user()->posts()->where('slug',$slug)->firstorfail(); 
         $post->update($request->all());
         $post->uploadFile('image');
         return new PostResource($post);
@@ -113,18 +110,26 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Request $request,$slug)
     {
-        if($post->user_id != auth()->user()->id)
-        {
-            return response()->json([
-                'message' => "غير متاح لك",
-            ],401); 
-        }
-        else
+        $post = $request->user()->posts()->where('slug',$slug)->firstorfail(); 
         $post->delete();
         return response()->json([
             'message' => "تم الحذف بنجاح",
         ]);
+    }
+
+    public function favorite(Post $post)
+    {
+        auth()->user()->toggleFavorite($post); // The user added to favorites this meal;
+
+        return new PostResource($post);
+    }
+
+    public function list_favorite()
+    {
+        $posts = auth()->user()->favorite(Post::class); // The user added to favorites  kitchens;
+
+        return PostResource::collection($posts);
     }
 }

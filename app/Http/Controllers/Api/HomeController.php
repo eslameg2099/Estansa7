@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 use App\Models\CategoryProvider;
 use App\Http\Resources\CategoryProviderResource;
 use App\Models\Provider;
-use App\Http\Resources\providerResource;
+use App\Http\Resources\miniproviderResource;
 use App\Models\Post;
 use App\Http\Resources\PostResource;
+
+use App\Models\Review;
+use App\Http\Resources\ReviewResource;
+
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 
 class HomeController extends Controller
@@ -20,15 +26,17 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $CategoryProviders = CategoryProvider::active()->inRandomOrder()->limit(4)->get();
-        $Providers = Provider::inRandomOrder()->limit(4)->get();
-        $Posts = Post::active()->inRandomOrder()->limit(4)->get();
+    {  
+
+        $CategoryProviders = CategoryProvider::active()->inRandomOrder()->limit(6)->get();
+        $Providers = Provider::inRandomOrder()->limit(6)->get();
+        $Posts = Post::active()->inRandomOrder()->limit(6)->get();
+        $Reviews = Review::inRandomOrder()->limit(6)->get();
         return response()->json([
             'data' => [
-               
                 'categoryProviders'=> CategoryProviderResource::collection($CategoryProviders),
-                'providers'=> providerResource::collection($Providers),
+                'providers'=> miniproviderResource::collection($Providers),
+                'reviews' => ReviewResource::collection($Reviews),
                 'posts'=> PostResource::collection($Posts),
             ],
         ]);

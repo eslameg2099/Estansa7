@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CategoryPost;
-use App\Http\Resources\CategoryPostResource;
+use App\Jobs\updatepostdeactiveJob;
+use App\Jobs\updatepostactiveJob;
 
 class CategoryPostController extends Controller
 {
@@ -16,8 +17,7 @@ class CategoryPostController extends Controller
      */
     public function index()
     {
-        $CategoryPosts = CategoryPost::active()->filter()->simplePaginate();
-        return CategoryPostResource::collection($CategoryPosts);
+        //
     }
 
     /**
@@ -47,10 +47,9 @@ class CategoryPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $categorypost = CategoryPost::where('slug',$slug)->firstorfail();
-        return new CategoryPostResource($categorypost);
+        //
     }
 
     /**
@@ -85,5 +84,21 @@ class CategoryPostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function deactive(CategoryPost $categorypost)
+    {
+        $categorypost->update(['stauts' => '0']);
+        updatepostdeactiveJob::dispatch($categorypost);
+        flash()->success('تم بنجاح');
+    }
+
+
+    public function active(CategoryPost $categorypost)
+    {
+        $categorypost->update(['stauts' => '1']);
+        updatepostactiveJob::dispatch($categorypost);
+        flash()->success('تم بنجاح');
     }
 }

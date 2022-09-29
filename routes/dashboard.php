@@ -67,3 +67,8 @@ Route::post('categoryprovider/{trashed_categoryprovider}/restore', 'CategoryProv
 Route::delete('categoryprovider/{trashed_categoryprovider}/forceDelete', 'CategoryProviderController@forceDelete')->name('categoryprovider.forceDelete');
 Route::resource('categoryprovider', 'CategoryProviderController');
 
+Route::Resource('categorypost', 'CategoryPostController');
+Route::get('categorypost/deactive/{categorypost}', 'CategoryPostController@deactive');
+Route::get('categorypost/active/{categorypost}', 'CategoryPostController@active');
+
+

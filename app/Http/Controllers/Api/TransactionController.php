@@ -4,11 +4,22 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\CategoryPost;
-use App\Http\Resources\CategoryPostResource;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Models\Transaction;
+use App\Http\Resources\TransactionResource;
 
-class CategoryPostController extends Controller
+class TransactionController extends Controller
 {
+    use AuthorizesRequests, ValidatesRequests;
+
+    /**
+     * EstateController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +27,8 @@ class CategoryPostController extends Controller
      */
     public function index()
     {
-        $CategoryPosts = CategoryPost::active()->filter()->simplePaginate();
-        return CategoryPostResource::collection($CategoryPosts);
+        $transactions = auth()->user()->transactions()->simplePaginate();
+        return TransactionResource::collection($transactions);
     }
 
     /**
@@ -47,10 +58,9 @@ class CategoryPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $categorypost = CategoryPost::where('slug',$slug)->firstorfail();
-        return new CategoryPostResource($categorypost);
+        //
     }
 
     /**

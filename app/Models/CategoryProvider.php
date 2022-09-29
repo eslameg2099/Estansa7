@@ -19,6 +19,8 @@ class CategoryProvider extends Model implements HasMedia
     use SoftDeletes;
     use HasUploader;
 
+
+
     protected $filter = CategoryProviderFilter::class;
 
     protected $fillable = [
@@ -27,6 +29,7 @@ class CategoryProvider extends Model implements HasMedia
         'description',
         'stauts',
         'deleted_at',
+        'slug',
     ];
 
     public function scopeActive($query)

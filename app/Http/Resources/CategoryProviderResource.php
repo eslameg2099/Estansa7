@@ -19,6 +19,7 @@ class CategoryProviderResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'slug' =>  $this->slug,
             'stauts' => (int) $this->stauts,
             'description' => $this->description,
             'image' => $this->getFirstMediaUrl() ?: null,

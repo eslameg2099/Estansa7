@@ -4,11 +4,24 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\CategoryPost;
-use App\Http\Resources\CategoryPostResource;
+use App\Models\Provider;
+use App\Http\Resources\miniproviderResource;
+use App\Http\Resources\providerResource;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Models\User;
 
-class CategoryPostController extends Controller
+class ProviderController extends Controller
 {
+    use AuthorizesRequests, ValidatesRequests;
+
+    /**
+     * EstateController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->except('index', 'show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +29,8 @@ class CategoryPostController extends Controller
      */
     public function index()
     {
-        $CategoryPosts = CategoryPost::active()->filter()->simplePaginate();
-        return CategoryPostResource::collection($CategoryPosts);
+        $Providers = Provider::filter()->simplePaginate();
+        return miniproviderResource::collection($Providers);
     }
 
     /**
@@ -47,10 +60,10 @@ class CategoryPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($name)
     {
-        $categorypost = CategoryPost::where('slug',$slug)->firstorfail();
-        return new CategoryPostResource($categorypost);
+        $provider = Provider::where('name',$name)->firstOrFail();
+        return new providerResource($provider);
     }
 
     /**
@@ -85,5 +98,19 @@ class CategoryPostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function favorite(User $provider)
+    {
+        auth()->user()->toggleFavorite($provider);
+
+        return new miniproviderResource($provider);
+    }
+
+    public function list_favorite()
+    {
+        $providers = auth()->user()->favorite(User::class);
+        return miniproviderResource::collection($providers);
     }
 }

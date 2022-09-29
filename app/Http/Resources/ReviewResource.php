@@ -3,9 +3,10 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Support\Date;
 
 /** @mixin \App\Models\Customer */
-class CategoryPostResource extends JsonResource
+class ReviewResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,12 +19,12 @@ class CategoryPostResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'slug' =>  $this->slug,
-            'stauts' => (int) $this->stauts,
-            'description' => $this->description,
-            'image' => $this->getFirstMediaUrl() ?: null,
-            'created_at' => $this->created_at->toDateTimeString(),
+            'user' => $this->user->name,
+            'avatar' => $this->user->getAvatar(),
+            'rate' =>  $this->rate,
+            'comment' => $this->comment,
+            'created_at' => new Date($this->created_at),
+
         ];
     }
 }

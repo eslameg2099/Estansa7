@@ -19,6 +19,11 @@ return [
         'adminlte3' => 'Adminlte 3',
         'vali' => 'Vali',
     ],
+'show_price'=>[
+'online'=>'اولاين',
+'local'=>'لوحة التحكم',
+],
+
     'frontend_templates' => [
     ],
     'messages' => [
@@ -41,6 +46,7 @@ return [
         '%copyright%' => 'حقوق النشر',
         'logo' => 'اللوجو',
         'favicon' => 'الايقونة',
+'show_price'=>'تمكين سعر جرام الدهب من المنصة',
         'delete_forever' => 'تفعيل خاصية الحذف النهائي',
         'about' => 'من نحن',
         'terms' => 'الشروط والاحكام',

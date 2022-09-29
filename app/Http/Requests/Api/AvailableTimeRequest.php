@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\Concerns\WithHashedPassword;
 use App\Http\Requests\Concerns\HasPrefix;
 
-class PostRequest extends FormRequest
+class AvailableTimeRequest extends FormRequest
 {
 
     /**
@@ -29,11 +29,9 @@ class PostRequest extends FormRequest
     {
         
         return [
-            'titele' => ['required', 'string', 'max:255' ],
-            'slug'=>['required', 'string', 'max:120', 'unique:posts,slug'],
-            'description' => ['required', 'string', 'max:2500'],
-            'category_id' => ['required', 'exists:category_posts,id'],
-            'image' => ['required', 'image'],
+            'day_id' => ['required', 'numeric','between:1,7'],
+            'from' => ['required', 'date_format:H:i'],
+            'to' => ['required', 'date_format:H:i'],
         ];
     }
 
@@ -44,6 +42,6 @@ class PostRequest extends FormRequest
      */
     public function attributes()
     {
-        return trans('posts.attributes');
+        return trans('AvailableTime.attributes');
     }
 }

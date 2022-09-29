@@ -20,12 +20,17 @@ class PostResource extends JsonResource
         return [
             'id' => $this->id,
             'titele' => $this->titele,
+            'slug' =>  $this->slug,
             'stauts' => (int) $this->stauts,
             'description' => $this->description,
-            'view' => (int) $this->view ,
+            'views' => (int) $this->view ,
             'auther'  => $this->user->name,
+            'auther_image'  => $this->user->getAvatar(),
+            'auther_id'  => $this->user->id,
             'category'  => $this->category->name,
+            'category_id'  => $this->category->name,
             'image' => $this->getFirstMediaUrl() ?: null,
+            'is_favorite' => $this->checkfavorited(auth('sanctum')->id()),
             'created_at' => new Date($this->created_at),
         ];
     }

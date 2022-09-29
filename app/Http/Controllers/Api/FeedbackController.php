@@ -29,8 +29,6 @@ class FeedbackController extends Controller
             'message' => 'required',
         ], [], trans('feedback.attributes'));
 
-
-        
         $feedback = Feedback::create($request->all());
 
         event(new FeedbackSent($feedback));

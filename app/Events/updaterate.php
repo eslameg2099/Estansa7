@@ -2,32 +2,29 @@
 
 namespace App\Events;
 
-use App\Models\Verification;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
+use App\Models\Review;
 
-class VerificationCreated
+class updaterate
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
-     * @var \App\Models\Verification
-     */
-    public Verification $verification;
+    public Review $review;
 
     /**
      * Create a new event instance.
      *
-     * @param \App\Models\Verification $verification
+     * @param \App\Models\Review $verification
      */
-    public function __construct(Verification $verification)
+    public function __construct(Review $review)
     {
-        $this->verification = $verification;
+        $this->review = $review;
     }
 
     /**

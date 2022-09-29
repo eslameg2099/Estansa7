@@ -4,11 +4,24 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\CategoryPost;
-use App\Http\Resources\CategoryPostResource;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Models\Review;
+use App\Http\Requests\Api\ReviewRequest;
+use App\Http\Resources\ReviewResource;
+use App\Events\updaterate;
 
-class CategoryPostController extends Controller
+class ReviewController extends Controller
 {
+    use AuthorizesRequests, ValidatesRequests;
+
+    /**
+     * EstateController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +29,8 @@ class CategoryPostController extends Controller
      */
     public function index()
     {
-        $CategoryPosts = CategoryPost::active()->filter()->simplePaginate();
-        return CategoryPostResource::collection($CategoryPosts);
+        $reviews = Review::auth()->simplePaginate();
+        return ReviewResource::collection($reviews);
     }
 
     /**
@@ -36,9 +49,19 @@ class CategoryPostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReviewRequest $request)
     {
-        //
+        $review = Review::create([
+            'provider_id'=>$request->provider_id ,
+            'user_id'=>$request->user()->id,
+            'comment'=>$request->comment ,
+            'rate'=>$request->rate ,
+        ]);
+        event(new updaterate($review));
+
+        return response()->json([
+            'message' => "تم التقيم بنجاح",
+        ]);
     }
 
     /**
@@ -47,10 +70,9 @@ class CategoryPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $categorypost = CategoryPost::where('slug',$slug)->firstorfail();
-        return new CategoryPostResource($categorypost);
+        //
     }
 
     /**

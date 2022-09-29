@@ -27,11 +27,17 @@ class CategoryPost extends Model implements HasMedia
         'name',
         'description',
         'stauts',
+        'slug',
         'deleted_at',
     ];
 
     public function scopeActive($query)
     {
         return $query->where('stauts','1');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'category_id');
     }
 }

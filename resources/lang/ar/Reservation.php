@@ -27,11 +27,10 @@ return [
         'restored' => 'تم استعادة العميل بنجاح .',
     ],
     'attributes' => [
-        'titele' => 'اسم المقال',
-        'description' => 'الوصف',
-        'category_id' => 'النوع',
-        'image' => 'الصورة',
-'slug'=>'الاختصار',
+        'availableday_id' => 'الحجز',
+        'from' => 'من',
+        'to' => 'الي',
+        
        
     ],
     'dialogs' => [

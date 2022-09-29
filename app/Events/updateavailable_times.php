@@ -2,32 +2,30 @@
 
 namespace App\Events;
 
-use App\Models\Verification;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
+use App\Models\availabletime;
 
-class VerificationCreated
+class updateavailable_times
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
-     * @var \App\Models\Verification
-     */
-    public Verification $verification;
+
+    public availabletime $availabletime;
 
     /**
      * Create a new event instance.
      *
-     * @param \App\Models\Verification $verification
+     * @return void
      */
-    public function __construct(Verification $verification)
+    public function __construct($availabletime)
     {
-        $this->verification = $verification;
+        $this->availabletime = $availabletime;
     }
 
     /**

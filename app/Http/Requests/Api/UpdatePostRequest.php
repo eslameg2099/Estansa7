@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\Concerns\WithHashedPassword;
 use App\Http\Requests\Concerns\HasPrefix;
 
-class PostRequest extends FormRequest
+class UpdatePostRequest extends FormRequest
 {
 
     /**
@@ -30,7 +30,6 @@ class PostRequest extends FormRequest
         
         return [
             'titele' => ['required', 'string', 'max:255' ],
-            'slug'=>['required', 'string', 'max:120', 'unique:posts,slug'],
             'description' => ['required', 'string', 'max:2500'],
             'category_id' => ['required', 'exists:category_posts,id'],
             'image' => ['required', 'image'],

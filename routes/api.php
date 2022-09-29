@@ -44,16 +44,48 @@ Route::post('feedback', 'FeedbackController@store')->name('feedback.send');
 
 
 // CategoryProvider Routes.
-Route::resource('categoryprovider', 'CategoryProviderController');
+Route::apiResource('categoryprovider', 'CategoryProviderController');
 
 
 ///CategoryPost Routes.
-Route::resource('categorypost', 'CategoryPostController');
+Route::apiResource('categorypost', 'CategoryPostController');
 
 
 ///Posts Routes.
-Route::resource('posts', 'PostsController');
+Route::apiResource('posts', 'PostsController');
 Route::get('my/posts', 'PostsController@getMyposts');
+Route::post('posts/favorite/{post}', 'PostsController@favorite');
+Route::get('posts/list/favorite', 'PostsController@list_favorite');
 
 //Home Routes.
 Route::apiResource('home', 'HomeController');
+
+//AvailableTime  Routes.
+Route::apiResource('availabletime', 'AvailableTimeController');
+
+//reservations   Routes.
+Route::apiResource('reservations', 'ReservationController');
+Route::get('reservations/finish/{id}', 'ReservationController@finish_reservation');
+
+Route::get('paymobverify', 'ReservationController@paymob_payment_verify')->name('paymob');
+
+
+
+//Provider routes.
+
+Route::apiResource('providers', 'ProviderController');
+Route::post('providers/favorite/{provider}', 'ProviderController@favorite');
+Route::get('providers/list/favorite', 'ProviderController@list_favorite');
+
+// Review routes.
+
+Route::apiResource('reviews', 'ReviewController');
+
+
+//Transaction routes.
+
+
+Route::apiResource('transactions', 'TransactionController');
+
+
+

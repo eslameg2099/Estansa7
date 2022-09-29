@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'plural' => 'العملاء',
-    'singular' => 'العميل',
-    'empty' => 'لا توجد عملاء',
+    'comment' => 'التعليق',
+    'provider_id' => 'المستشار',
+    'rate' => 'التقيم',
     'select' => 'اختر العميل',
     'permission' => 'ادارة العملاء',
     'trashed' => 'العملاء المحذوفين',
@@ -27,6 +27,9 @@ return [
         'restored' => 'تم استعادة العميل بنجاح .',
     ],
     'attributes' => [
+'comment' => 'التعليق',
+    'provider_id' => 'المستشار',
+    'rate' => 'التقيم',
         'titele' => 'اسم المقال',
         'description' => 'الوصف',
         'category_id' => 'النوع',

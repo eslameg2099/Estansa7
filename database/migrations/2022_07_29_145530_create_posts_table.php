@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('titele');
             $table->text('description',5000)->nullable();
-            $table->enum('stauts',['0','1'])->default('1');
+            $table->enum('stauts',['0','1'])->default('0');
             $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('category_id');

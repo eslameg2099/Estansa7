@@ -7,7 +7,7 @@ use App\Support\Date;
 use App\Support\Price;
 
 /** @mixin \App\Models\Customer */
-class providerResource extends JsonResource
+class miniproviderResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -25,22 +25,14 @@ class providerResource extends JsonResource
             'phone' => $this->phone,
             'type' => $this->type,
             'avatar' => $this->getAvatar(),
-            'address'=> $this->address,
             'bio'=> $this->bio,
-            'linkedin'=> $this->linkedin,
             'category_name'=> $this->category->name,
-            'certificates'=> MediaResource::collection($this->getMedia()),
-            'cv'=> $this->getFirstMediaUrl("cv"),
             'unit_price'=>new price($this->unit_price),
-            'skills'=> $this->skills,
-            'experience'=>$this->experienceyears(),
-            'localed_type' => $this->present()->type,
             'is_favorite' => $this->checkfavorited(auth('sanctum')->id()),
+            'experience'=>$this->experienceyears(),
             'rate'=> $this->checkreview() ,
-            'reviews_count'=> $this->reviews()->count() ,
-            'reviews'=> ReviewResource::collection($this->reviews()->limit(6)->get())  ,
-            'time_available'=>$this->availabletimes->groupBy('day_id'),
-            'created_at' => new Date($this->created_at),
+
+
         ];
     }
 }

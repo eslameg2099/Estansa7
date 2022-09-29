@@ -22,7 +22,9 @@ use App\Models\Contracts\NotificationTarget;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use AhmedAliraqi\LaravelMediaUploader\Entities\Concerns\HasUploader;
-
+use Illuminate\Validation\ValidationException;
+use ChristianKuri\LaravelFavorite\Models\Favorite;
+use ChristianKuri\LaravelFavorite\Traits\Favoriteability;
 class User extends Authenticatable implements HasMedia, NotificationTarget
 {
     use HasFactory;
@@ -38,7 +40,8 @@ class User extends Authenticatable implements HasMedia, NotificationTarget
     use HasUploader;
     use Impersonate;
     use HasRoles;
-
+    use Favoriteability;
+    
     /**
      * The code of admin type.
      *
@@ -90,6 +93,7 @@ class User extends Authenticatable implements HasMedia, NotificationTarget
         'skills',
         'unit_price',
         'experience',
+        'rate',
     ];
 
     /**
@@ -172,6 +176,24 @@ class User extends Authenticatable implements HasMedia, NotificationTarget
     {
         return $this->hasMany(Post::class, 'user_id');
     }
+
+    public function Reservations()
+    {
+        return $this->hasMany(Reservation::class, 'user_id');
+    }
+
+    public function availabletimes()
+    {
+        return $this->hasMany(AvailableTime::class, 'user_id');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'user_id');
+    }
+
+   
+    
     /**
      * Get the resource for customer type.
      *
@@ -179,7 +201,7 @@ class User extends Authenticatable implements HasMedia, NotificationTarget
      */
     public function getResource()
     {
-        if($this->type == 'provider' )
+        if($this->type == 'provider')
         {
             return new providerResource($this);
         }
@@ -310,6 +332,11 @@ class User extends Authenticatable implements HasMedia, NotificationTarget
     public function getNotificationData(NotificationModel $notification)
     {
         return $this->getResource();
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class, 'user_id');
     }
 
     /**

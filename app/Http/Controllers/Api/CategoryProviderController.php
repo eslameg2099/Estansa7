@@ -17,9 +17,7 @@ class CategoryProviderController extends Controller
     public function index()
     {
         $CategoryProviders = CategoryProvider::active()->filter()->simplePaginate();
-
         return CategoryProviderResource::collection($CategoryProviders);
-        
     }
 
     /**
@@ -49,10 +47,10 @@ class CategoryProviderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(CategoryProvider $categoryprovider)
+    public function show($slug)
     {
+        $categoryprovider = CategoryProvider::where('slug',$slug)->firstorfail();
         return new CategoryProviderResource($categoryprovider);
-
     }
 
     /**
