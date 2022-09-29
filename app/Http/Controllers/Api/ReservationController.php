@@ -60,7 +60,7 @@ class ReservationController extends Controller
      */
     public function store(ReservationRequest $request)
     {
-       $availabletime =  AvailableTime::where('id',$request->availableday_id)->first();
+       $availabletime =  AvailableTime::where('id',$request->availableday_id)->firstorfail();
 
        $this->check($availabletime);
        
