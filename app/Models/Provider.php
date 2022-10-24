@@ -104,5 +104,11 @@ class Provider extends User
        if($favorited != Null) {return true;} else return false;
     }
 
+
+    public function scopeActive($query)
+    {
+        return $query->whereNotNull('provider_verified_at')->whereNotNull('phone_verified_at');
+    }
+
  
 }

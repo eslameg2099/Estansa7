@@ -37,7 +37,6 @@ trait HasParents
     public function getModelWithParents()
     {
         $parents = $this->newQuery()
-            ->with('translations')
             ->whereIn('id', $this->parents)
             ->get();
 

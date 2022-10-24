@@ -3,10 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <title>@lang('dashboard.auth.login.title') | {{ config('app.name', 'Laravel') }}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="icon" href="{{ app_favicon() }}" type="image/x-icon" />
+    <img src="{{ app_logo() }}" alt="{{ app_name() }} Logo" class="brand-image img-circle elevation-1"
+                 style="opacity: .8;height:120px;width:120px;">
+                 <br>
     @if(Locales::getDir() == 'rtl')
         <link rel="stylesheet" href="{{ asset(mix('/css/adminlte3-auth.rtl.css')) }}">
     @else

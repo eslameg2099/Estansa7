@@ -1,7 +1,7 @@
 @component('dashboard::components.sidebarItem')
     @slot('url', route('dashboard.categoryprovider.index'))
     @slot('name', 'انواع الاقسام')
-    @slot('icon', 'fab fa-typo3')
+    @slot('icon', 'fas fa-bullhorn')
     @slot('tree', [
         [
             'name' => trans('categoryprovider.actions.list'),

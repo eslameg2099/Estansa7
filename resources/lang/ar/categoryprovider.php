@@ -37,6 +37,7 @@ return [
         'description' => 'وصف القسم',
        'stauts'=>'حالة القسم',
         'image' => 'صورة القسم',
+'slug'=>'اختصار',
     ],
     'dialogs' => [
         'delete' => [

@@ -58,6 +58,9 @@ class PaymobHelpers
             'model'=>'reservation',
             'model_id'=>$model->id,
          ]);
+        $user = User::findorfail(1);
+        $user->update(['wallet'=> $user->wallet += $Transaction_admin->amount]); 
+
          $Transaction_cutomer= Transaction::create([
            'user_id'=> $model->user_id,
            'type'=>'0',
@@ -65,6 +68,9 @@ class PaymobHelpers
            'model'=>'reservation',
            'model_id'=>$model->id,
         ]);
+        $user = User::findorfail($model->user_id);
+        $user->update(['wallet'=> $user->wallet += $Transaction_admin->amount]); 
+
         $Transaction_provider = Transaction::create([
            'user_id'=> $model->provider_id,
            'type'=>'1',
@@ -72,6 +78,8 @@ class PaymobHelpers
            'model'=>'reservation',
            'model_id'=>$model->id,
         ]);
+        $user = User::findorfail($model->provider_id);
+        $user->update(['wallet'=> $user->wallet += $Transaction_admin->amount]);
          
    }
 

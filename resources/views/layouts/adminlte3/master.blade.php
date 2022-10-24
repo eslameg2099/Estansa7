@@ -202,10 +202,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <footer class="main-footer">
         <!-- To the right -->
         <div class="float-right d-none d-sm-inline">
-            Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+        Estansa7.com
         </div>
-        <!-- Default to the left -->
-        <strong>{{ app_copyright() }}</strong>
+      
     </footer>
 </div>
 <!-- ./wrapper -->

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CategoryProvider;
+use App\Http\Requests\Dashboard\CategoryProviderRequest;
 
 
 class CategoryProviderController extends Controller
@@ -16,7 +17,7 @@ class CategoryProviderController extends Controller
      */
     public function index()
     {
-        $CategoryProvideres = CategoryProvider::filter()->paginate(10);
+        $CategoryProvideres = CategoryProvider::where('parent_id',null)->filter()->OrderByDESC('id')->paginate(10);
         return view('dashboard.categoryprovider.index', compact('CategoryProvideres'));
     }
 
@@ -37,7 +38,7 @@ class CategoryProviderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryProviderRequest $request)
     {
         $CategoryProvider = CategoryProvider::create($request->all());
 
@@ -56,7 +57,9 @@ class CategoryProviderController extends Controller
      */
     public function show(CategoryProvider $categoryprovider)
     {
-        return view('dashboard.categoryprovider.show', compact('categoryprovider'));
+        $categories =   CategoryProvider::where('parent_id',$categoryprovider->id)->get();
+        $count  =   count($categoryprovider->parents);
+        return view('dashboard.categoryprovider.show', compact('categoryprovider','categories','count'));
     }
 
     /**

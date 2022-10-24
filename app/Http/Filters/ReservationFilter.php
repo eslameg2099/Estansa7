@@ -11,6 +11,9 @@ class ReservationFilter extends BaseFilters
      */
     protected $filters = [
         'stauts',
+        'provider',
+        'customer',
+        'id',
     ];
 
     /**
@@ -23,6 +26,38 @@ class ReservationFilter extends BaseFilters
     {
         if ($value) {
             return $this->builder->where('stauts', $value);
+        }
+
+        return $this->builder;
+    }
+
+    protected function id($value)
+    {
+        if ($value) {
+            return $this->builder->where('id', $value);
+        }
+
+        return $this->builder;
+    }
+
+    protected function provider($value)
+    {
+        if ($value) {
+            return $this->builder->whereHas('provider', function ($builder) use ($value) {
+                $builder->where('name', 'like', "%$value%");
+            });
+        }
+
+        return $this->builder;
+    }
+
+
+    protected function customer($value)
+    {
+        if ($value) {
+            return $this->builder->whereHas('customer', function ($builder) use ($value) {
+                $builder->where('name', 'like', "%$value%");
+            });
         }
 
         return $this->builder;

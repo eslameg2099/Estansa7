@@ -24,6 +24,7 @@ class CustomerResource extends JsonResource
             'type' => $this->type,
             'avatar' => $this->getAvatar(),
             'address'=> $this->address,
+            'phone_verified_at' => ! ! $this->phone_verified_at,
             'localed_type' => $this->present()->type,
             'created_at' => $this->created_at->toDateTimeString(),
             'created_at_formatted' => $this->created_at->diffForHumans(),

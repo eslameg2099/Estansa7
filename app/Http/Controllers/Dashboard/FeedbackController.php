@@ -28,7 +28,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        $feedback = Feedback::filter()->paginate();
+        $feedback = Feedback::filter()->OrderByDESC('id')->paginate();
 
         return view('dashboard.feedback.index', compact('feedback'));
     }

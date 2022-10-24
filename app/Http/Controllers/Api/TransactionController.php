@@ -27,7 +27,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = auth()->user()->transactions()->simplePaginate();
+        $transactions = auth()->user()->transactions()->OrderByDESC('id')->simplePaginate();
         return TransactionResource::collection($transactions);
     }
 

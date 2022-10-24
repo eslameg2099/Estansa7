@@ -24,6 +24,8 @@ class CategoryProviderResource extends JsonResource
             'description' => $this->description,
             'image' => $this->getFirstMediaUrl() ?: null,
             'created_at' => $this->created_at->toDateTimeString(),
+            'has_children' => ! ! $this->children_count,
+            'children' => CategoryProviderResource::collection($this->whenLoaded('children')),
         ];
     }
 }

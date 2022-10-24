@@ -94,6 +94,8 @@ class User extends Authenticatable implements HasMedia, NotificationTarget
         'unit_price',
         'experience',
         'rate',
+        'provider_verified_at',
+        'wallet',
     ];
 
     /**
@@ -170,6 +172,11 @@ class User extends Authenticatable implements HasMedia, NotificationTarget
     public function category()
     {
         return $this->belongsTo(CategoryProvider::class, 'category_id')->withTrashed();
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(CategoryProvider::class);
     }
 
     public function posts()

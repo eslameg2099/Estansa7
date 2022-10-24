@@ -16,7 +16,7 @@ class CategoryProviderController extends Controller
      */
     public function index()
     {
-        $CategoryProviders = CategoryProvider::active()->filter()->simplePaginate();
+        $CategoryProviders = CategoryProvider::active()->filter()->parentsOnly()->withCount('children')->get();
         return CategoryProviderResource::collection($CategoryProviders);
     }
 
@@ -50,7 +50,12 @@ class CategoryProviderController extends Controller
     public function show($slug)
     {
         $categoryprovider = CategoryProvider::where('slug',$slug)->firstorfail();
-        return new CategoryProviderResource($categoryprovider);
+        return new CategoryProviderResource($categoryprovider->load([
+            'children' => function ($query) {
+                $query->withCount('children');
+            },
+        ])
+            ->loadCount('children'));
     }
 
     /**

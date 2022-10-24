@@ -25,12 +25,17 @@ class ProviderFilter extends BaseFilters
      */
     protected function categoryId($value)
     {
+     
         if ($value) {
-            return $this->builder->where('category_id', $value);
+            return $this->builder->whereHas('categories', function ($builder) use ($value) {
+                $builder->where('category_provider_id', $value);
+            });
         }
 
         return $this->builder;
     }
+
+    
 
 
     protected function experience($value)

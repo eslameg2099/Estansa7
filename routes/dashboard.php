@@ -36,6 +36,11 @@ Route::post('supervisors/{trashed_supervisor}/restore', 'SupervisorController@re
 Route::delete('supervisors/{trashed_supervisor}/forceDelete', 'SupervisorController@forceDelete')->name('supervisors.forceDelete');
 Route::resource('supervisors', 'SupervisorController');
 
+
+// providers Routes.
+Route::resource('providers', 'ProviderController');
+Route::get('providers/active/{id}', 'ProviderController@active')->name('providers.active');
+Route::get('providers/disactive/{id}', 'ProviderController@disactive')->name('providers.disactive');
 // Admins Routes.
 Route::get('trashed/admins', 'AdminController@trashed')->name('admins.trashed');
 Route::get('trashed/admins/{trashed_admin}', 'AdminController@showTrashed')->name('admins.trashed.show');
@@ -67,8 +72,21 @@ Route::post('categoryprovider/{trashed_categoryprovider}/restore', 'CategoryProv
 Route::delete('categoryprovider/{trashed_categoryprovider}/forceDelete', 'CategoryProviderController@forceDelete')->name('categoryprovider.forceDelete');
 Route::resource('categoryprovider', 'CategoryProviderController');
 
+//categorypost routes.
 Route::Resource('categorypost', 'CategoryPostController');
 Route::get('categorypost/deactive/{categorypost}', 'CategoryPostController@deactive');
 Route::get('categorypost/active/{categorypost}', 'CategoryPostController@active');
+
+
+// 
+//posts routes.
+Route::Resource('posts', 'PostController');
+
+
+
+///Reservations routes.
+
+Route::Resource('reservations', 'ReservationController');
+
 
 

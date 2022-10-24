@@ -9,6 +9,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use AhmedAliraqi\LaravelMediaUploader\Entities\Concerns\HasUploader;
 use App\Http\Filters\Filterable;
+use App\Models\Concerns\HasParents;
 
 
 class CategoryProvider extends Model implements HasMedia
@@ -18,6 +19,7 @@ class CategoryProvider extends Model implements HasMedia
     use Filterable;
     use SoftDeletes;
     use HasUploader;
+    use HasParents;
 
 
 
@@ -30,11 +32,19 @@ class CategoryProvider extends Model implements HasMedia
         'stauts',
         'deleted_at',
         'slug',
+        'parent_id',
+
+    ];
+
+    protected $casts = [
+        'parents' => 'array',
     ];
 
     public function scopeActive($query)
     {
         return $query->where('stauts','1');
     }
+
+    
     
 }

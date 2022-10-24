@@ -27,7 +27,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::filter()->paginate();
+        $customers = Customer::filter()->OrderByDESC('id')->paginate();
 
         return view('dashboard.accounts.customers.index', compact('customers'));
     }
@@ -50,6 +50,7 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request)
     {
+
         $customer = Customer::create($request->allWithHashedPassword());
 
         $customer->setType($request->type);

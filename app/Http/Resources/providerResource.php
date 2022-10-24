@@ -29,18 +29,23 @@ class providerResource extends JsonResource
             'bio'=> $this->bio,
             'linkedin'=> $this->linkedin,
             'category_name'=> $this->category->name,
-            'certificates'=> MediaResource::collection($this->getMedia()),
+            'categories' => miniCategoryProviderResource::collection($this->categories),
+            'certificates'=> MediaResource::collection($this->getMedia('default')),
             'cv'=> $this->getFirstMediaUrl("cv"),
             'unit_price'=>new price($this->unit_price),
+            'wallet'=>new price($this->wallet),
             'skills'=> $this->skills,
             'experience'=>$this->experienceyears(),
             'localed_type' => $this->present()->type,
             'is_favorite' => $this->checkfavorited(auth('sanctum')->id()),
             'rate'=> $this->checkreview() ,
             'reviews_count'=> $this->reviews()->count() ,
+            'phone_verified_at' => ! ! $this->phone_verified_at,
+            'provider_verified_at' => ! ! $this->provider_verified_at,
             'reviews'=> ReviewResource::collection($this->reviews()->limit(6)->get())  ,
             'time_available'=>$this->availabletimes->groupBy('day_id'),
             'created_at' => new Date($this->created_at),
+            
         ];
     }
 }

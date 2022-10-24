@@ -29,7 +29,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::auth()->simplePaginate();
+        $reviews = Review::auth()->OrderByDESC('id')->simplePaginate();
         return ReviewResource::collection($reviews);
     }
 

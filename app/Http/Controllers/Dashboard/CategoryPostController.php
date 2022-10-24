@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CategoryPost;
 use App\Jobs\updatepostdeactiveJob;
 use App\Jobs\updatepostactiveJob;
+use App\Http\Requests\Dashboard\CategoryPostRequest;
 
 class CategoryPostController extends Controller
 {
@@ -17,7 +18,8 @@ class CategoryPostController extends Controller
      */
     public function index()
     {
-        //
+        $CategoryPosts = CategoryPost::filter()->OrderByDESC('id')->paginate(10);
+        return view('dashboard.categorypost.index', compact('CategoryPosts'));
     }
 
     /**
@@ -27,7 +29,7 @@ class CategoryPostController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.categorypost.create');
     }
 
     /**
@@ -36,9 +38,15 @@ class CategoryPostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryPostRequest $request)
     {
-        //
+        $CategoryPost = CategoryPost::create($request->all());
+
+        $CategoryPost->addAllMediaFromTokens();
+
+        flash()->success(trans('categorypost.messages.created'));
+
+        return redirect()->route('dashboard.categorypost.show', $CategoryPost);
     }
 
     /**
@@ -47,9 +55,9 @@ class CategoryPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(CategoryPost $categorypost)
     {
-        //
+        return view('dashboard.categorypost.show', compact('categorypost'));
     }
 
     /**
@@ -58,9 +66,9 @@ class CategoryPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(CategoryPost $categorypost)
     {
-        //
+         return view('dashboard.categorypost.edit', compact('categorypost'));
     }
 
     /**
@@ -70,9 +78,15 @@ class CategoryPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CategoryPost $categorypost)
     {
-        //
+        $categorypost->update($request->all());
+
+        $categorypost->addAllMediaFromTokens();
+
+        flash()->success(trans('categorypost.messages.updated'));
+
+        return redirect()->route('dashboard.categorypost.show', $categorypost);
     }
 
     /**
@@ -81,9 +95,13 @@ class CategoryPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CategoryPost $categorypost)
     {
-        //
+        $categorypost->delete();
+
+        flash()->success(trans('categorypost.messages.deleted'));
+
+        return redirect()->route('dashboard.categorypost.index');
     }
 
 

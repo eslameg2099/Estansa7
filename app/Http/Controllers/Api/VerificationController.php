@@ -14,6 +14,7 @@ class VerificationController extends Controller
 {
     use ValidatesRequests;
 
+ 
     /**
      * Send or resend the verification code.
      *
@@ -27,13 +28,13 @@ class VerificationController extends Controller
             'phone' => ['required', 'unique:users,phone,'.auth()->id()],
         ], [], trans('verification.attributes'));
 
-        $user = auth()->user();
+       $user = auth()->user();
 
         $verification = Verification::updateOrCreate([
             'user_id' => $user->id,
         ], [
             'phone' => $request->phone,
-            'code' => rand(1111, 9999),
+            'code' => rand(111111, 999999),
         ]);
 
         event(new VerificationCreated($verification));
@@ -50,32 +51,26 @@ class VerificationController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function verify(Request $request)
+    public function verify($code)
     {
-        $this->validate($request, [
-            'code' => 'required',
-        ], [], trans('verification.attributes'));
-
-        $verification = Verification::where([
-            'user_id' => auth()->id(),
-            'code' => $request->code,
-        ])->first();
-
+        $verification = Verification::where('code',$code)->first();
         if (! $verification || $verification->isExpired()) {
-            throw ValidationException::withMessages([
-                'code' => [trans('verification.invalid')],
+            return response()->json([
+                'message' => "code is Expired ",
             ]);
         }
 
         $verification->user->forceFill([
-            'phone' => $verification->phone,
             'phone_verified_at' => now(),
         ])->save();
-
+       
         $verification->delete();
+        return redirect('https://estansa7.vercel.app/');
+        return response()->json([
+            'message' => "active done",
+        ]);
 
-        return $verification->user->getResource();
-    }
+     }
 
     /**
      * Check if the password of the authenticated user is correct.
@@ -98,4 +93,31 @@ class VerificationController extends Controller
 
         return $request->user()->getResource();
     }
+
+
+    public function newverify($code)
+    {
+        return $code;
+
+       
+        $verification = Verification::where([
+            'code' => $code,
+        ])->firstOrFail();
+
+        if (! $verification || $verification->isExpired()) {
+            throw ValidationException::withMessages([
+                'code' => [trans('verification.invalid')],
+            ]);
+        }
+
+        $verification->user->forceFill([
+            'phone' => $verification->phone,
+            'phone_verified_at' => now(),
+        ])->save();
+
+        $verification->delete();
+
+        return $verification->user->getResource();
+    }
+
 }

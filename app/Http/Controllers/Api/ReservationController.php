@@ -38,7 +38,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $Reservations = Reservation::auth()->filter()->simplePaginate();
+        $Reservations = Reservation::auth()->filter()->OrderByDESC('id')->simplePaginate();
         return ReservationResource::collection($Reservations);
     }
 
@@ -60,7 +60,7 @@ class ReservationController extends Controller
      */
     public function store(ReservationRequest $request)
     {
-       $availabletime =  AvailableTime::where('id',$request->availableday_id)->firstorfail();
+       $availabletime =  AvailableTime::where('id',$request->availableday_id)->first();
 
        $this->check($availabletime);
        

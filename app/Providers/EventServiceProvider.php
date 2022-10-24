@@ -7,6 +7,8 @@ use Illuminate\Auth\Events\Registered;
 use App\Observers\PhoneVerificationObserver;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use App\Observers\AttachCategoryToUserObserver;
+use App\Models\User;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -44,5 +46,7 @@ class EventServiceProvider extends ServiceProvider
         parent::boot();
 
         Customer::observe(PhoneVerificationObserver::class);
+        User::observe(AttachCategoryToUserObserver::class);
+
     }
 }

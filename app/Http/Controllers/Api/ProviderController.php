@@ -29,7 +29,7 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $Providers = Provider::filter()->simplePaginate();
+        $Providers = Provider::active()->filter()->OrderByDESC('id')->simplePaginate();
         return miniproviderResource::collection($Providers);
     }
 

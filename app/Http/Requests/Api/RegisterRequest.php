@@ -36,7 +36,7 @@ class RegisterRequest extends FormRequest
             'phone' => ['required', 'unique:users,phone'],
             'password' => ['required', 'min:8', 'confirmed'],
             'avatar' => ['nullable', 'image'],
-            'address' => ['required', 'string', 'max:255'],
+            'address' => ['nullable', 'string', 'max:255'],
             'bio' => [
                 Rule::requiredIf(function () {
                     return $this->type == User::Provider_TYPE;
@@ -44,29 +44,30 @@ class RegisterRequest extends FormRequest
             ],
 
             'category_id' => [
-                'required','exists:category_providers,id',
                 Rule::requiredIf(function () {
                     return $this->type == User::Provider_TYPE;
-                }),
+                }),'exists:category_providers,id',
+
             ],
-            
+
+           
             'skills' => [
-                'required','string', 'max:500',
+                
                 Rule::requiredIf(function () {
                     return $this->type == User::Provider_TYPE;
-                }),
+                }),'max:500',
             ],
             'unit_price' => [
-                'required','numeric','min:1',
+                
                 Rule::requiredIf(function () {
                     return $this->type == User::Provider_TYPE;
-                }),
+                }),'numeric','min:1',
             ],
             'experience' => [
-                'required','numeric','between:0,4',
+                
                 Rule::requiredIf(function () {
                     return $this->type == User::Provider_TYPE;
-                }),
+                }),'numeric','between:0,4',
             ],
             'type' => [
                 'nullable',

@@ -42,6 +42,6 @@ class ReservationRequest extends FormRequest
      */
     public function attributes()
     {
-        return trans('Reservation.attributes');
+        return trans('reservations.attributes');
     }
 }

@@ -26,7 +26,7 @@
             ],
             [
                 'name' => trans('provider.plural'),
-                'url' => route('dashboard.customers.index'),
+                'url' => route('dashboard.providers.index'),
             ],
         ])
     @endcomponent

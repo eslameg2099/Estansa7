@@ -19,6 +19,7 @@ class ReservationResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'payment_id' => $this->payment_id,
             'provider' => new miniproviderResource($this->provider),
             'category' => $this->category->name ?? '_',
             'stauts' =>(int) $this->stauts,

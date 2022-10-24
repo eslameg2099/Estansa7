@@ -28,3 +28,76 @@ Breadcrumbs::for('dashboard.categoryprovider.edit', function ($breadcrumb, $cust
     $breadcrumb->parent('dashboard.categoryprovider.show', $customer);
     $breadcrumb->push(trans('categoryprovider.edit'), route('dashboard.categoryprovider.edit', $customer));
 });
+
+
+Breadcrumbs::for('dashboard.categorypost.index', function ($breadcrumb) {
+    $breadcrumb->parent('dashboard.home');
+    $breadcrumb->push(trans('categorypost.plural'), route('dashboard.categorypost.index'));
+});
+
+Breadcrumbs::for('dashboard.categorypost.show', function ($breadcrumb, $model) {
+    $breadcrumb->parent('dashboard.categorypost.index');
+    $breadcrumb->push($model->name, route('dashboard.categorypost.show', $model));
+});
+
+Breadcrumbs::for('dashboard.categorypost.edit', function ($breadcrumb, $model) {
+    $breadcrumb->parent('dashboard.categorypost.show', $model);
+    $breadcrumb->push(trans('categorypost.edit'), route('dashboard.categorypost.edit', $model));
+});
+
+
+Breadcrumbs::for('dashboard.posts.index', function ($breadcrumb) {
+    $breadcrumb->parent('dashboard.home');
+    $breadcrumb->push(trans('posts.plural'), route('dashboard.posts.index'));
+});
+
+Breadcrumbs::for('dashboard.posts.show', function ($breadcrumb, $model) {
+    $breadcrumb->parent('dashboard.posts.index');
+    $breadcrumb->push($model->titele, route('dashboard.posts.show', $model));
+});
+
+
+Breadcrumbs::for('dashboard.posts.edit', function ($breadcrumb, $model) {
+    $breadcrumb->parent('dashboard.posts.show', $model);
+    $breadcrumb->push(trans('posts.edit'), route('dashboard.posts.edit', $model));
+});
+
+
+Breadcrumbs::for('dashboard.posts.create', function ($breadcrumb) {
+    $breadcrumb->parent('dashboard.posts.index');
+    $breadcrumb->push(trans('posts.actions.create'), route('dashboard.posts.create'));
+});
+
+
+Breadcrumbs::for('dashboard.reservations.index', function ($breadcrumb) {
+    $breadcrumb->parent('dashboard.home');
+    $breadcrumb->push(trans('reservations.plural'), route('dashboard.reservations.index'));
+});
+
+Breadcrumbs::for('dashboard.reservations.show', function ($breadcrumb, $model) {
+    $breadcrumb->parent('dashboard.reservations.index');
+    $breadcrumb->push($model->id, route('dashboard.reservations.show', $model));
+});
+
+
+Breadcrumbs::for('dashboard.providers.index', function ($breadcrumb) {
+    $breadcrumb->parent('dashboard.home');
+    $breadcrumb->push(trans('provider.plural'), route('dashboard.providers.index'));
+});
+
+
+
+Breadcrumbs::for('dashboard.providers.create', function ($breadcrumb) {
+    $breadcrumb->parent('dashboard.providers.index');
+    $breadcrumb->push(trans('provider.actions.create'), route('dashboard.providers.create'));
+});
+
+Breadcrumbs::for('dashboard.providers.show', function ($breadcrumb, $provider) {
+    $breadcrumb->parent('dashboard.providers.index');
+    $breadcrumb->push($provider->name, route('dashboard.providers.show', $provider));
+});
+
+Breadcrumbs::for('dashboard.providers.edit', function ($breadcrumb, $provider) {
+    $breadcrumb->parent('dashboard.providers.show', $provider);
+    $breadcrumb->push(trans('provider.actions.edit'), route('dashboard.providers.edit', $provider));
+});

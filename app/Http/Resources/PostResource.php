@@ -28,7 +28,7 @@ class PostResource extends JsonResource
             'auther_image'  => $this->user->getAvatar(),
             'auther_id'  => $this->user->id,
             'category'  => $this->category->name,
-            'category_id'  => $this->category->name,
+            'category_id'  => $this->category->id,
             'image' => $this->getFirstMediaUrl() ?: null,
             'is_favorite' => $this->checkfavorited(auth('sanctum')->id()),
             'created_at' => new Date($this->created_at),

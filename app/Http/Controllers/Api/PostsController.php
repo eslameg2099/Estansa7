@@ -13,6 +13,7 @@ use App\Http\Requests\Api\PostRequest;
 use App\Http\Requests\Api\UpdatePostRequest;
 
 
+
 class PostsController extends Controller
 {
     use AuthorizesRequests, ValidatesRequests;
@@ -31,7 +32,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $Posts = Post::active()->simplePaginate();
+        $Posts = Post::active()->filter()->OrderByDESC('id')->simplePaginate();
         return PostResource::collection($Posts);
     }
 

@@ -51,6 +51,7 @@ class AdminController extends Controller
      */
     public function store(AdminRequest $request)
     {
+
         $admin = Admin::create($request->allWithHashedPassword());
 
         $admin->setType($request->type);

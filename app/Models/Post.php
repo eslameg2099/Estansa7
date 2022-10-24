@@ -13,6 +13,8 @@ use Spatie\MediaLibrary\MediaCollections\File;
 use App\Traits\HasMediaTrait;
 use ChristianKuri\LaravelFavorite\Traits\Favoriteable;
 use ChristianKuri\LaravelFavorite\Models\Favorite;
+use App\Http\Filters\PostFilter;
+use App\Http\Filters\Filterable;
 
 class Post extends Model implements HasMedia
 {
@@ -22,6 +24,9 @@ class Post extends Model implements HasMedia
     use HasUploader;
     use HasMediaTrait;
     use Favoriteable;
+    use Filterable;
+
+    protected $filter = PostFilter::class;
 
     protected $fillable = [
         'id',

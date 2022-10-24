@@ -1,6 +1,7 @@
 @include('dashboard.errors')
 
 {{ BsForm::text('name')->label(trans('categoryprovider.attributes.name')) }}
+{{ BsForm::text('slug')->label(trans('categoryprovider.attributes.slug')) }}
 
 {{ BsForm::textarea('description')->label(trans('categoryprovider.attributes.description')) }}
 

@@ -86,22 +86,12 @@ class RegisterController extends Controller
         $Provider ->forceFill($request->only('phone', 'type'))
         ->fill($request->allWithHashedPassword())->save();
       
-
-
-      
-
-        $Provider->uploadFile('certificate');
-
+        $Provider->uploadFile('certificates');
 
         if ($request->hasFile('cv')) {
             $Provider->addMediaFromRequest('cv')
                 ->toMediaCollection('cv');
         }
-
-     
-
-      
-
         return $Provider;
     }
 
@@ -124,9 +114,17 @@ class RegisterController extends Controller
             'user_id' => $user->id,
             'phone' => $user->phone,
         ], [
-            'code' => rand(1111, 9999),
+            'code' => rand(111111, 999999),
         ]);
-
+        $details = [
+            'title' => 'ACTIVE CODE',
+            'body' => $verification->code ,
+            'data'=> $user->name,
+            'end'=> 'is approve',
+            'user' => $user->name,
+            'image' => 'https://est.ragabkalbida.com/storage/107/logoee193b16.png',
+        ];
+        \Mail::to($user->email)->send(new \App\Mail\email($details));
         event(new VerificationCreated($verification));
     }
 }
