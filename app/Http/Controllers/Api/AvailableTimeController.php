@@ -107,4 +107,23 @@ class AvailableTimeController extends Controller
         ]);
 
     }
+
+
+    public function toggleLock(Request $request,$id)
+    {
+
+        $availabletime =  $request->user()->availabletimes()->findorfail($id);
+        if ($availabletime->active == '0') {
+
+            $availabletime->update(['active' => '1']);
+
+
+            return new AvailableTimeResource($availabletime);
+        }
+
+        $availabletime->update(['active' => '0']);
+
+
+        return new AvailableTimeResource($availabletime);
+    }
 }

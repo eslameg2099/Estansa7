@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Http\Filters\ReservationFilter;
 use App\Http\Filters\Filterable;
+use Carbon\Carbon;
 
 class Reservation extends Model
 {
@@ -79,6 +80,16 @@ class Reservation extends Model
         }
     }
 
+
+    public function checklink()
+    {
+        if($this->day_at == Carbon::now()->format('Y-m-d'))
+        {
+            return true;
+        }
+        else
+        return false;
+    }
     
 
 

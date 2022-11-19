@@ -3,10 +3,11 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Support\Date;
 use App\Support\Price;
 
 /** @mixin \App\Models\Customer */
-class CustomerResource extends JsonResource
+class minicustomerResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -22,14 +23,11 @@ class CustomerResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->phone,
-
             'type' => $this->type,
             'avatar' => $this->getAvatar(),
-            'address'=> $this->address,
-            'phone_verified_at' => ! ! $this->phone_verified_at,
-            'localed_type' => $this->present()->type,
-            'created_at' => $this->created_at->toDateTimeString(),
-            'created_at_formatted' => $this->created_at->diffForHumans(),
+         
+
+
         ];
     }
 }

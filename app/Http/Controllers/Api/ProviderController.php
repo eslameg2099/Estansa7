@@ -60,9 +60,8 @@ class ProviderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show(Provider $provider)
     {
-        $provider = Provider::where('name',$name)->firstOrFail();
         return new providerResource($provider);
     }
 

@@ -66,10 +66,20 @@ class ProviderRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'unique:users,email,' . $this->route('customer')->id],
-            'phone' => ['required', 'unique:users,phone,' . $this->route('customer')->id],
+            'email' => ['required', 'email', 'unique:users,email,' . $this->route('provider')->id],
+            'phone' => ['required', 'unique:users,phone,' . $this->route('provider')->id],
             'password' => ['nullable', 'min:8', 'confirmed'],
             'type' => ['sometimes', 'nullable', Rule::in(array_keys(trans('users.types')))],
+             'category_id' => ['required', 
+            'exists:category_providers,id'],
+            'unit_price' => ['required','numeric','min:1'],
+            'experience' => ['required','numeric','between:0,4'],
+            'skills' => ['nullable', 'string','max:500'],
+            'bio' =>['nullable', 'string', 'max:255'],
+            'address' => ['nullable', 'string', 'max:255'],
+
+
+
         ];
     }
 

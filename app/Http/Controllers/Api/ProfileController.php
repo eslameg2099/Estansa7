@@ -40,4 +40,7 @@ class ProfileController extends Controller
 
         return $user->refresh()->getResource();
     }
+
+
+   
 }

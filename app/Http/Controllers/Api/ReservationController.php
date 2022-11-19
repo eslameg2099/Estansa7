@@ -60,6 +60,9 @@ class ReservationController extends Controller
      */
     public function store(ReservationRequest $request)
     {
+      
+
+
        $availabletime =  AvailableTime::where('id',$request->availableday_id)->first();
 
        $this->check($availabletime);
@@ -149,7 +152,7 @@ class ReservationController extends Controller
         if ($request['success'] == true)
         {
             $reservation  =  Reservation::where('payment_id',$request['order'])->firstorfail();  
-            $reservation->update(['stauts'=> '1']); 
+            $reservation->update(['stauts'=> '2']); 
 			event(new updateavailable_times($reservation->availabletime));
             $message = "تم الدفع والحجز بنجاح";
             PaymobHelpers::transactions_reservation($reservation);
@@ -168,7 +171,8 @@ class ReservationController extends Controller
     public function finish_reservation(Request $request,$id)
     {   
         $reservation = $request->user()->Reservations()->where('id',$id)->firstorfail(); 
-        $reservation->update(['stauts'=> '2']); 
+        $reservation->update(['stauts'=> '3']); 
+        $reservation->availabletime->update(['booked_up'=> '0']);
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Support\Date;
 use App\Support\Price;
+use App\Models\Reservation;
 
 /** @mixin \App\Models\Customer */
 class providerResource extends JsonResource
@@ -23,6 +24,8 @@ class providerResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->phone,
+            'wallet' =>new price($this->wallet),
+            'reservation_count'=> Reservation::where('provider_id',$this->id)->count(),
             'type' => $this->type,
             'avatar' => $this->getAvatar(),
             'address'=> $this->address,

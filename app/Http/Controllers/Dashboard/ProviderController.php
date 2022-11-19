@@ -77,9 +77,10 @@ class ProviderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Provider $provider)
     {
-        //
+        $CategoryProvideres = CategoryProvider::select('id','name')->whereNotNull('parent_id')->get();
+        return view('dashboard.accounts.providers.edit', compact('CategoryProvideres','provider'));
     }
 
     /**
@@ -89,9 +90,15 @@ class ProviderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProviderRequest $request, Provider $provider)
     {
-        //
+        $provider->update($request->all());
+
+        $provider->addAllMediaFromTokens();
+
+        flash()->success(trans('provider.messages.updated'));
+
+        return redirect()->route('dashboard.providers.show', $provider);
     }
 
     /**

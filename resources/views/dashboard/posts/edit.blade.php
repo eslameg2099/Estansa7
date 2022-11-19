@@ -1,10 +1,10 @@
-<x-layout :title="$categorypost->name" :breadcrumbs="['dashboard.categorypost.edit', $categorypost]">
-    {{ BsForm::resource('categorypost')->putModel($categorypost, route('dashboard.categorypost.update', $categorypost->id)) }}
+<x-layout :title="$post->titele" :breadcrumbs="['dashboard.posts.edit', $post]">
+    {{ BsForm::resource('posts')->putModel($post, route('dashboard.posts.update', $post->id)) }}
     @component('dashboard::components.box')
-        @slot('title', trans('categorypost.actions.edit'))
-        @include('dashboard.categorypost.partials.form')
+        @slot('title', trans('posts.actions.edit'))
+        @include('dashboard.posts.partials.form')
         @slot('footer')
-            {{ BsForm::submit()->label(trans('categorypost.actions.save')) }}
+            {{ BsForm::submit()->label(trans('posts.actions.save')) }}
         @endslot
     @endcomponent
     {{ BsForm::close() }}

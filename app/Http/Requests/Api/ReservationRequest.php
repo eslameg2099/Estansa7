@@ -30,7 +30,9 @@ class ReservationRequest extends FormRequest
         
         return [
             'availableday_id' => ['required','exists:available_times,id'],
-            'slug'=>['string', 'max:120'],
+            'day_at'=>['required'],
+            
+            
 
         ];
     }

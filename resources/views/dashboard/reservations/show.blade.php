@@ -56,12 +56,12 @@
                     <tr>
                         <th width="200">@lang('reservations.attributes.stauts'):</th>
                     <td>
-             @if($reservation->stauts == '0')
+             @if($reservation->stauts == '1')
              <span class="badge badge-warning">غير مدفوع</span>
 
                    
 
-                    @elseif($reservation->stauts == '1')
+                    @elseif($reservation->stauts == '2')
                     <span class="badge badge-success"> مدفوع وجاهز</span>
 
 

@@ -208,7 +208,7 @@ class User extends Authenticatable implements HasMedia, NotificationTarget
      */
     public function getResource()
     {
-        if($this->type == 'provider')
+        if($this->type == "provider")
         {
             return new providerResource($this);
         }

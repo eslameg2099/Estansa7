@@ -73,7 +73,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $Providers = Provider::select('id','name')->get();
+        $CategoryPosts = CategoryPost::select('id','name')->get();
+        return view('dashboard.posts.edit', compact('Providers','CategoryPosts','post'));
     }
 
     /**
@@ -83,9 +85,15 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $post->update($request->all());
+
+        $post->addAllMediaFromTokens();
+
+        flash()->success(trans('posts.messages.updated'));
+
+        return redirect()->route('dashboard.posts.show', $post);
     }
 
     /**

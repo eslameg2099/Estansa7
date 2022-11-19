@@ -31,7 +31,7 @@ class PostRequest extends FormRequest
         return [
             'titele' => ['required', 'string', 'max:255' ],
             'slug'=>['required', 'string', 'max:120', 'unique:posts,slug'],
-            'description' => ['required', 'string', 'max:2500'],
+            'description' => ['required', 'string', 'max:5000'],
             'category_id' => ['required', 'exists:category_posts,id'],
             'image' => ['required', 'image'],
         ];

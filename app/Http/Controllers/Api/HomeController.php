@@ -30,7 +30,7 @@ class HomeController extends Controller
 
         $CategoryProviders = CategoryProvider::active()->inRandomOrder()->limit(6)->get();
         $Providers = Provider::inRandomOrder()->limit(6)->get();
-        $Posts = Post::active()->inRandomOrder()->limit(6)->get();
+        $Posts = Post::active()->inRandomOrder()->limit(4)->get();
         $Reviews = Review::inRandomOrder()->limit(6)->get();
         return response()->json([
             'data' => [

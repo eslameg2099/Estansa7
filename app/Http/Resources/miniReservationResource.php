@@ -4,9 +4,12 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Support\Date;
+use App\Support\Price;
+use PhpParser\Node\Expr\Cast\Double;
+use Illuminate\Support\Carbon;
 
 /** @mixin \App\Models\Customer */
-class AvailableTimeResource extends JsonResource
+class miniReservationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,12 +21,8 @@ class AvailableTimeResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'day_id' => $this->day_id,
-            'day_name' => $this->getname(),
-            'from' => (int) $this->from,
-            'to' => $this->to,
-
+            'day_at' => $this->day_at,
+       
         ];
     }
 }

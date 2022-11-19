@@ -15,6 +15,7 @@ class ProviderFilter extends BaseFilters
         'unit_price',
         'experience',
         'rate',
+        'name',
     ];
 
     /**
@@ -47,6 +48,14 @@ class ProviderFilter extends BaseFilters
         return $this->builder;
     }
 
+    protected function name($value)
+    {
+        if ($value) {
+            return $this->builder->where('name', 'like', "%$value%");
+        }
+
+        return $this->builder;
+    }
 
     protected function rate($value)
     {

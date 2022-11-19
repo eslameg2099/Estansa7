@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <th width="200">@lang('provider.attributes.bio')</th>
-                <td>{!! $provider->bio !!}</td>
+                <td>{{ $provider->bio }}</td>
             </tr>
          
             <tr>
@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <th width="200">@lang('provider.attributes.skills')</th>
-                <td>{!! $provider->skills !!}</td>
+                <td>{{ $provider->skills }}</td>
             </tr>
             <tr>
                 <th width="200">@lang('provider.attributes.linkedin')</th>

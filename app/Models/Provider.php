@@ -75,7 +75,7 @@ class Provider extends User
           return $this->reviews->sum('rate')  / $this->reviews->count();
         }
         else
-        return 0;
+        return $this->rate;
     }
 
 
@@ -93,6 +93,9 @@ class Provider extends User
                  break;
                  case('3'):   
             return "اكتر من 5 سنوات";
+                 break;
+                 case('4'):   
+                    return "اكتر من 7 سنوات";
                  break;
         }
     }

@@ -29,7 +29,7 @@ class AvailableTimeRequest extends FormRequest
     {
         
         return [
-            'day_id' => ['required', 'numeric','between:1,7'],
+            'day_id' => ['required', 'numeric','between:0,6'],
             'from' => ['required', 'date_format:H:i'],
             'to' => ['required', 'date_format:H:i'],
         ];

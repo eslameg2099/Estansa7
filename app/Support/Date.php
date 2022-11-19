@@ -34,6 +34,7 @@ class Date implements JsonSerializable
             'date' => Carbon::parse($this->date)->toDateString(),
             'for_humans' => Carbon::parse($this->date)->diffForHumans(),
             'formatted' => Carbon::parse($this->date)->toDayDateTimeString(),
+            'time'=>Carbon::parse($this->date)->format('h:i A')
         ];
     }
 

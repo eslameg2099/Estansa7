@@ -44,9 +44,9 @@ class PostRequest extends FormRequest
         return [
             'titele' => ['required', 'string', 'max:255' ],
             'slug'=>['required', 'string', 'max:120', 'unique:posts,slug'],
-            'description' => ['required', 'string', 'max:2500'],
+            'description' => ['required', 'string', 'max:5000'],
             'category_id' => ['required', 'exists:category_posts,id'],
-            'image' => ['required', 'image'],
+           // 'image' => ['required', 'image'],
             'user_id' => ['required', 'exists:users,id'],
 
         ];
@@ -60,11 +60,13 @@ class PostRequest extends FormRequest
     public function updateRules()
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'unique:users,email,' . $this->route('customer')->id],
-            'phone' => ['required', 'unique:users,phone,' . $this->route('customer')->id],
-            'password' => ['nullable', 'min:8', 'confirmed'],
-            'type' => ['sometimes', 'nullable', Rule::in(array_keys(trans('users.types')))],
+            'titele' => ['required', 'string', 'max:255' ],
+          //  'slug'=>['required', 'string', 'max:120', 'unique:posts,slug'. $this->post->id],
+            'description' => ['required', 'string', 'max:5000'],
+            'category_id' => ['required', 'exists:category_posts,id'],
+           // 'image' => ['required', 'image'],
+            'user_id' => ['required', 'exists:users,id'],
+
         ];
     }
 

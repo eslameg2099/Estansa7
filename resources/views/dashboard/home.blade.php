@@ -113,7 +113,6 @@
                
 
                 <div class="ml-2 d-flex justify-content-between flex-grow-1">
-                    @include('dashboard.posts.partials.actions.create')
 
                 </div>
             </div>

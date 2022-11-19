@@ -7,7 +7,7 @@ use App\Support\Date;
 use App\Support\Price;
 
 /** @mixin \App\Models\Customer */
-class miniproviderResource extends JsonResource
+class miniproviderResource  extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -28,7 +28,7 @@ class miniproviderResource extends JsonResource
             'bio'=> $this->bio,
             'category_name'=> $this->category->name,
             'unit_price'=>new price($this->unit_price),
-            'is_favorite' => $this->checkfavorited(auth('sanctum')->id()),
+            'availabletime_count'=>$this->availabletimes->count(),
             'experience'=>$this->experienceyears(),
             'rate'=> $this->checkreview() ,
 

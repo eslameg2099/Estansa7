@@ -30,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('verification/send', 'VerificationController@send')->name('verification.send');
     Route::get('profile', 'ProfileController@show')->name('profile.show');
     Route::match(['put', 'patch'], 'profile', 'ProfileController@update')->name('profile.update');
+
 });
 Route::post('/editor/upload', 'MediaController@editorUpload')->name('editor.upload');
 Route::get('/settings', 'SettingController@index')->name('settings.index');
@@ -64,7 +65,7 @@ Route::apiResource('home', 'HomeController');
 
 //AvailableTime  Routes.
 Route::apiResource('availabletime', 'AvailableTimeController');
-
+Route::patch('availabletime/lock/{id}', 'AvailableTimeController@toggleLock');
 //reservations   Routes.
 Route::apiResource('reservations', 'ReservationController');
 Route::get('reservations/finish/{id}', 'ReservationController@finish_reservation');

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Filters;
-
+use Carbon\Carbon;
 class ReservationFilter extends BaseFilters
 {
     /**
@@ -14,6 +14,7 @@ class ReservationFilter extends BaseFilters
         'provider',
         'customer',
         'id',
+        'date',
     ];
 
     /**
@@ -25,7 +26,16 @@ class ReservationFilter extends BaseFilters
     protected function stauts($value)
     {
         if ($value) {
-            return $this->builder->where('stauts', $value);
+                return $this->builder->where('day_at',today());
+       }
+
+    return $this->builder;
+    }
+
+    protected function date($value)
+    {
+        if ($value) {
+            return $this->builder->where('day_at',$value);
         }
 
         return $this->builder;
@@ -39,7 +49,6 @@ class ReservationFilter extends BaseFilters
 
         return $this->builder;
     }
-
     protected function provider($value)
     {
         if ($value) {
