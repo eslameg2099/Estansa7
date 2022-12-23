@@ -9,6 +9,7 @@ use App\Http\Resources\CategoryPostResource;
 
 class CategoryPostController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *

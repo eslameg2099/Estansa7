@@ -124,7 +124,7 @@ class RegisterController extends Controller
             'user' => $user->name,
             'image' => 'https://est.ragabkalbida.com/storage/107/logoee193b16.png',
         ];
-        \Mail::to($user->email)->send(new \App\Mail\email($details));
+    //    \Mail::to($user->email)->send(new \App\Mail\email($details));
         event(new VerificationCreated($verification));
     }
 }

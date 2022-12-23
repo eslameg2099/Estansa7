@@ -33,7 +33,7 @@ class PostRequest extends FormRequest
             'slug'=>['required', 'string', 'max:120', 'unique:posts,slug'],
             'description' => ['required', 'string', 'max:5000'],
             'category_id' => ['required', 'exists:category_posts,id'],
-            'image' => ['required', 'image'],
+           // 'image' => ['required', 'image'],
         ];
     }
 

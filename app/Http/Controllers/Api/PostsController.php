@@ -97,9 +97,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request,$slug)
+    public function update(Request $request,$slug)
     {
-        $post = $request->user()->posts()->where('slug',$slug)->firstorfail(); 
+        $post = $request->user()->posts()->where('id',$slug)->firstorfail(); 
         $post->update($request->all());
         $post->uploadFile('image');
         return new PostResource($post);

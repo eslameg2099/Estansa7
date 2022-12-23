@@ -8,6 +8,8 @@ use Illuminate\Http\UploadedFile;
 use App\Events\VerificationCreated;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
+use App\Models\CategoryProvider;
+
 
 class RegisterTest extends TestCase
 {
@@ -28,31 +30,56 @@ class RegisterTest extends TestCase
             ->assertJsonValidationErrors(['email', 'password', 'avatar']);
     }
 
+
     public function test_customer_register()
     {
-        Event::fake();
-
         Storage::fake('avatars');
 
         $response = $this->postJson(route('api.sanctum.register'), [
             'name' => 'User',
-            'email' => 'user@demo.com',
+            'email' => 'user12@demo.com',
             'phone' => '123456',
             'password' => 'password',
             'type' => User::CUSTOMER_TYPE,
             'password_confirmation' => 'password',
             'avatar' => UploadedFile::fake()->image('avatar.jpg'),
         ]);
+      //  $response->assertStatus("Response is: " . $response->getContent());
 
-        $response->assertSuccessful()
-            ->assertJsonStructure(['token']);
-
+        $response->assertSuccessful();
         $user = User::all()->last();
-
         $this->assertEquals($user->name, 'User');
 
-        $this->assertCount(1, $user->getMedia('avatars'));
-
-        Event::assertDispatched(VerificationCreated::class);
     }
+    
+
+    public function test_provoder()
+    {
+        Storage::fake('avatars');
+
+        $response = $this->postJson(route('api.sanctum.register'), [
+            'name' => 'provoder',
+            'email' => 'user12@demo.com',
+            'phone' => '123456',
+            'password' => 'password',
+            'type' => User::Provider_TYPE,
+            'password_confirmation' => 'password',
+            'avatar' => UploadedFile::fake()->image('avatar.jpg'),
+            'bio'=> '123456' ,
+            'cv'=> UploadedFile::fake()->image('avatar.jpg'),
+            'linkedin' => '123456' ,
+            'skills'=> '123456' ,
+            'category_id'=> CategoryProvider::factory()->create()->id,
+            'unit_price'=>4,
+            'experience'=>3,
+
+
+        ]);
+     //   $response->assertStatus("Response is: " . $response->getContent());
+
+        $response->assertSuccessful();
+        $user = User::all()->last();
+        $this->assertEquals($user->name, 'provoder');
+    }
+   
 }

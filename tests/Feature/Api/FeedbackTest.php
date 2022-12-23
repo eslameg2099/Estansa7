@@ -10,21 +10,17 @@ use Illuminate\Support\Facades\Event;
 class FeedbackTest extends TestCase
 {
     /** @test */
-    public function anyone_can_send_feedback_message()
-    {
-        Event::fake();
+   public function test_send_feedback()
+   {
+    $this->postJson(route('api.feedback.send'), [
+        'name' => 'User',
+        'email' => 'user@demo.com',
+        'phone' => '123456',
+        'message' => 'something ...',
+    ])->assertSuccessful();
 
-        $feedbackCount = Feedback::count();
+    $Feedback = Feedback::all()->last();
 
-        $this->postJson(route('api.feedback.send'), [
-            'name' => 'User',
-            'email' => 'user@demo.com',
-            'phone' => '123456',
-            'message' => 'something ...',
-        ]);
-
-        Event::assertDispatched(FeedbackSent::class);
-
-        $this->assertEquals(Feedback::count(), $feedbackCount + 1);
-    }
+    $this->assertEquals($Feedback->name,'User');
+   }
 }
