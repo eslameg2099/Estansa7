@@ -79,7 +79,7 @@
             <!-- small box -->
             <div class="small-box bg-primary">
                 <div class="inner">
-                    <h3>{{ \App\Models\Admin::findorfail(21)->wallet }} EGP</h3>
+                    <h3>{{ \App\Models\Admin::findorfail(1)->wallet }} EGP</h3>
 
                     <p>{{ __('رصيد النظام') }}</p>
                 </div>
