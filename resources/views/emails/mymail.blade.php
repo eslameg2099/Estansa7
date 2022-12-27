@@ -9,6 +9,7 @@
   <img src="https://backend.estansa7.com/storage/8/logoee193b16.png"  width="250" height="250">
 
    
+  
 
     <a href="{{url('https://est.ragabkalbida.com/api/verification/verify/'.$details['body'])}}">للتفعيل اضغط هنا</a>
     
