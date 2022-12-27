@@ -18,6 +18,7 @@
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^1.0",
+        "guzzlehttp/guzzle": "^7",
         "kreait/firebase-tokens": "^1.10",
         "lab404/laravel-impersonate": "^1.7",
         "laracasts/flash": "^3.0",
@@ -31,7 +32,10 @@
         "pusher/pusher-php-server": "^4.1",
         "pusher/pusher-push-notifications": "^1.1",
         "spatie/laravel-backup": "^6.14",
-        "spatie/laravel-permission": "^4.0"
+        "spatie/laravel-permission": "^4.0",
+        "symfony/http-client": "^5.4",
+        "symfony/mailgun-mailer": "^5.4",
+        "symfony/postmark-mailer": "^5.4"
     },
     "require-dev": {
         "ahmed-aliraqi/crud-generator": "^3.1",
