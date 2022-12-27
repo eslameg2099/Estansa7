@@ -6,7 +6,7 @@
 <body>
 
   <h3>{{ $details['title'] }}</h3>
-  <img src="https://est.ragabkalbida.com/storage/107/logoee193b16.png"  width="250" height="250">
+  <img src="https://backend.estansa7.com/storage/8/logoee193b16.png"  width="250" height="250">
 
    
 
