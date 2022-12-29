@@ -35,4 +35,8 @@ return [
         'beams_secret_key' => env('PUSHER_BEAMS_SECRET_KEY'),
     ],
 
+    'sendgrid' => [
+        'api_key' => env('SENDGRID_API_KEY'),
+    ],
+
 ];

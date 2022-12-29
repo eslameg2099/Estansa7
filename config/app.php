@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         ChristianKuri\LaravelFavorite\FavoriteServiceProvider::class,
+        Sichikawa\LaravelSendgridDriver\SendgridTransportServiceProvider::class,
 
         /*
          * Package Service Providers...

@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Sichikawa\LaravelSendgridDriver\SendGrid;
 
 class email extends Mailable
 {
@@ -31,7 +32,9 @@ class email extends Mailable
         return $this->subject('Estansa7')
                     ->view('emails.mymail')
                     ->with(['details' => $this->details])
-
+    
                     ;
     }
+
+    
 }
