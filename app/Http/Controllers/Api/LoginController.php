@@ -46,9 +46,7 @@ class LoginController extends Controller
             $query->where('email', $request->username);
             $query->orWhere('phone', $request->username);
         })
-            ->when($request->type, function (Builder $builder) use ($request) {
-                $builder->where('type', $request->type);
-            })
+            
             ->first();
 
         if (! $user || ! Hash::check($request->password, $user->password)) {
