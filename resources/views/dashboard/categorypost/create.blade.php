@@ -1,5 +1,5 @@
 <x-layout :title="trans('categoryprovider.create')" :breadcrumbs="['dashboard.categoryprovider.create']">
-    {{ BsForm::resource('categoryprovider')->post(route('dashboard.categoryprovider.store')) }}
+    {{ BsForm::resource('categorypost')->post(route('dashboard.categorypost.store')) }}
     @component('dashboard::components.box')
         @slot('title', trans('categoryprovider.actions.create'))
         @include('dashboard.categoryprovider.partials.form')
