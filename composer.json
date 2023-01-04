@@ -38,6 +38,7 @@
         "symfony/http-client": "^5.4",
         "symfony/mailgun-mailer": "^5.4",
        "symfony/postmark-mailer": "^5.4"
+       
     },
     "require-dev": {
         "ahmed-aliraqi/crud-generator": "^3.1",
