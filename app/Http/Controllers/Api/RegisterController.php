@@ -116,15 +116,16 @@ class RegisterController extends Controller
         ], [
             'code' => rand(111111, 999999),
         ]);
-        $details = [
-            'title' => 'ACTIVE CODE',
-            'body' => $verification->code ,
-            'data'=> $user->name,
-            'end'=> 'is approve',
-            'user' => $user->name,
-            'image' => 'https://est.ragabkalbida.com/storage/107/logoee193b16.png',
-        ];
-        \Mail::to($user->email)->send(new \App\Mail\email($details));
-        event(new VerificationCreated($verification));
+
+        $response = Http::withHeaders(['content-type' => 'application/json'])->post('https://est.ragabkalbida.com/api/sendmail',
+          ["api_key" => '',
+          'user' => $verification->code,
+          'code'=> $verification->code,
+          'name'=>$user->name
+
+        ]);
+   $json = $response->json();
+
+       
     }
 }
