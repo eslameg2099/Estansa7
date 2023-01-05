@@ -15,6 +15,7 @@ use Illuminate\Validation\ValidationException;
 use App\Http\Requests\Api\RegisterRequest;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Http;
 
 class RegisterController extends Controller
 {
@@ -117,15 +118,16 @@ class RegisterController extends Controller
             'code' => rand(111111, 999999),
         ]);
 
-        $response = Http::withHeaders(['content-type' => 'application/json'])->post('https://est.ragabkalbida.com/api/sendmail',
-          ["api_key" => '',
-          'user' => $verification->code,
-          'code'=> $verification->code,
-          'name'=>$user->name
+        $response = Http::post('https://est.ragabkalbida.com/api/sendmail', $data = [
+            'user' => $verification->code,
+            'code'=> $verification->code,
+            'name'=>$user->name,
+            'email'=>$user->email,
 
         ]);
-   $json = $response->json();
 
+    
+  
        
     }
 }
