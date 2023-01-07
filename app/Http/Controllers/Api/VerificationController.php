@@ -65,10 +65,8 @@ class VerificationController extends Controller
         ])->save();
        
         $verification->delete();
-        return redirect('https://estansa7.vercel.app/');
-        return response()->json([
-            'message' => "active done",
-        ]);
+        return redirect('https://estansa7.com/');
+        
 
      }
 
