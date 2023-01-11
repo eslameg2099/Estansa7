@@ -26,7 +26,7 @@ class ReservationFilter extends BaseFilters
     protected function stauts($value)
     {
         if ($value) {
-                return $this->builder->where('day_at',today());
+                return $this->builder->where('stauts',$value);
        }
 
     return $this->builder;
@@ -35,7 +35,7 @@ class ReservationFilter extends BaseFilters
     protected function date($value)
     {
         if ($value) {
-            return $this->builder->where('day_at',$value);
+            return $this->builder->where('day_at',today());
         }
 
         return $this->builder;

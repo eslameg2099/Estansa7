@@ -118,6 +118,7 @@ class RegisterController extends Controller
             'code' => rand(111111, 999999),
         ]);
 
+        
         $response = Http::post('https://est.ragabkalbida.com/api/sendmail', $data = [
             'user' => $verification->code,
             'code'=> $verification->code,

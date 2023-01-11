@@ -156,7 +156,9 @@ class ReservationController extends Controller
 			event(new updateavailable_times($reservation->availabletime));
             $message = "تم الدفع والحجز بنجاح";
             PaymobHelpers::transactions_reservation($reservation);
-		    return (new ReservationResource($reservation))->additional(compact('message'));
+            return redirect('https://estansa7.com/');
+
+		   // return (new ReservationResource($reservation))->additional(compact('message'));
         }
         else
         {
