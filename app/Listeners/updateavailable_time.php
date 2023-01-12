@@ -28,7 +28,7 @@ class updateavailable_time
      */
     public function handle(updateavailable_times $event)
     {
-      //  $event->availabletime->booked_up = '1';
-      //  $event->availabletime->save();
+        $event->availabletime->booked_up = '1';
+        $event->availabletime->save();
     }
 }
