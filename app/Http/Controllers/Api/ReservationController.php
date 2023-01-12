@@ -190,7 +190,10 @@ class ReservationController extends Controller
             $reservation->update(['stauts'=> '2']); 
             if($reservation->coupon_id != null )
             {
-                $reservation->update(['discount'=> ($reservation->coupon->percentage_value * $reservation->cost /100)]); 
+                $reservation->update(['discount'=> ($reservation->coupon->percentage_value * $reservation->cost /100)]);
+                $coupon = $reservation->coupon;
+                $coupon->used = $coupon->used + 1;
+                $coupon->save(); 
 
             }
 			event(new updateavailable_times($reservation->availabletime));
