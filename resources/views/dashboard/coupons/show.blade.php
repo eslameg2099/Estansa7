@@ -31,8 +31,7 @@
                 @slot('footer')
                     @include('dashboard.coupons.partials.actions.edit')
                     @include('dashboard.coupons.partials.actions.delete')
-                    @include('dashboard.coupons.partials.actions.restore')
-                    @include('dashboard.coupons.partials.actions.forceDelete')
+                   
                 @endslot
             @endcomponent
         </div>
