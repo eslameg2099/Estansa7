@@ -15,7 +15,13 @@
                     </tr>
                     <tr>
                         <th width="200">@lang('reservations.attributes.customer'):</th>
-                        <td>{{ $reservation->customer->name}}</td>
+                        <td>   <a href="{{ route('dashboard.customers.show', $reservation->customer->name) }}"
+                       class="text-decoration-none text-ellipsis">
+                            <span class="index-flag">
+                            @include('dashboard.accounts.customers.partials.flags.svg')
+                            </span>
+                            {{ $reservation->customer->name}}
+                    </a></td>
                         
                     </tr>
                     <tr>
