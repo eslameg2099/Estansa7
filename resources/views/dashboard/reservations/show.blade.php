@@ -39,7 +39,7 @@
                         <td>{{ $reservation->cost}} EGP</td>
                     </tr>
                     <tr>
-                        <th width="200">@lang('reservations.attributes.cost'):</th>
+                        <th width="200">@lang('reservations.attributes.discount'):</th>
                         <td>{{ $reservation->discount}} EGP</td>
                     </tr>
                     <tr>
