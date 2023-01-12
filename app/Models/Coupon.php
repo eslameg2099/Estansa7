@@ -32,7 +32,8 @@ class Coupon extends Model
         'percentage_value',
         'expired_at',
         'usage_count',
-        'used',
+        'usage',
+        ''
 
     ];
 

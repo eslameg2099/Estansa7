@@ -17,7 +17,7 @@
                     </tr>
                     <tr>
                         <th width="200">@lang('coupons.attributes.usage_count')</th>
-                        <td>{{ $coupon->used}} /  {{ $coupon->usage_count }}</td>
+                        <td>{{ $coupon->usage}} /  {{ $coupon->usage_count }}</td>
                     </tr>
                     @if($coupon->expired_at)
                         <tr>

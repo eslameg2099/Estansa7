@@ -108,7 +108,7 @@ class ReservationController extends Controller
             ]);
         }
 
-        if ($coupon->used >= $coupon->usage_count) {
+        if ($coupon->usage >= $coupon->usage_count) {
             throw ValidationException::withMessages([
                 'coupon' => [__('The coupon you entered is used.')],
             ]);
@@ -192,7 +192,7 @@ class ReservationController extends Controller
             {
                 $reservation->update(['discount'=> ($reservation->coupon->percentage_value * $reservation->cost /100)]);
                 $coupon = $reservation->coupon;
-                $coupon->used = $coupon->used + 1;
+                $coupon->usage = $coupon->usage + 1;
                 $coupon->save(); 
 
             }
