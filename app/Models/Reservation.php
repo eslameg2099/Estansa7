@@ -41,12 +41,19 @@ class Reservation extends Model
         'cost' ,
         'payment_id',
         'availabletime_id',
+        'discount',
+        'coupon_id',
 
     ];
 
     public function availabletime()
    {
      return $this->belongsTo(AvailableTime::class, 'availabletime_id');
+   }
+
+   public function coupon()
+   {
+     return $this->belongsTo(Coupon::class, 'coupon_id');
    }
 
     public function provider()

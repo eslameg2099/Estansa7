@@ -18,10 +18,15 @@ class PaymobHelpers
     ["api_key" => 'ZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6VXhNaUo5LmV5SndjbTltYVd4bFgzQnJJam8xTURjMU56WXNJbTVoYldVaU9pSnBibWwwYVdGc0lpd2lZMnhoYzNNaU9pSk5aWEpqYUdGdWRDSjkuUG5EUWJzLTBXYm1Xd0VQTFlkNWV1b2g1a0EyZUk2R0drR01XbmNUdzQyMEFuLVU0QkwyVzFaU2MxX01fQzVWU3d3TnBFYVJreENlbzdISktLSUt5NUE=']);
    $json = $response->json();
 
+   if($model->coupon_id != null)
+   {
+      $cost = ($model->cost - ($model->coupon->percentage_value * $model->cost /100)) * 100;
+   }
+   else $cost =  $model->cost * 100;
    $response_final = Http::withHeaders(['content-type' => 'application/json'])->post('https://accept.paymobsolutions.com/api/ecommerce/orders',
     ["auth_token" => $json['token'],
      "delivery_needed" => "false",
-      "amount_cents" =>  $model->cost * 100,
+      "amount_cents" => $cost,
        "items" => []]);
    $json_final = $response_final->json();
 

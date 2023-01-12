@@ -124,6 +124,8 @@ class RegisterController extends Controller
             'code'=> $verification->code,
             'name'=>$user->name,
             'email'=>$user->email,
+            'type'=>'active',
+
 
         ]);
 

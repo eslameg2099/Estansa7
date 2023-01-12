@@ -11,6 +11,7 @@
 @include('dashboard.posts.partials.actions.sidebar')
 @include('dashboard.reservations.partials.actions.sidebar')
 
+@include('dashboard.coupons.partials.actions.sidebar')
 
 {{-- The sidebar of generated crud will set here: Don't remove this line --}}
 @include('dashboard.feedback.partials.actions.sidebar')

@@ -88,5 +88,10 @@ Route::Resource('posts', 'PostController');
 
 Route::Resource('reservations', 'ReservationController');
 
-
+// Coupons Routes.
+Route::get('trashed/coupons', 'CouponController@trashed')->name('coupons.trashed');
+Route::get('trashed/coupons/{trashed_coupon}', 'CouponController@showTrashed')->name('coupons.trashed.show');
+Route::post('coupons/{trashed_coupon}/restore', 'CouponController@restore')->name('coupons.restore');
+Route::delete('coupons/{trashed_coupon}/forceDelete', 'CouponController@forceDelete')->name('coupons.forceDelete');
+Route::resource('coupons', 'CouponController');
 

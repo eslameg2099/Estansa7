@@ -11,6 +11,7 @@ use App\Http\Requests\Api\ReservationRequest;
 use App\Models\AvailableTime;
 use Illuminate\Support\Facades\Http;
 use App\Events\updateavailable_times;
+use App\Models\Coupon;
 
 use MacsiDigital\Zoom\Facades\Zoom;
 use Carbon\Carbon;
@@ -66,7 +67,11 @@ class ReservationController extends Controller
        $availabletime =  AvailableTime::where('id',$request->availableday_id)->first();
 
        $this->check($availabletime);
-       
+
+       if ($value = $request->input('coupon')) {
+        $this->applyCoupon($availabletime, $value);
+       }
+
        $Reservation =  Reservation::create([
         'user_id'  => $request->user()->id,
         'provider_id'   => $availabletime->user_id,
@@ -77,10 +82,40 @@ class ReservationController extends Controller
         'day_at'   => $request->day_at,
         'cost'   => $availabletime->provider->unit_price,
         'availabletime_id'=>$availabletime->id,
+        'coupon_id'=> Coupon::where('code',$request->input('coupon'))->first()->id,
        ]);
+    
+       
 
       return   PaymobHelpers::payment(677122,$request->user(),$Reservation);
 
+    }
+
+
+    protected function applyCoupon(AvailableTime $availabletime, $coupon)
+    {
+        /** @var \App\Models\Coupon $coupon */
+        
+        if (! $coupon = Coupon::where('code', $coupon)->first()) {
+            throw ValidationException::withMessages([
+                'coupon' => [__('The coupon you entered is invalid.')],
+            ]);
+        }
+
+        if ($coupon->isExpired()) {
+            throw ValidationException::withMessages([
+                'coupon' => [__('The coupon you entered is expired.')],
+            ]);
+        }
+
+        if ($coupon->used >= $coupon->usage_count) {
+            throw ValidationException::withMessages([
+                'coupon' => [__('The coupon you entered is used.')],
+            ]);
+        }
+
+     
+        return $this;
     }
 
     /**
@@ -153,9 +188,24 @@ class ReservationController extends Controller
         {
             $reservation  =  Reservation::where('payment_id',$request['order'])->firstorfail();  
             $reservation->update(['stauts'=> '2']); 
+            if($reservation->coupon_id != null )
+            {
+                $reservation->update(['discount'=> ($reservation->coupon->percentage_value * $reservation->cost /100)]); 
+
+            }
 			event(new updateavailable_times($reservation->availabletime));
             $message = "تم الدفع والحجز بنجاح";
             PaymobHelpers::transactions_reservation($reservation);
+
+        /*    $response = Http::post('https://est.ragabkalbida.com/api/sendmail', $data = [
+                'user' => $reservation->coustomer->name,
+                'code'=> $reservation->id,
+                'name'=>$reservation->provider->name,
+                'email'=>$reservation->created_at,
+                'type'=>'donereservation',
+    
+            ]); */
+
             return redirect('https://estansa7.com/');
 
 		   // return (new ReservationResource($reservation))->additional(compact('message'));

@@ -31,12 +31,16 @@ class ReservationResource extends JsonResource
             'from' => Carbon::parse($this->from)->format('h:i A'),
             'to' => Carbon::parse($this->to)->format('h:i A'),
             'time' => "30 دقيقة",
-            'cost' => new price($this->cost),
+            'cost_before_discount' => new price($this->cost),
+
+            'cost' => new price($this->cost - $this->discount),
+
             'cost_provider'=> new price(($this->cost*80)/100),
             'day_at' => new Date($this->day_at),
             'comment' => $this->comment,
             'url'=>"https://meet.jit.si/estansa7/".$this->id,
             'active_url'=>$this->checklink(),
+            'discount'=> new price($this->discount),
             'created_at' => new Date( $this->created_at),
 
         ];
