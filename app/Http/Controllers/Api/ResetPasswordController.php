@@ -69,7 +69,7 @@ class ResetPasswordController extends Controller
             'code'=> $resetPasswordCode->code,
             'name'=>$user->name,
             'email'=>$user->email,
-            'type'=>'active',
+            'type'=>'rest',
 
 
         ]);
