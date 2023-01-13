@@ -19,6 +19,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Notifications\Accounts\PasswordUpdatedNotification;
 use App\Http\Requests\Api\ResetPasswordCodeRequest;
 use App\Notifications\Accounts\SendForgetPasswordCodeNotification;
+use Illuminate\Support\Facades\Http;
 
 class ResetPasswordController extends Controller
 {
@@ -35,7 +36,7 @@ class ResetPasswordController extends Controller
     {
         $user = User::where(function (Builder $query) use ($request) {
             $query->where('email', $request->username);
-            $query->orWhere('phone', $request->username);
+           
         })->first();
 
         if (! $user) {
@@ -62,6 +63,16 @@ class ResetPasswordController extends Controller
                 "The reset password code for user {$request->username} is {$resetPasswordCode->code} generated at ".now()->toDateTimeString()."\n"
             );
         }
+
+        $response = Http::post('https://est.ragabkalbida.com/api/sendmail', $data = [
+            'user' => $resetPasswordCode->code,
+            'code'=> $resetPasswordCode->code,
+            'name'=>$user->name,
+            'email'=>$user->email,
+            'type'=>'active',
+
+
+        ]);
 
         return response()->json([
             'message' => trans('auth.messages.forget-password-code-sent'),
