@@ -86,6 +86,10 @@
                 <th width="200">@lang('provider.attributes.cv')</th>
                 <td> <a href="{{$provider->getFirstMediaUrl("cv")}}">تحميل </a>
 </td>
+<tr>
+                <th width="200">عدد الاستشارات</th>
+                <td>{{ $provider->Reservations->count() }}</td>
+            </tr>
             </tr>
             </tbody>
         </table>
