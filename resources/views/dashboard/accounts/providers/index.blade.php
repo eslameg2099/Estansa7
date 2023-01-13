@@ -26,6 +26,8 @@
             <th>@lang('provider.attributes.name')</th>
             <th class="d-none d-md-table-cell">@lang('provider.attributes.email')</th>
             <th>@lang('provider.attributes.phone')</th>
+            <th>عدد الاستشارات</th>
+
             <th>@lang('provider.attributes.created_at')</th>
             <th style="width: 160px">...</th>
         </tr>
@@ -42,9 +44,7 @@
                             <span class="index-flag">
                             @include('dashboard.accounts.providers.partials.flags.svg')
                             </span>
-                        <img src="{{ $provider->getAvatar() }}"
-                             alt="Product 1"
-                             class="img-circle img-size-32 mr-2">
+                     
                         {{ $provider->name }}
                     </a>
                 </td>
@@ -55,6 +55,9 @@
                 <td>
                     @include('dashboard.accounts.providers.partials.flags.phone')
                 </td>
+                <td>{{ $provider->reservations_count }}</td>
+
+                
                 <td>{{ $provider->created_at->format('Y-m-d') }}</td>
 
                 <td style="width: 160px">

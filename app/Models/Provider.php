@@ -67,6 +67,10 @@ class Provider extends User
         return $this->hasMany(Review::class,'provider_id');
     }
 
+    public function Reservations()
+    {
+        return $this->hasMany(Reservation::class, 'provider_id');
+    }
 
     public function checkreview()
     {

@@ -22,8 +22,7 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $providers = Provider::filter()->OrderByDESC('id')->paginate();
-
+        $providers = Provider::withCount('Reservations')->filter()->OrderByDESC('id')->paginate();
         return view('dashboard.accounts.providers.index', compact('providers'));
     }
 
