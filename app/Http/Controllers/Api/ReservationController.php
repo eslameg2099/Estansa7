@@ -68,8 +68,11 @@ class ReservationController extends Controller
 
        $this->check($availabletime);
 
+       $coupon_id = null ;
+
        if ($value = $request->input('coupon')) {
         $this->applyCoupon($availabletime, $value);
+        $coupon_id = Coupon::where('code',$request->input('coupon'))->first()->id;
        }
 
        $Reservation =  Reservation::create([
@@ -82,7 +85,7 @@ class ReservationController extends Controller
         'day_at'   => $request->day_at,
         'cost'   => $availabletime->provider->unit_price,
         'availabletime_id'=>$availabletime->id,
-        'coupon_id'=> Coupon::where('code',$request->input('coupon'))->first()->id,
+        'coupon_id'=> $coupon_id,
        ]);
     
        
