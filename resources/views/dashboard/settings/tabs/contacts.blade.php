@@ -6,6 +6,8 @@
         {{ BsForm::text('phone')->value(Settings::get('phone')) }}
         {{ BsForm::text('facebook')->value(Settings::get('facebook')) }}
         {{ BsForm::text('twitter')->value(Settings::get('twitter')) }}
+        {{ BsForm::text('youtube')->value(Settings::get('youtube')) }}
+
         {{ BsForm::text('instagram')->value(Settings::get('instagram')) }}
         {{ BsForm::text('snapchat')->value(Settings::get('snapchat')) }}
         {{ BsForm::text('apple')->value(Settings::get('apple')) }}

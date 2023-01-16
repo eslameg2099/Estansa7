@@ -19,7 +19,9 @@ class SettingController extends Controller
                 'facebook' => Settings::get('facebook'),
                 'instagram' => Settings::get('instagram'),
                 'snapchat' => Settings::get('snapchat'),
+                'youtube' => Settings::get('youtube'),
                 'twitter' => Settings::get('twitter'),
+
                 'phone' => Settings::get('phone'),
                 'email' => Settings::get('email'),
             ],
