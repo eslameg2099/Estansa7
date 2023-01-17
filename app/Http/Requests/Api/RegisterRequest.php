@@ -42,6 +42,17 @@ class RegisterRequest extends FormRequest
                     return $this->type == User::Provider_TYPE;
                 }),
             ],
+            'certificates' => [
+                Rule::requiredIf(function () {
+                    return $this->type == User::Provider_TYPE;
+                }),
+            ],
+
+            'cv' => [
+                Rule::requiredIf(function () {
+                    return $this->type == User::Provider_TYPE;
+                }),
+            ],
 
             'category_id' => [
                 Rule::requiredIf(function () {
