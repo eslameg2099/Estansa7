@@ -47,9 +47,12 @@ class ResetPasswordController extends Controller
 
         $resetPasswordCode = ResetPasswordCode::updateOrCreate([
             'username' => $request->username,
+            'user_id'=>$user->id,
         ], [
             'username' => $request->username,
             'code' => rand(111111, 999999),
+            'user_id'=>$user->id,
+
         ]);
 
         try {

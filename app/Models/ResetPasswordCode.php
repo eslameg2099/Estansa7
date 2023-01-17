@@ -32,4 +32,9 @@ class ResetPasswordCode extends Model
     {
         return $this->updated_at->addSeconds(static::EXPIRE_DURATION)->isPast();
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }
