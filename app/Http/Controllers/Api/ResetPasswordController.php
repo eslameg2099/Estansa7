@@ -133,7 +133,7 @@ class ResetPasswordController extends Controller
 
     public function reset(ResetPasswordRequest $request)
     {
-        $resetPasswordToken = ResetPasswordCode::where($request->only('token'))->first();
+        $resetPasswordToken = ResetPasswordCode::where('code',$request->only('token'))->first();
 
         if (! $resetPasswordToken || $resetPasswordToken->isExpired()) {
             throw ValidationException::withMessages([
