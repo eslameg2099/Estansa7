@@ -49,7 +49,7 @@ class ResetPasswordController extends Controller
             'username' => $request->username,
         ], [
             'username' => $request->username,
-            'code' => rand(1111, 9999),
+            'code' => rand(111111, 999999),
         ]);
 
         try {
@@ -133,7 +133,7 @@ class ResetPasswordController extends Controller
 
     public function reset(ResetPasswordRequest $request)
     {
-        $resetPasswordToken = ResetPasswordToken::where($request->only('token'))->first();
+        $resetPasswordToken = ResetPasswordCode::where($request->only('token'))->first();
 
         if (! $resetPasswordToken || $resetPasswordToken->isExpired()) {
             throw ValidationException::withMessages([
