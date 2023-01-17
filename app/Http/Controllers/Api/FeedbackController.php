@@ -24,7 +24,7 @@ class FeedbackController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:255',
-            'phone' => 'required',
+            'phone' => 'nullable',
             'email' => 'required',
             'message' => 'required',
         ], [], trans('feedback.attributes'));
