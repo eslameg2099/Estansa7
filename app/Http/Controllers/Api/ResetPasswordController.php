@@ -55,17 +55,7 @@ class ResetPasswordController extends Controller
 
         ]);
 
-        try {
-            $user->notify(new SendForgetPasswordCodeNotification($resetPasswordCode->code));
-        } catch (\Exception $exception) {
-        }
-
-        if (app()->environment('local')) {
-            Storage::disk('public')->append(
-                'verification.txt',
-                "The reset password code for user {$request->username} is {$resetPasswordCode->code} generated at ".now()->toDateTimeString()."\n"
-            );
-        }
+     
 
         $response = Http::post('https://est.ragabkalbida.com/api/sendmail', $data = [
             'user' => $resetPasswordCode->code,
