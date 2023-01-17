@@ -21,6 +21,7 @@ class ResetPasswordCode extends Model
     protected $fillable = [
         'username',
         'code',
+        'user_id',
     ];
 
     /**
