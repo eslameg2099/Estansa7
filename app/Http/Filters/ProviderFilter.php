@@ -70,11 +70,11 @@ class ProviderFilter extends BaseFilters
     protected function unitPrice($value)
     {
         if ($value) {
-            if (Str::contains($value, ',')) {
+           
                 $from = explode(',', $value)[0];
                 $to = explode(',', $value)[1];
                 $this->builder->whereBetween('unit_price', [$from, $to]);
-            } 
+            
         }
     
             return $this->builder;
