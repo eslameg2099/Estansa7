@@ -74,9 +74,7 @@ class ProviderFilter extends BaseFilters
                 $from = explode(',', $value)[0];
                 $to = explode(',', $value)[1];
                 $this->builder->whereBetween('unit_price', [$from, $to]);
-            } else {
-                $this->builder->where('unit_price', $value);
-            }
+            } 
         }
     
             return $this->builder;
