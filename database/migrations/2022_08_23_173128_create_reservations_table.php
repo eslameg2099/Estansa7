@@ -24,6 +24,7 @@ class CreateReservationsTable extends Migration
             $table->time('from');
             $table->time('to');
             $table->integer('category_id')->nullable();
+            $table->integer('coupon_id')->nullable();
             $table->text('comment')->nullable();
             $table->date('day_at')->nullable();
             $table->timestamps();
