@@ -31,7 +31,7 @@ class AvailableTime extends Model
     
    public function reservations()
    {
-       return $this->hasMany(Reservation::class,'availabletime_id')->where('stauts','2')->select('day_at')->get();
+       return $this->hasMany(Reservation::class,'availabletime_id')->where('stauts','2')->where('day_at','>=', Carbon::now())->select('day_at')->get();
    }
 
      public function toArray()
