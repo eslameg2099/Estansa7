@@ -32,8 +32,8 @@ class ProfileRequest extends FormRequest
             'name' => ['sometimes', 'required', 'string', 'max:255'],
             'email' => ['sometimes', 'required', 'email', 'unique:users,email,'.auth()->id()],
             'phone' => ['sometimes',  'unique:users,phone,'.auth()->id()],
-            'old_password' => ['required_with:password', new PasswordRule(auth()->user()->password)],
-            'password' => ['nullable', 'min:8', 'confirmed'],
+          //  'old_password' => ['required_with:password', new PasswordRule(auth()->user()->password)],
+           // 'password' => ['nullable', 'min:8', 'confirmed'],
             'avatar' => ['nullable', 'image'],
         ];
     }
