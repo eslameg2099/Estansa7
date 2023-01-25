@@ -71,8 +71,8 @@ class ProviderFilter extends BaseFilters
     {
         if ($value) {
             if (Str::contains($value, ',')) {
-                $from = 4;
-                $to = 125;
+                $from = (int) explode(',', $value)[0];
+                $to = (int) explode(',', $value)[1];
                 $this->builder->whereBetween('unit_price', [$from, $to]);
             } else {
                 $this->builder->where('unit_price', $value);
