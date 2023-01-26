@@ -47,7 +47,7 @@ class ProfileController extends Controller
     {
 
         $user = auth()->user();
-        $user->update(['bank_name'=> $request->bank_name,''=> $request->iban , ''=> $request->account_bank ]); 
+        $user->update(['bank_name'=> $request->bank_name,'iban'=> $request->iban , 'account_bank'=> $request->account_bank ]); 
         return response()->json([
             'message' => "تم الاضافة بنجاح",
         ]);
