@@ -42,6 +42,7 @@ class ReservationResource extends JsonResource
             'active_url'=>$this->checklink(),
             'discount'=> new price($this->discount),
             'created_at' => new Date( $this->created_at),
+            'free'=>true,
 
         ];
     }

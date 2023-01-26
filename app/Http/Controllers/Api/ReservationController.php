@@ -62,8 +62,6 @@ class ReservationController extends Controller
     public function store(ReservationRequest $request)
     {
       
-
-
        $availabletime =  AvailableTime::where('id',$request->availableday_id)->firstOrFail();
 
        $this->check($availabletime);
@@ -92,9 +90,6 @@ class ReservationController extends Controller
        $Reservation->update(['stauts'=> '2']); 
        event(new updateavailable_times($Reservation->availabletime));
        return redirect('https://estansa7.com/book-consult?expert_id='.$Reservation->provider_id.'&book_step=3');
-
-    
-       
 
       return   PaymobHelpers::payment(677122,$request->user(),$Reservation);
 
