@@ -212,7 +212,7 @@ class ReservationController extends Controller
     
             ]); */
 
-            return redirect('https://estansa7.com/');
+            return redirect('https://estansa7.com/book-consult?expert_id=$reservation->provider_id&book_step=3');
 
 		   // return (new ReservationResource($reservation))->additional(compact('message'));
         }
