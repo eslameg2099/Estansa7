@@ -87,6 +87,12 @@ class ReservationController extends Controller
         'availabletime_id'=>$availabletime->id,
         'coupon_id'=> $coupon_id,
        ]);
+
+       ///free
+       $Reservation->update(['stauts'=> '2']); 
+       event(new updateavailable_times($reservation->availabletime));
+       return redirect('https://estansa7.com/book-consult?expert_id='.$Reservation->provider_id.'&book_step=3');
+
     
        
 
