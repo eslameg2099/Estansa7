@@ -6,6 +6,7 @@ use Illuminate\Routing\Controller;
 use App\Http\Requests\Api\ProfileRequest;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -39,6 +40,31 @@ class ProfileController extends Controller
         }
 
         return $user->refresh()->getResource();
+    }
+
+
+    public function addaccountbank(Request $request)
+    {
+
+        $user = auth()->user();
+        $user->update(['bank_name'=> $request->bank_name,''=> $request->iban , ''=> $request->account_bank ]); 
+        return response()->json([
+            'message' => "تم الاضافة بنجاح",
+        ]);
+
+
+    }
+
+
+    public function showaccountbank(Request $request)
+    {
+        $user = auth()->user();
+        return response()->json([
+            'bank_name' => $user->bank_name,
+            'iban' => $user->iban,
+            'account_bank' => $user->account_bank,
+        ]);
+
     }
 
 

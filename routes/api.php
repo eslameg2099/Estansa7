@@ -30,6 +30,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('verification/send', 'VerificationController@send')->name('verification.send');
     Route::get('profile', 'ProfileController@show')->name('profile.show');
     Route::match(['put', 'patch'], 'profile', 'ProfileController@update')->name('profile.update');
+    Route::post('addaccountbank', 'ProfileController@addaccountbank');
+    Route::get('showaccountbank', 'ProfileController@showaccountbank');
+
+    
 
 });
 Route::post('/editor/upload', 'MediaController@editorUpload')->name('editor.upload');

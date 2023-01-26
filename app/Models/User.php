@@ -96,6 +96,9 @@ class User extends Authenticatable implements HasMedia, NotificationTarget
         'rate',
         'provider_verified_at',
         'wallet',
+        'bank_name',
+        'iban',
+        'account_bank',
     ];
 
     /**
