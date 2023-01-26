@@ -47,6 +47,18 @@
                 <td>{{ $provider->experienceyears() }}</td>
             </tr>
             <tr>
+                <th width="200">@lang('provider.bank_name')</th>
+                <td>{{ $provider->bank_name }}</td>
+            </tr>
+            <tr>
+                <th width="200">@lang('provider.iban')</th>
+                <td>{{ $provider->iban }}</td>
+            </tr>
+            <tr>
+                <th width="200">@lang('provider.account_bank')</th>
+                <td>{{ $provider->account_bank }}</td>
+            </tr>
+            <tr>
                 <th width="200">@lang('provider.stauts')</th>
                 <td>
                 @if($provider->provider_verified_at != null )
