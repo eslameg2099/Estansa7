@@ -89,7 +89,11 @@ class ReservationController extends Controller
        ///free
        $Reservation->update(['stauts'=> '2']); 
        event(new updateavailable_times($Reservation->availabletime));
-       return redirect('https://estansa7.com/book-consult?expert_id='.$Reservation->provider_id.'&book_step=3');
+
+       return response()->json([
+        'url' => 'https://estansa7.com/book-consult?expert_id='.$Reservation->provider_id.'&book_step=3',
+      ]);
+    //   return ('https://estansa7.com/book-consult?expert_id='.$Reservation->provider_id.'&book_step=3');
 
       return   PaymobHelpers::payment(677122,$request->user(),$Reservation);
 
