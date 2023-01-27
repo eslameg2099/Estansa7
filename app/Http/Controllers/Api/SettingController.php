@@ -21,7 +21,7 @@ class SettingController extends Controller
                 'snapchat' => Settings::get('snapchat'),
                 'youtube' => Settings::get('youtube'),
                 'twitter' => Settings::get('twitter'),
-
+                'linkedin'=> Settings::get('linkedin'),
                 'phone' => Settings::get('phone'),
                 'email' => Settings::get('email'),
             ],

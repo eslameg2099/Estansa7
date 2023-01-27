@@ -7,6 +7,7 @@
         {{ BsForm::text('facebook')->value(Settings::get('facebook')) }}
         {{ BsForm::text('twitter')->value(Settings::get('twitter')) }}
         {{ BsForm::text('youtube')->value(Settings::get('youtube')) }}
+        {{ BsForm::text('linkedin')->value(Settings::get('linkedin')) }}
 
         {{ BsForm::text('instagram')->value(Settings::get('instagram')) }}
         {{ BsForm::text('snapchat')->value(Settings::get('snapchat')) }}
