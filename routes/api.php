@@ -70,6 +70,10 @@ Route::apiResource('home', 'HomeController');
 //AvailableTime  Routes.
 Route::apiResource('availabletime', 'AvailableTimeController');
 Route::patch('availabletime/lock/{id}', 'AvailableTimeController@toggleLock');
+Route::patch('availabletime/daylock/{id}', 'AvailableTimeController@daylock');
+Route::patch('availabletime/dayunlock/{id}', 'AvailableTimeController@dayunlock');
+
+
 //reservations   Routes.
 Route::apiResource('reservations', 'ReservationController');
 Route::get('reservations/finish/{id}', 'ReservationController@finish_reservation');

@@ -126,4 +126,27 @@ class AvailableTimeController extends Controller
 
         return new AvailableTimeResource($availabletime);
     }
+
+
+    public function daylock(Request $request,$id)
+    {
+        $availabletimes =  $request->user()->availabletimes()->where('day_id',$id)->get();
+        $availabletimes->update(['active' => '0']);
+        return response()->json([
+            'message' => "تم تعطيل اليوم بنجاح",
+        ]);
+
+    }
+
+    public function dayunlock(Request $request,$id)
+    {
+        $availabletimes =  $request->user()->availabletimes()->where('day_id',$id)->get();
+        $availabletimes->update(['active' => '1']);
+        return response()->json([
+            'message' => "تم تفعيل اليوم بنجاح",
+        ]);
+
+    }
+
+
 }
