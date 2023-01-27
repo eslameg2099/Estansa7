@@ -130,8 +130,8 @@ class AvailableTimeController extends Controller
 
     public function daylock(Request $request,$id)
     {
-        $availabletimes =  $request->user()->availabletimes()->where('day_id',$id)->get();
-        $availabletimes->update(array('active' => '0'));
+        $availabletimes =  $request->user()->availabletimes()->where('day_id',$id)->update(['active' => '0']);
+      //  $availabletimes->update(array('active' => '0'));
         return response()->json([
             'message' => "تم تعطيل اليوم بنجاح",
         ]);
