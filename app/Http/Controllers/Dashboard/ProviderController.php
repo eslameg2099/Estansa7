@@ -91,7 +91,7 @@ class ProviderController extends Controller
      */
     public function update(ProviderRequest $request, Provider $provider)
     {
-        $provider->update($request->all());
+        $provider->update($request->allWithHashedPassword());
 
         $provider->addAllMediaFromTokens();
 
