@@ -52,7 +52,7 @@ class ProviderFilter extends BaseFilters
     {
         if ($value) {
            
-           return  $this->builder->where('skills', 'like', "%$value%")->orwhere('name', 'like', "%$value%");
+           return  $this->builder->where('skills', 'like', "%$value%")->orwhere('name', 'like', "%$value%")->orwhere('bio', 'like', "%$value%");
           
         }
 
