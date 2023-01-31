@@ -51,13 +51,9 @@ class ProviderFilter extends BaseFilters
     protected function name($value)
     {
         if ($value) {
-           $x= $this->builder->where('name', 'like', "%$value%");
-           if($x == null)
-           {
-           return  $this->builder->where('skills', 'like', "%$value%");
-           }
-           else 
-           return $x;
+           
+           return  $this->builder->where('skills', 'like', "%$value%")->orwhere('name', 'like', "%$value%");
+          
         }
 
         return $this->builder;
