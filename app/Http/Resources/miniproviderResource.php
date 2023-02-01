@@ -32,6 +32,8 @@ class miniproviderResource  extends JsonResource
             'reservation_count'=> $this->Reservations->count(),
             'experience'=>$this->experienceyears(),
             'rate'=> $this->checkreview() ,
+            'is_favorite' => $this->checkfavorited(auth('sanctum')->id()),
+
 
 
         ];
