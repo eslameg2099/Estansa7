@@ -30,6 +30,8 @@ class ReservationResource extends JsonResource
             'stauts' =>(int) $this->stauts,
             'from' => Carbon::parse($this->from)->format('h:i A'),
             'to' => Carbon::parse($this->to)->format('h:i A'),
+            'from_formatted' => Carbon::parse($this->from)->format('h:i:s'),
+            'to_formatted' => Carbon::parse($this->to)->format('h:i:s'),
             'time' => "20 دقيقة",
             'cost_before_discount' => new price($this->cost),
 
