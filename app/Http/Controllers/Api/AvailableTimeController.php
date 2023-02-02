@@ -9,6 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Models\AvailableTime;
 use App\Http\Requests\Api\AvailableTimeRequest;
 use App\Http\Resources\AvailableTimeResource;
+use Illuminate\Validation\ValidationException;
 
 class AvailableTimeController extends Controller
 {
@@ -152,8 +153,8 @@ class AvailableTimeController extends Controller
         $AvailableTime =  AvailableTime::where('user_id',$user_id)->where('day_id',$day_id)->whereTime('from',$from)->whereTime('to',$to)->first();
         if($AvailableTime != null)
         {
-            return response()->json([
-                'message' => "هذا المعاد محدد من قبل",
+            throw ValidationException::withMessages([
+                'message' => 'محجوز من قبل',
             ]);
         }
 
