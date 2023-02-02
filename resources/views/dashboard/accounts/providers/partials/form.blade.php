@@ -37,6 +37,17 @@
 </div>
 @endisset
 
+<div class="form-group">
+    <label>عدد سنين الخبرة</label>
+    <select name="experience" class="form-control">
+        
+       
+    
+        <option value=""></option>
+      
+    </select>
+</div>
+
 
 
 
