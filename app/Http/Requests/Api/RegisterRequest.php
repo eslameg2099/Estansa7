@@ -74,7 +74,7 @@ class RegisterRequest extends FormRequest
                 
                 Rule::requiredIf(function () {
                     return $this->type == User::Provider_TYPE;
-                }),'numeric','between:0,4',
+                }),'numeric','between:0,5',
             ],
             'type' => [
                 'nullable',

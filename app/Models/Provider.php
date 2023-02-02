@@ -90,17 +90,20 @@ class Provider extends User
             return "سنة";
                 break;
             case('1'):
-            return "اكتر من سنتان";
+            return "من 2 الي 3 سنوات";
                 break;
                 case('2'):  
-            return "اكتر من 3 سنوات";
+            return "من 3 الي 5 سنوات";
                  break;
                  case('3'):   
-            return "اكتر من 5 سنوات";
+            return "من 5 الي 7 سنوات";
                  break;
                  case('4'):   
-                    return "اكتر من 7 سنوات";
+                    return "من 7 الي 10 سنوات";
                  break;
+                 case('5'):  
+                    return "اكتر من 10 سنوات";
+                         break;
         }
     }
 
