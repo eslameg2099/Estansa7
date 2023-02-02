@@ -149,7 +149,7 @@ class AvailableTimeController extends Controller
 
     public  function check($user_id,$day_id,$from,$to)
     {
-        $AvailableTime =  AvailableTime::where('user_id',$user_id)->where('day_id',$day_id)->where('from',$from)->where('to',$to)->first();
+        $AvailableTime =  AvailableTime::where('user_id',$user_id)->where('day_id',$day_id)->whereTime('from',$from)->whereTime('to',$to)->first();
         if($AvailableTime != null)
         {
             return response()->json([
