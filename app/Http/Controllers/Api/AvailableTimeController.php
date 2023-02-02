@@ -53,7 +53,7 @@ class AvailableTimeController extends Controller
      */
     public function store(AvailableTimeRequest $request)
     {
-      $this->check($request->user()->id,$request->day_id,$request->from,$request->to);  
+      $this->check($request,$request->day_id,$request->from,$request->to);  
       $AvailableTime =  $request->user()->availabletimes()->create($request->all());
       return new AvailableTimeResource($AvailableTime);
     }
@@ -148,9 +148,9 @@ class AvailableTimeController extends Controller
 
     }
 
-    public  function check($user_id,$day_id,$from,$to)
+    public  function check(Request $request,$day_id,$from,$to)
     {
-        $AvailableTime =  AvailableTime::where('user_id',$user_id)->where('day_id',$day_id)->whereTime('from',$from)->whereTime('to',$to)->first();
+        $AvailableTime =  $request->user()->availabletimes()->where('day_id',$day_id)->whereTime('from',$from)->whereTime('to',$to)->first();
         if($AvailableTime != null)
         {
             throw ValidationException::withMessages([
