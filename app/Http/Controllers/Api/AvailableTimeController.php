@@ -52,7 +52,7 @@ class AvailableTimeController extends Controller
      */
     public function store(AvailableTimeRequest $request)
     {
-      $this->check($request->day_id,$request->from,$request->to);  
+      $this->check($request,$request->day_id,$request->from,$request->to);  
       $AvailableTime =  $request->user()->availabletimes()->create($request->all());
       return new AvailableTimeResource($AvailableTime);
     }
