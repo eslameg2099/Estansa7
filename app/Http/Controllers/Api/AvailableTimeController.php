@@ -52,6 +52,7 @@ class AvailableTimeController extends Controller
      */
     public function store(AvailableTimeRequest $request)
     {
+      $this->check($request->day_id,$request->from,$request->to);  
       $AvailableTime =  $request->user()->availabletimes()->create($request->all());
       return new AvailableTimeResource($AvailableTime);
     }
@@ -144,6 +145,19 @@ class AvailableTimeController extends Controller
             'message' => "تم تفعيل اليوم بنجاح",
         ]);
 
+    }
+
+    public  function check($day_id,$from,$to)
+    {
+        $AvailableTime =  $request->user()->availabletimes()->where('day_id'$day_id,)->where('from',$from)->where('to',$to)->first();
+        if($AvailableTime != null)
+        {
+            return response()->json([
+                'message' => "هذا المعاد محدد من قبل",
+            ]);
+        }
+
+        
     }
 
 
