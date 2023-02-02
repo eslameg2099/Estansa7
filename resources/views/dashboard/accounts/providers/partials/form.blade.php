@@ -7,7 +7,6 @@
 {{ BsForm::password('password')->label(trans('provider.attributes.password')) }}
 {{ BsForm::password('password_confirmation')->label(trans('provider.attributes.password_confirmation')) }}
 {{ BsForm::number('unit_price')->label(trans('provider.attributes.unit_price')) }}
-{{ BsForm::number('experience')->label(trans('provider.attributes.experience')) }}
 
 {{ BsForm::text('linkedin')->label(trans('provider.attributes.linkedin')) }}
 {{ BsForm::textarea('bio')->attribute('class', 'form-control')->label(trans('provider.attributes.bio')) }}
@@ -24,6 +23,7 @@
         @endforeach
     </select>
 </div>
+
 @else
 <div class="form-group">
     <label>نوع الخدمة المقدمة</label>
@@ -35,10 +35,9 @@
         @endforeach
     </select>
 </div>
-@endisset
 
 <div class="form-group">
-    <label>عدد سنين الخبرة</label>
+    <label>عدد سنوات الخبرة</label>
     <select name="experience" class="form-control">
         
        
@@ -51,6 +50,9 @@
       
     </select>
 </div>
+@endisset
+
+
 
 
 
