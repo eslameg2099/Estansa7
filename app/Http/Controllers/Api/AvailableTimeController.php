@@ -154,7 +154,7 @@ class AvailableTimeController extends Controller
         if($AvailableTime != null)
         {
             throw ValidationException::withMessages([
-                'message' => 'محجوز من قبل',
+                'message' => 'فترة مضافة من قبل',
             ]);
         }
 
