@@ -147,7 +147,7 @@ class AvailableTimeController extends Controller
 
     }
 
-    public  function check($day_id,$from,$to)
+    public  function check(Request $request,$day_id,$from,$to)
     {
         $AvailableTime =  $request->user()->availabletimes()->where('day_id',$day_id)->where('from',$from)->where('to',$to)->first();
         if($AvailableTime != null)
