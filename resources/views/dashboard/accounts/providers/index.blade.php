@@ -62,9 +62,9 @@
 
                 <td style="width: 160px">
                     @include('dashboard.accounts.providers.partials.actions.show')
-                    @if($provider->phone_verified_at != null && $provider->provider_verified_at != null)
+                    @if($provider->phone_verified_at != null || $provider->provider_verified_at != null)
                     @include('dashboard.accounts.providers.partials.actions.disactive')
-                    @elseif($provider->phone_verified_at == null && $provider->provider_verified_at == null )
+                    @elseif($provider->phone_verified_at == null || $provider->provider_verified_at == null )
                     @include('dashboard.accounts.providers.partials.actions.active')
                     @endif
                     @include('dashboard.accounts.providers.partials.actions.edit')
