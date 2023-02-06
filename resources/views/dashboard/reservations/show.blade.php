@@ -89,7 +89,7 @@
                         <th width="200">@lang('reservations.attributes.comment'):</th>
                         <td>{!! $reservation->comment !!}</td>
                     </tr>
-
+                    @if($reservation->excuse != null)
                     <tr>
                         <th width="200">@lang('reservations.attributes.created_at'):</th>
                         <td>{{ $reservation->excuse->reason}}</td>
@@ -101,6 +101,7 @@
                         <td>{{ $reservation->excuse->comment}}</td>
                         
                     </tr>
+                    @endif   
                  
                     </tbody>
                    
