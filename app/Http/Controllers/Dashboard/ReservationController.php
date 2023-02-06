@@ -16,7 +16,6 @@ class ReservationController extends Controller
     public function index()
     {
         $Reservations = Reservation::with('customer','category','provider','excuse')->filter()->OrderByDESC('id')->paginate(10);
-        return $Reservations;
         return view('dashboard.reservations.index', compact('Reservations'));
     }
 
