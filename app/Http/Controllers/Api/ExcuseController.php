@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\CategoryProvider;
-use App\Http\Resources\CategoryProviderResource;
+use App\Models\Excuse;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Models\Reservation;
 
-class CategoryProviderController extends Controller
+class ExcuseController extends Controller
 {
-    
+    use AuthorizesRequests, ValidatesRequests;
+
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +20,7 @@ class CategoryProviderController extends Controller
      */
     public function index()
     {
-        $CategoryProviders = CategoryProvider::active()->filter()->parentsOnly()->withCount('children')->get();
-        return CategoryProviderResource::collection($CategoryProviders);
+        //
     }
 
     /**
@@ -39,7 +41,20 @@ class CategoryProviderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $Excuse = Excuse::create([
+        'provider_id'=>$request->user()->id,
+        'type'=>$request->type,
+        'reservation_id'=>$request->reservation_id,
+        'reason'=>$request->reason,
+        'comment'=>$request->comment,
+      ]);
+      $Reservation = Reservation::findorfail($request->reservation_id);
+      $Reservation->update(['stauts'=> '4']); 
+      return response()->json([
+        'message' => "تم بنجاح سوف نتواصل معك قريبا",
+    ]);
+
+
     }
 
     /**
@@ -48,15 +63,9 @@ class CategoryProviderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $categoryprovider = CategoryProvider::where('slug',$slug)->firstorfail();
-        return new CategoryProviderResource($categoryprovider->load([
-            'children' => function ($query) {
-                $query->withCount('children');
-            },
-        ])
-            ->loadCount('children'));
+        //
     }
 
     /**

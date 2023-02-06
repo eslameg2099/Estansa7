@@ -99,4 +99,10 @@ Route::apiResource('reviews', 'ReviewController');
 Route::apiResource('transactions', 'TransactionController');
 
 
+/// excuses  routes.
+
+Route::apiResource('excuses', 'ExcuseController');
+
+
+
 
