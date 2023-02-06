@@ -8,6 +8,8 @@ use App\Models\Excuse;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Models\Reservation;
+use App\Http\Requests\Api\ExcuseRequest;
+
 
 class ExcuseController extends Controller
 {
@@ -43,7 +45,7 @@ class ExcuseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExcuseRequest $request)
     {
       $Excuse = Excuse::create([
         'provider_id'=>$request->user()->id,
