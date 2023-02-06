@@ -30,6 +30,10 @@
                 <td>{{ $provider->email }}</td>
             </tr>
             <tr>
+                <th width="200">@lang('provider.attributes.phone')</th>
+                <td>{{ $provider->phone }}</td>
+            </tr>
+            <tr>
                 <th width="200">@lang('provider.attributes.skills')</th>
                 <td>{{ $provider->skills }}</td>
             </tr>
