@@ -73,7 +73,7 @@ class Reservation extends Model
 
     public function excuse()
     {
-        return $this->hasone(Excuse::class,'excuse_id');
+        return $this->hasone(Excuse::class,'reservation_id');
     }
 
 
