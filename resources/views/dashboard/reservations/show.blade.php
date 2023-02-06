@@ -75,7 +75,8 @@
 
                     @elseif($reservation->stauts == '2')
                     <span class="badge badge-success"> مدفوع وجاهز</span>
-
+                    @elseif($reservation->stauts == '4')
+                    <span class="badge badge-danger"> مقدم الخدمة معتزر</span>
 
                     @else
                     <span class="badge badge-dark">منتهي</span>
