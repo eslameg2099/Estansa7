@@ -91,13 +91,13 @@
                     </tr>
                     @if($reservation->excuse != null)
                     <tr>
-                        <th width="200">@lang('reservations.attributes.created_at'):</th>
+                        <th width="200">@lang('reservations.excuse.reason'):</th>
                         <td>{{ $reservation->excuse->reason}}</td>
                         
                     </tr>
 
                     <tr>
-                        <th width="200">@lang('reservations.attributes.created_at'):</th>
+                        <th width="200">@lang('reservations.excuse.comment'):</th>
                         <td>{{ $reservation->excuse->comment}}</td>
                         
                     </tr>
