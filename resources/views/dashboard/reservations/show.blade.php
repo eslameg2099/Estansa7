@@ -24,7 +24,8 @@
                     </tr>
                     <tr>
                         <th width="200">@lang('reservations.attributes.provider'):</th>
-                        <td>{{ $reservation->provider->name}}</td>
+                        <td> <a href="{{ route('dashboard.providers.show', $reservation->provider) }}"
+                       class="text-decoration-none text-ellipsis">{{ $reservation->provider->name}}</td>
                         
                     </tr>
                     <tr>
