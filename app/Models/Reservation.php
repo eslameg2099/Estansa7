@@ -71,6 +71,11 @@ class Reservation extends Model
      return $this->belongsTo(CategoryProvider::class,'category_id');
     }
 
+    public function excuse()
+    {
+        return $this->hasone(Excuse::class,'excuse_id');
+    }
+
 
     public function scopeauth()
     {
