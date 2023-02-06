@@ -50,7 +50,6 @@ class ExcuseController extends Controller
         'type'=>$request->type,
         'reservation_id'=>$request->reservation_id,
         'reason'=>$request->reason,
-        'comment'=>$request->comment,
       ]);
       $Reservation = Reservation::findorfail($request->reservation_id);
       $Reservation->update(['stauts'=> '4']); 
