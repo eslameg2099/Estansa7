@@ -34,10 +34,10 @@ class ReservationFilter extends BaseFilters
 
     protected function date($value)
     {
-        if ($value = 1) {
+        if ($value == 1) {
             return $this->builder->where('day_at',today());
         }
-        elseif($value = 2)
+        elseif($value == 2)
         {
             return $this->builder->where('day_at','<',today());
 
