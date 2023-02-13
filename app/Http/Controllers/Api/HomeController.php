@@ -29,15 +29,15 @@ class HomeController extends Controller
     {  
 
         $CategoryProviders = CategoryProvider::active()->inRandomOrder()->limit(6)->get();
-        $Providers_computerscince = Provider::whereHas('categories', function ($builder) use ($value) {
+        $Providers_computerscince = Provider::whereHas('categories', function ($builder) {
             $builder->where('category_provider_id', 1);
         })->inRandomOrder()->limit(6)->get();
 
-        $Providers_wirte = Provider::whereHas('categories', function ($builder) use ($value) {
+        $Providers_wirte = Provider::whereHas('categories', function ($builder){
             $builder->where('category_provider_id', 2);
         })->inRandomOrder()->limit(6)->get();
 
-        $Providers_mangmant = Provider::whereHas('categories', function ($builder) use ($value) {
+        $Providers_mangmant = Provider::whereHas('categories', function ($builder) {
             $builder->where('category_provider_id', 3);
         })->inRandomOrder()->limit(6)->get();
 
