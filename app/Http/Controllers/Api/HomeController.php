@@ -29,7 +29,7 @@ class HomeController extends Controller
     {  
 
         $CategoryProviders = CategoryProvider::active()->inRandomOrder()->limit(6)->get();
-        $Providers_computerscince = Provider::whereHas('categories', function ($builder) {
+        $Providers_computerscience = Provider::whereHas('categories', function ($builder) {
             $builder->where('category_provider_id', 1);
         })->inRandomOrder()->limit(6)->get();
 
@@ -37,7 +37,7 @@ class HomeController extends Controller
             $builder->where('category_provider_id', 2);
         })->inRandomOrder()->limit(6)->get();
 
-        $Providers_mangmant = Provider::whereHas('categories', function ($builder) {
+        $Providers_management = Provider::whereHas('categories', function ($builder) {
             $builder->where('category_provider_id', 3);
         })->inRandomOrder()->limit(6)->get();
 
@@ -46,9 +46,9 @@ class HomeController extends Controller
         return response()->json([
             'data' => [
                 'categoryProviders'=> CategoryProviderResource::collection($CategoryProviders),
-                'Providers_computerscince'=> miniproviderResource::collection($Providers_computerscince),
+                'Providers_computerscience'=> miniproviderResource::collection($Providers_computerscience),
                 'Providers_wirte'=> miniproviderResource::collection($Providers_wirte),
-                'Providers_mangmant'=> miniproviderResource::collection($Providers_mangmant),
+                'Providers_management'=> miniproviderResource::collection($Providers_management),
 
                 'reviews' => ReviewResource::collection($Reviews),
                 'posts'=> PostResource::collection($Posts),
