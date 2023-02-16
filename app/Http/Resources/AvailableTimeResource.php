@@ -25,6 +25,7 @@ class AvailableTimeResource extends JsonResource
             'to' => $this->to,
             'active' => (int) $this->active,
             'booked_up' => (int) $this->booked_up,
+            
         ];
     }
 }
