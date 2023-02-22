@@ -234,6 +234,9 @@ class ReservationController extends Controller
         $reservation = $request->user()->Reservations()->where('id',$id)->firstorfail(); 
         $reservation->update(['stauts'=> '3']); 
         $reservation->availabletime->update(['booked_up'=> '0']);
+        return response()->json([
+            'message' => "تم انهاء الجلسة بنجاح",
+            ]);
     }
 
 }
