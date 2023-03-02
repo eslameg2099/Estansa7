@@ -32,15 +32,15 @@ class HomeController extends Controller
 
         $Providers_computerscience = Provider::active()->whereHas('categories', function ($builder) {
             $builder->where('category_provider_id', 1);
-        })->inRandomOrder()->limit(6)->get();
+        })->inRandomOrder()->limit(8)->get();
 
         $Providers_wirte = Provider::active()->whereHas('categories', function ($builder){
             $builder->where('category_provider_id', 2);
-        })->inRandomOrder()->limit(6)->get();
+        })->inRandomOrder()->limit(8)->get();
 
         $Providers_management = Provider::active()->whereHas('categories', function ($builder) {
             $builder->where('category_provider_id', 3);
-        })->inRandomOrder()->limit(6)->get();
+        })->inRandomOrder()->limit(8)->get();
 
         $Posts = Post::active()->inRandomOrder()->limit(4)->get();
         $Reviews = Review::inRandomOrder()->limit(6)->get();
