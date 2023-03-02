@@ -50,6 +50,12 @@ class RegisterRequest extends FormRequest
                 }),
             ],
 
+            'linkedin' => [
+                Rule::requiredIf(function () {
+                    return $this->type == User::Provider_TYPE;
+                }),
+            ],
+
             'category_id' => [
                 Rule::requiredIf(function () {
                     return $this->type == User::Provider_TYPE;
