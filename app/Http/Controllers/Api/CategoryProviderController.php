@@ -50,7 +50,7 @@ class CategoryProviderController extends Controller
      */
     public function show($slug)
     {
-        $categoryprovider = CategoryProvider::where('slug',$slug)->firstorfail();
+        $categoryprovider = CategoryProvider::where('slug',$slug)->orwhere('id',$slug)->firstorfail();
         return new CategoryProviderResource($categoryprovider->load([
             'children' => function ($query) {
                 $query->withCount('children');

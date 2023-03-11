@@ -50,7 +50,7 @@ class CategoryPostController extends Controller
      */
     public function show($slug)
     {
-        $categorypost = CategoryPost::where('slug',$slug)->orwhere('id',$slug)->firstorfail();
+        $categorypost = CategoryPost::where('slug',$slug)->firstorfail();
         return new CategoryPostResource($categorypost);
     }
 
