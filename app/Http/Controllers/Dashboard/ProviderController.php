@@ -112,8 +112,16 @@ class ProviderController extends Controller
     }
 
 
-    public function active($id)
+    public function sendactive($id)
     {
+        $provider = Provider::find($id);
+        return view('dashboard.accounts.providers.sendactive', compact('provider'));
+    }
+
+
+    public function active(Request $request)
+    {
+        return $request->all();
         $provider = Provider::findorfail($id);
         $provider->phone_verified_at =now();
         $provider->provider_verified_at =now();

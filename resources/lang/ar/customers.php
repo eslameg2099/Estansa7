@@ -19,6 +19,7 @@ return [
         'forceDelete' => 'حذف نهائي',
         'save' => 'حفظ',
         'filter' => 'بحث',
+        'textmail'=>'ارسال الايميل',
     ],
     'messages' => [
         'created' => 'تم إضافة العميل بنجاح .',

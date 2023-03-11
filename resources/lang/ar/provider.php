@@ -49,8 +49,8 @@ return [
 'unit_price'=>'سعر الوحدة',
 'experience'=>'سنوات الخبرة',
 'certificate'=>'الشهادات',
-'category_parent'=>'القسم الرئيسي'
-
+'category_parent'=>'القسم الرئيسي',
+'textmail'=>'نص الايميل',
 
     ],
     'dialogs' => [

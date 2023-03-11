@@ -65,7 +65,9 @@
                     @if($provider->phone_verified_at != null && $provider->provider_verified_at != null)
                     @include('dashboard.accounts.providers.partials.actions.disactive')
                     @elseif($provider->phone_verified_at == null || $provider->provider_verified_at == null )
-                    @include('dashboard.accounts.providers.partials.actions.active')
+                    <a href="{{ route('dashboard.providers.sendactive', $provider->id) }}" class="btn btn-outline-dark btn-sm">
+                    <i class="fas fa-thumbs-up"></i>
+                    </a>
                     @endif
                     @include('dashboard.accounts.providers.partials.actions.edit')
                     @include('dashboard.accounts.providers.partials.actions.delete')

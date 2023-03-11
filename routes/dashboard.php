@@ -39,7 +39,10 @@ Route::resource('supervisors', 'SupervisorController');
 
 // providers Routes.
 Route::resource('providers', 'ProviderController');
-Route::get('providers/active/{id}', 'ProviderController@active')->name('providers.active');
+
+Route::get('providers/sendactive/{id}', 'ProviderController@sendactive')->name('providers.sendactive');
+
+Route::post('providers/active/{id}', 'ProviderController@active')->name('providers.active');
 Route::get('providers/disactive/{id}', 'ProviderController@disactive')->name('providers.disactive');
 // Admins Routes.
 Route::get('trashed/admins', 'AdminController@trashed')->name('admins.trashed');
