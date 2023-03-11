@@ -47,7 +47,7 @@ class providerResource extends JsonResource
             'provider_verified_at' => ! ! $this->provider_verified_at,
             'reviews'=> ReviewResource::collection($this->reviews()->limit(6)->get())  ,
             'time_available'=>$this->availabletimes->groupBy('day_id'),
-            'blogs'=> PostResource::collection($this->posts),
+            'posts'=> PostResource::collection($this->posts),
             'created_at' => new Date($this->created_at),
             
         ];
