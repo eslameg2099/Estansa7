@@ -23,6 +23,7 @@ class AvailableTimeResource extends JsonResource
             'day_name' => $this->getname(),
             'from' => (int) $this->from,
             'to' => $this->to,
+            
 
         ];
     }
