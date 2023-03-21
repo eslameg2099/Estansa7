@@ -44,7 +44,7 @@ class PostRequest extends FormRequest
         return [
             'titele' => ['required', 'string', 'max:255' ],
             'slug'=>['required', 'string', 'max:120', 'unique:posts,slug'],
-            'description' => ['required', 'string', 'max:5000'],
+            'description' => ['required', 'string', 'max:8000'],
             'category_id' => ['required', 'exists:category_posts,id'],
            // 'image' => ['required', 'image'],
             'user_id' => ['required', 'exists:users,id'],
@@ -62,7 +62,7 @@ class PostRequest extends FormRequest
         return [
             'titele' => ['required', 'string', 'max:255' ],
           //  'slug'=>['required', 'string', 'max:120', 'unique:posts,slug'. $this->post->id],
-            'description' => ['required', 'string', 'max:5000'],
+            'description' => ['required', 'string', 'max:8000'],
             'category_id' => ['required', 'exists:category_posts,id'],
            // 'image' => ['required', 'image'],
             'user_id' => ['required', 'exists:users,id'],
