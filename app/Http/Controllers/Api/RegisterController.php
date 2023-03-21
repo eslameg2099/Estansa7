@@ -52,7 +52,7 @@ class RegisterController extends Controller
 
         event(new Registered($user));
 
-        $this->sendVerificationCode($user);
+   //     $this->sendVerificationCode($user);
 
         return $user->getResource()->additional([
             'token' => $user->createTokenForDevice(
