@@ -124,7 +124,6 @@ class RegisterController extends Controller
             'user'=> $user->name,
             'email'=> $user->email,
             ];
-            \Mail::to($user->email)->send(new \App\Mail\email($details));
 
        $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
             'user' => $user->name,

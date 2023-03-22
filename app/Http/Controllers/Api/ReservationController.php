@@ -88,6 +88,18 @@ class ReservationController extends Controller
 
        ///free
        $Reservation->update(['stauts'=> '2']); 
+
+       $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+        'user' => $request->user()->name,
+        'code'=> $Reservation->id,
+        'email'=>$Reservation->provider->email,
+        'type'=>'done',
+        'title'=>'حجز جلسة',
+        'date'=> $Reservation->day_at,
+        
+
+    ]); 
+
        event(new updateavailable_times($Reservation->availabletime));
 
      
