@@ -11,21 +11,21 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modal-title-{{ $provider->id }}">@lang('providers.dialogs.delete.title')</h5>
+                    <h5 class="modal-title" id="modal-title-{{ $provider->id }}">@lang('provider.dialogs.delete.title')</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    @lang('providers.dialogs.delete.info')
+                    @lang('provider.dialogs.delete.info')
                 </div>
                 <div class="modal-footer">
                     {{ BsForm::delete(route('dashboard.providers.destroy', $provider)) }}
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        @lang('providers.dialogs.delete.cancel')
+                        @lang('provider.dialogs.delete.cancel')
                     </button>
                     <button type="submit" class="btn btn-danger">
-                        @lang('providers.dialogs.delete.confirm')
+                        @lang('provider.dialogs.delete.confirm')
                     </button>
                     {{ BsForm::close() }}
                 </div>
