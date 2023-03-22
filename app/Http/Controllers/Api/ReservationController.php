@@ -94,7 +94,7 @@ class ReservationController extends Controller
         'code'=> $Reservation->id,
         'email'=>$Reservation->provider->email,
         'type'=>'done',
-        'title'=>'حجز جلسة',
+        'title'=>'تم تاكيد حجز الجلسة بنجاح',
         'date'=> $Reservation->day_at,
         
 

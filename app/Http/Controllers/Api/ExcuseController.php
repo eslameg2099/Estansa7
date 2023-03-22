@@ -61,7 +61,7 @@ class ExcuseController extends Controller
         'code'=> $Reservation->id,
         'email'=>$Reservation->customer->email,
         'type'=>'cancel',
-        'title'=>'الاعتزار عن جلسة',
+        'title'=>'مقدم الخدمة يعتذر عن الجلسة',
         'date'=> $Reservation->day_at,
         
 
