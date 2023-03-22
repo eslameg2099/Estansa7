@@ -106,9 +106,13 @@ class ProviderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Provider $provider)
     {
-        //
+        $provider->forceDelete();
+
+        flash()->success(trans('provider.messages.deleted'));
+
+        return redirect()->route('dashboard.providers.index');
     }
 
 
