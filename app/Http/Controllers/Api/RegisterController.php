@@ -123,7 +123,7 @@ class RegisterController extends Controller
             'user' => $user->name,
             'code'=> $verification->code,
             'email'=>$user->email,
-            'type'=>'active',
+            'type'=>1,
             'title'=>'active account',
             
 
