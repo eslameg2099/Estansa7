@@ -62,6 +62,20 @@
     {{ BsForm::image('avatar')->collection('avatars')->files($provider->getMediaResource('avatars')) }}
     {{ BsForm::image('cv')->collection('cv')->files($provider->getMediaResource('cv')) }}
     {{ BsForm::image('default')->collection('default')->files($provider->getMediaResource('cv')) }}
+    <div class="form-group">
+    <label>عدد سنوات الخبرة</label>
+    <select name="experience" class="form-control">
+        
+       
+    
+        <option value='2'>من 3 الي 5 سنوات</option>
+        <option value='3'>من 5 الي 7 سنوات</option>
+        <option value='4'>من 7 الي 10 سنوات</option>
+        <option value='5'>اكتر من 10 سنوات</option>
+
+      
+    </select>
+</div>
 
 @else
 
