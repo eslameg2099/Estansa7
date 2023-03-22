@@ -57,15 +57,18 @@ class ResetPasswordController extends Controller
 
      
 
-        $response = Http::post('https://est.ragabkalbida.com/api/sendmail', $data = [
-            'user' => $resetPasswordCode->code,
+      
+
+
+        $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+            'user' => $user->name,
             'code'=> $resetPasswordCode->code,
-            'name'=>$user->name,
             'email'=>$user->email,
             'type'=>'rest',
+            'title'=>'active rest',
+            
 
-
-        ]);
+        ]); 
 
         return response()->json([
             'message' => trans('auth.messages.forget-password-code-sent'),
