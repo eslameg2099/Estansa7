@@ -53,6 +53,7 @@ class VerificationController extends Controller
      */
     public function verify($code)
     {
+        return $code;
         $verification = Verification::where('code',$code)->first();
         if (! $verification || $verification->isExpired()) {
             return response()->json([
