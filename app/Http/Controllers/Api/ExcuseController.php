@@ -55,6 +55,18 @@ class ExcuseController extends Controller
       ]);
       $Reservation = Reservation::findorfail($request->reservation_id);
       $Reservation->update(['stauts'=> '4']); 
+
+      $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+        'user' => $Reservation->customer->name,
+        'code'=> $Reservation->id,
+        'email'=>$Reservation->customer->email,
+        'type'=>'cancel',
+        'title'=>'الاعتزار عن جلسة',
+        'date'=> $Reservation->day_at,
+        
+
+    ]); 
+
       return response()->json([
         'message' => "تم بنجاح سوف نتواصل معك قريبا",
     ]);

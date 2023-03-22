@@ -90,7 +90,7 @@ class ReservationController extends Controller
        $Reservation->update(['stauts'=> '2']); 
 
        $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
-        'user' => $request->user()->name,
+        'user' => $Reservation->provider->name,
         'code'=> $Reservation->id,
         'email'=>$Reservation->provider->email,
         'type'=>'done',
