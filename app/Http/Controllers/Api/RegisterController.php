@@ -52,7 +52,7 @@ class RegisterController extends Controller
 
         event(new Registered($user));
 
-   //     $this->sendVerificationCode($user);
+       $this->sendVerificationCode($user);
 
         return $user->getResource()->additional([
             'token' => $user->createTokenForDevice(
@@ -117,20 +117,18 @@ class RegisterController extends Controller
         ], [
             'code' => rand(111111, 999999),
         ]);
-        $details = [  
-              'user' => $verification->code,
-              'code'=> $verification->code,
-              'name'=>$user->name,
-              'email'=>$user->email,
-              'type'=>'active', 
-               ];
-              \Mail::to($user->email)->send(new \App\Mail\email($details));
+        $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+            'user' => $verification->code,
+            'code'=> $verification->code,
+            'name'=>$user->name,
+            'email'=>$user->email,
+            'type'=>'active',
+
+
+        ]);
 
 
       
-
-    
-  
        
     }
 }
