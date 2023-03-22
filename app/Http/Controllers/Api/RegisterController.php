@@ -120,12 +120,12 @@ class RegisterController extends Controller
 
        
        $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
-            'user' => $verification->code,
+            'user' => $user->name,
             'code'=> $verification->code,
-            'name'=>$user->name,
             'email'=>$user->email,
             'type'=>'active',
-
+            'title'=>'active account',
+            
 
         ]); 
 
