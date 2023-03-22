@@ -59,10 +59,7 @@
 
 
 @isset($provider)
-    {{ BsForm::image('avatar')->collection('avatars')->files($provider->getMediaResource('avatars')) }}
-    {{ BsForm::image('cv')->collection('cv')->files($provider->getMediaResource('cv')) }}
-    {{ BsForm::image('default')->collection('default')->files($provider->getMediaResource('cv')) }}
-    <div class="form-group">
+<div class="form-group">
     <label>عدد سنوات الخبرة</label>
     <select name="experience" class="form-control">
         
@@ -76,6 +73,10 @@
       
     </select>
 </div>
+    {{ BsForm::image('avatar')->collection('avatars')->files($provider->getMediaResource('avatars')) }}
+    {{ BsForm::image('cv')->collection('cv')->files($provider->getMediaResource('cv')) }}
+    {{ BsForm::image('default')->collection('default')->files($provider->getMediaResource('cv')) }}
+    
 
 @else
 
