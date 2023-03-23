@@ -41,9 +41,11 @@ Route::resource('supervisors', 'SupervisorController');
 Route::resource('providers', 'ProviderController');
 
 Route::get('providers/sendactive/{id}', 'ProviderController@sendactive')->name('providers.sendactive');
+Route::get('providers/senddeactive/{id}', 'ProviderController@senddeactive')->name('providers.senddeactive');
 
-Route::post('providers/active/{id}', 'ProviderController@active')->name('providers.active');
-Route::get('providers/disactive/{id}', 'ProviderController@disactive')->name('providers.disactive');
+
+Route::post('providers/active', 'ProviderController@active')->name('providers.active');
+Route::post('providers/disactive', 'ProviderController@disactive')->name('providers.disactive');
 // Admins Routes.
 Route::get('trashed/admins', 'AdminController@trashed')->name('admins.trashed');
 Route::get('trashed/admins/{trashed_admin}', 'AdminController@showTrashed')->name('admins.trashed.show');

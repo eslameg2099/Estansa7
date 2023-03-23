@@ -118,13 +118,6 @@ class RegisterController extends Controller
             'code' => rand(111111, 999999),
         ]);
 
-        $details=[
-            'title'=> $verification->code,
-            'type'=> $user->name,
-            'user'=> $user->name,
-            'email'=> $user->email,
-            ];
-
        $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
             'user' => $user->name,
             'code'=> $verification->code,

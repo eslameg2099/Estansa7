@@ -10,6 +10,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Dashboard\ProviderRequest;
+use Illuminate\Support\Facades\Http;
 
 class ProviderController extends Controller
 {
@@ -122,26 +123,55 @@ class ProviderController extends Controller
         return view('dashboard.accounts.providers.sendactive', compact('provider'));
     }
 
-
-    public function active(Request $request)
+    public function senddeactive($id)
     {
-        return $request->all();
-        $provider = Provider::findorfail($id);
-        $provider->phone_verified_at =now();
-        $provider->provider_verified_at =now();
-        $provider->save();
-        flash()->success('تم بنجاح');
-        return redirect()->back();
+        $provider = Provider::find($id);
+        return view('dashboard.accounts.providers.senddeactive', compact('provider'));
     }
 
 
-    public function disactive($id)
+    public function active(Request $request)
     {
-        $provider = Provider::findorfail($id);
+        $provider = Provider::findorfail($request->id);
+        $provider->phone_verified_at =now();
+        $provider->provider_verified_at =now();
+        $provider->save();
+
+        $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+            'user' => $provider->name,
+            'code'=> $provider->id,
+            'email'=>$provider->email,
+            'type'=>'activeprovider',
+            'title'=>'تم قبولك في المنصة ',
+            'message'=>$request->textmail,
+            
+        ]); 
+
+
+        flash()->success('تم بنجاح');
+        return redirect()->route('dashboard.providers.index');
+    }
+
+
+    public function disactive(Request $request)
+    {
+        $provider = Provider::findorfail($request->id);
         $provider->phone_verified_at = null;
         $provider->provider_verified_at =null;
         $provider->save();
+
+        $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+            'user' => $provider->name,
+            'code'=> $provider->id,
+            'email'=>$provider->email,
+            'type'=>'deactiveprovider',
+            'title'=>'نعتز عن عدم قبول حسابك',
+            'message'=>$request->textmail,
+            
+        ]); 
+
+
         flash()->success('تم بنجاح');
-        return redirect()->back();
+        return redirect()->route('dashboard.providers.index');
     }
 }
