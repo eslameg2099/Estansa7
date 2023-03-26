@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Models\Reservation;
 use App\Http\Requests\Api\ExcuseRequest;
-
+use Illuminate\Support\Facades\Http;
 
 class ExcuseController extends Controller
 {

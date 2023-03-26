@@ -32,8 +32,6 @@ class ExcuseRequest extends FormRequest
             'reservation_id' => ['required', 'exists:reservations,id'],
             'reason' => ['required', 'string', 'max:500'],
             'type' => ['required', 'numeric','between:1,2'],
-
-
         ];
     }
 
