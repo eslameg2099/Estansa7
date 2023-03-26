@@ -29,7 +29,6 @@ class ExcuseRequest extends FormRequest
     {
         
         return [
-            'comment' => ['required', 'string', 'max:500'],
             'reservation_id' => ['required', 'exists:reservations,id'],
             'reason' => ['required', 'string', 'max:500'],
             'type' => ['required', 'numeric','between:1,2'],
