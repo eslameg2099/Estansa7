@@ -47,10 +47,10 @@ class ProviderRequest extends FormRequest
             'phone' => ['required', 'unique:users,phone'],
             'password' => ['required', 'min:8', 'confirmed'],
             'address' => ['nullable', 'string', 'max:255'],
-            'bio' =>['nullable', 'string', 'max:255'],
+            'bio' =>['nullable', 'string', 'max:900'],
             'category_id' => ['required', 
             'exists:category_providers,id'],
-            'skills' => ['nullable', 'string','max:500'],
+            'skills' => ['nullable', 'string','max:5000'],
             'unit_price' => ['required','numeric','min:1'],
             'experience' => ['required','numeric','between:0,4'],
             
