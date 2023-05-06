@@ -74,8 +74,8 @@ class ProviderRequest extends FormRequest
             'exists:category_providers,id'],
             'unit_price' => ['required','numeric','min:1'],
             'experience' => ['required','numeric','between:0,4'],
-            'skills' => ['nullable', 'string','max:500'],
-            'bio' =>['nullable', 'string', 'max:255'],
+            'skills' => ['nullable', 'string','max:5000'],
+            'bio' =>['nullable', 'string', 'max:900'],
             'address' => ['nullable', 'string', 'max:255'],
 
 
