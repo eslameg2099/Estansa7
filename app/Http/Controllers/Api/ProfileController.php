@@ -35,6 +35,7 @@ class ProfileController extends Controller
         $user->update($request->allWithHashedPassword());
 
         if ($request->hasFile('avatar')) {
+            $user->clearMediaCollection('avatars');
             $user->addMediaFromRequest('avatar')
                 ->toMediaCollection('avatars');
         }
