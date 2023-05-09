@@ -48,7 +48,7 @@
                         <img src="{{ $customer->getAvatar() }}"
                              alt="Product 1"
                              class="img-circle img-size-32 mr-2">
-                        {{ $customer->name }}
+                        {{ $customer->name }}  {{ $customer->last_name }}
                     </a>
                 </td>
 
