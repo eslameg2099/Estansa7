@@ -1,5 +1,6 @@
 @include('dashboard.errors')
 {{ BsForm::text('name')->label(trans('provider.attributes.name')) }}
+{{ BsForm::text('last_name')->label(trans('provider.attributes.last_name'))  }}
 
 {{ BsForm::text('email')->label(trans('provider.attributes.email')) }}
 {{ BsForm::text('phone')->label(trans('provider.attributes.phone')) }}

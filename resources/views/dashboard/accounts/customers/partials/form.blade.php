@@ -1,5 +1,7 @@
 @include('dashboard.errors')
 {{ BsForm::text('name') }}
+{{ BsForm::text('last_name') }}
+
 {{ BsForm::text('email') }}
 {{ BsForm::text('phone') }}
 {{ BsForm::password('password') }}

@@ -82,6 +82,7 @@ class User extends Authenticatable implements HasMedia, NotificationTarget
      */
     protected $fillable = [
         'name',
+        'last_name',
         'email',
         'phone',
         'password',

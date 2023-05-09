@@ -50,7 +50,6 @@ class HomeController extends Controller
                 'Providers_computerscience'=> miniproviderResource::collection($Providers_computerscience),
                 'Providers_wirte'=> miniproviderResource::collection($Providers_wirte),
                 'Providers_management'=> miniproviderResource::collection($Providers_management),
-
                 'reviews' => ReviewResource::collection($Reviews),
                 'posts'=> PostResource::collection($Posts),
             ],
