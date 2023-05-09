@@ -9,6 +9,10 @@
                 <td>{{ $customer->name }}</td>
             </tr>
             <tr>
+                <th width="200">@lang('customers.attributes.last_name')</th>
+                <td>{{ $customer->last_name }}</td>
+            </tr>
+            <tr>
                 <th width="200">@lang('customers.attributes.email')</th>
                 <td>{{ $customer->email }}</td>
             </tr>

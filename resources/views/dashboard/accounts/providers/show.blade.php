@@ -9,6 +9,10 @@
                 <td>{{ $provider->name }}</td>
             </tr>
             <tr>
+                <th width="200">@lang('provider.attributes.last_name')</th>
+                <td>{{ $provider->last_name }}</td>
+            </tr>
+            <tr>
                 <th width="200">@lang('provider.attributes.category_parent')</th>
                 <td>{{ $provider->categories[0]->name }}</td>
             </tr>
