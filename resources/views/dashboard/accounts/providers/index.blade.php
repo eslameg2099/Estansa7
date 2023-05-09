@@ -45,7 +45,7 @@
                             @include('dashboard.accounts.providers.partials.flags.svg')
                             </span>
                      
-                        {{ $provider->name }}
+                        {{ $provider->name }} {{ $provider->last_name }}
                     </a>
                 </td>
 
