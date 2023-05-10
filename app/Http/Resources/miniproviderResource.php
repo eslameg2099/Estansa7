@@ -20,7 +20,7 @@ class miniproviderResource  extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'name' => $this->name . " " . $this->last_name,
             'email' => $this->email,
             'phone' => $this->phone,
             'type' => $this->type,
