@@ -21,7 +21,7 @@ class providerResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name ." ".$this->last_name,
+            'name' =>$this->last_name,
             'email' => $this->email,
             'phone' => $this->phone,
             'wallet' => new price($this->wallet),
