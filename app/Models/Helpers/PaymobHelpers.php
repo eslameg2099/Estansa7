@@ -42,7 +42,7 @@ class PaymobHelpers
            "postal_code" => "NA", 
            "city" => "NA", 
            "country" => "NA",
-            "last_name" => $user->name
+            "last_name" => $user->last_name
        , "state" => "NA"], "currency" => "EGP",  "integration_id"=>2785803
     ]);
 
