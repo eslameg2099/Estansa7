@@ -42,10 +42,8 @@ class PaymobHelpers
            "postal_code" => "NA", 
            "city" => "NA", 
            "country" => "NA",
-            "last_name" => $user->last_name,
-       "state" => "NA"]
-       , "currency" => "EGP",
-         "integration_id"=>2785803,
+            "last_name" => $user->last_name
+       , "state" => "NA"], "currency" => "EGP",  "integration_id"=>2785803
     ]);
 
    $response_final_final_json = $response_final_final->json();
