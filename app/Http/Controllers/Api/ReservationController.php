@@ -186,7 +186,7 @@ class ReservationController extends Controller
         ]);
     }
 
-    public function checkused($availabletime)
+    public function checkused($id)
     { 
         $userused = Userused::where('user_id',$id)->first();
         if($userused != null)
@@ -199,7 +199,7 @@ class ReservationController extends Controller
         return 0;
     }
 
-    public function check($id)
+    public function check($availabletime)
     {
         if($availabletime->booked_up != '0')
         {
