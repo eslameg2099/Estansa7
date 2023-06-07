@@ -54,6 +54,7 @@ class PaymobHelpers
     ]);
 
    $response_final_final_json = $response_final_final->json();
+   return $response_final_final_json;
    $res = "https://accept.paymobsolutions.com/api/acceptance/iframes/" . $iframe . "?payment_token=" . $response_final_final_json['token'];
    return $res;
 
