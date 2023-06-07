@@ -10,6 +10,8 @@
 
         @endBsMultilangualFormTabs
 
+        {{ BsForm::text('free_fees')->value(Settings::get('free_fees')) }}
+
         @if(is_array(trans('settings.dashboard_templates')) && ! empty(trans('settings.dashboard_templates')))
             {{ BsForm::select('dashboard_template')
                     ->options(trans('settings.dashboard_templates'))
