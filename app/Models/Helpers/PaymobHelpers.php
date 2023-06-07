@@ -22,7 +22,14 @@ class PaymobHelpers
    {
       $cost = ($model->cost - ($model->coupon->percentage_value * $model->cost /100)) * 100;
    }
-   else $cost =  $model->cost * 100;
+   elseif($model->provider->free_session == '1')
+   {
+      $cost =  20 * 100;
+   }
+   else
+   {
+      $cost =  $model->cost * 100;
+   }
    $response_final = Http::withHeaders(['content-type' => 'application/json'])->post('https://accept.paymobsolutions.com/api/ecommerce/orders',
     ["auth_token" => $json['token'],
      "delivery_needed" => "false",
