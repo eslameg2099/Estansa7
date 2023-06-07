@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Http;
 use App\Models\Reservation;
 use App\Models\Transaction;
-              
+use Laraeast\LaravelSettings\Facades\Settings;
+ 
 class PaymobHelpers
 {
 
@@ -24,7 +25,7 @@ class PaymobHelpers
    }
    elseif($model->provider->free_session == '1')
    {
-      $cost =  20 * 100;
+      $cost =  Settings::get('free_fees') * 100;
    }
    else
    {
