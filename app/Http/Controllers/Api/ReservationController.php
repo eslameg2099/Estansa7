@@ -65,7 +65,11 @@ class ReservationController extends Controller
        $availabletime =  AvailableTime::where('id',$request->availableday_id)->firstOrFail();
 
        $this->check($availabletime);
-       $userused = $this->checkused($request->user()->id);
+
+       if($request->free == 1)
+       {
+        $userused = $this->checkused($request->user()->id);
+       }
 
        $coupon_id = null ;
 
@@ -192,9 +196,7 @@ class ReservationController extends Controller
         $userused = Userused::where('user_id',$id)->first();
         if($userused != null)
         {
-            throw ValidationException::withMessages([
-                'message' => 'قد استخدمت التجربة المجانية من قبل',
-            ]);
+           return 1;
         }
         else
         $userused = Userused::create(['user_id'=>$id]);

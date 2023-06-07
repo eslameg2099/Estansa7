@@ -29,6 +29,7 @@ class CustomerResource extends JsonResource
             'localed_type' => $this->present()->type,
             'created_at' => $this->created_at->toDateTimeString(),
             'created_at_formatted' => $this->created_at->diffForHumans(),
+            'used_free'=> $this->userused()->count(),
         ];
     }
 }

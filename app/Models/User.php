@@ -179,6 +179,11 @@ class User extends Authenticatable implements HasMedia, NotificationTarget
         return $this->belongsTo(CategoryProvider::class, 'category_id')->withTrashed();
     }
 
+    public function userused()
+    {
+        return $this->hasMany(Userused::class, 'user_id');
+    }
+
     public function categories()
     {
         return $this->belongsToMany(CategoryProvider::class);
