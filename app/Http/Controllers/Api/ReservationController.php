@@ -69,6 +69,7 @@ class ReservationController extends Controller
 
        if($request->free == 1)
        {
+        return 123;
         $userused = $this->checkused($request->user()->id);
        }
 
