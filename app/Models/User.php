@@ -100,6 +100,7 @@ class User extends Authenticatable implements HasMedia, NotificationTarget
         'bank_name',
         'iban',
         'account_bank',
+        'free_session',
     ];
 
     /**

@@ -33,6 +33,7 @@ class miniproviderResource  extends JsonResource
             'experience'=>$this->experienceyears(),
             'rate'=> $this->checkreview() ,
             'is_favorite' => $this->checkfavorited(auth('sanctum')->id()),
+            'free_session'=> $this->free_session,
 
 
 
