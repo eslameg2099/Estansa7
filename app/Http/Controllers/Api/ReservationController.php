@@ -12,7 +12,7 @@ use App\Models\AvailableTime;
 use Illuminate\Support\Facades\Http;
 use App\Events\updateavailable_times;
 use App\Models\Coupon;
-
+use App\Models\Userused;
 use MacsiDigital\Zoom\Facades\Zoom;
 use Carbon\Carbon;
 use App\Http\Resources\ReservationResource;
@@ -65,7 +65,8 @@ class ReservationController extends Controller
        $availabletime =  AvailableTime::where('id',$request->availableday_id)->firstOrFail();
 
        $this->check($availabletime);
-
+    $x =    $this->checkused($request->user()->id);
+    return $x;
        $coupon_id = null ;
 
        if ($value = $request->input('coupon')) {
@@ -185,7 +186,20 @@ class ReservationController extends Controller
         ]);
     }
 
-    public function check($availabletime)
+    public function checkused($availabletime)
+    { 
+        $userused = Userused::where('user_id',$id)->first();
+        if($userused != null)
+        {
+            throw ValidationException::withMessages([
+                'message' => 'قد استخدمت التجربة المجانية من قبل',
+            ]);
+        }
+        else
+        return 0;
+    }
+
+    public function check($id)
     {
         if($availabletime->booked_up != '0')
         {
@@ -194,8 +208,6 @@ class ReservationController extends Controller
             ]);
         }
     }
-
-
    
 
     public function paymob_payment_verify(Request $request)
