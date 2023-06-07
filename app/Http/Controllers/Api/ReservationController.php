@@ -69,7 +69,6 @@ class ReservationController extends Controller
 
        if($request->free == 1)
        {
-        return 123;
         $userused = $this->checkused($request->user()->id);
        }
 
@@ -198,7 +197,9 @@ class ReservationController extends Controller
         $userused = Userused::where('user_id',$id)->first();
         if($userused != null)
         {
-           return 1;
+            throw ValidationException::withMessages([
+                'message' => 'محجوز من قبل',
+            ]);
         }
         else
         $userused = Userused::create(['user_id'=>$id]);
