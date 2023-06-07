@@ -65,6 +65,7 @@ class ReservationController extends Controller
        $availabletime =  AvailableTime::where('id',$request->availableday_id)->firstOrFail();
 
        $this->check($availabletime);
+       $userused = null ;
 
        if($request->free == 1)
        {
