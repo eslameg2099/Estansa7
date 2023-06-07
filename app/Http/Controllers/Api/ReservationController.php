@@ -67,7 +67,7 @@ class ReservationController extends Controller
        $this->check($availabletime);
        $userused = null ;
 
-       if($request->free == 1)
+       if($request->free == true)
        {
         $userused = $this->checkused($request->user()->id);
        }
@@ -107,8 +107,9 @@ class ReservationController extends Controller
 
      event(new updateavailable_times($Reservation->availabletime));
 
-     if($userused == 0)
+     if($userused == 0 && $request->free == true)
      {
+        
         return ('https://estansa7.com/book-consult?expert_id='.$Reservation->provider_id.'&book_step=3');
      }
 
@@ -198,7 +199,7 @@ class ReservationController extends Controller
         if($userused != null)
         {
             throw ValidationException::withMessages([
-                'message' => 'محجوز من قبل',
+                'message' => 'لقد استخدمت التجربة المجانية من قبل',
             ]);
         }
         else
