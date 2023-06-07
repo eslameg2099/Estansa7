@@ -65,8 +65,8 @@ class ReservationController extends Controller
        $availabletime =  AvailableTime::where('id',$request->availableday_id)->firstOrFail();
 
        $this->check($availabletime);
-    $x =    $this->checkused($request->user()->id);
-    return $x;
+       $userused = $this->checkused($request->user()->id);
+
        $coupon_id = null ;
 
        if ($value = $request->input('coupon')) {
@@ -98,13 +98,14 @@ class ReservationController extends Controller
         'title'=>'تم تاكيد حجز الجلسة بنجاح',
         'date'=> $Reservation->day_at,
         
+       ]); 
 
-    ]); 
+     event(new updateavailable_times($Reservation->availabletime));
 
-       event(new updateavailable_times($Reservation->availabletime));
-
-     
-    //  return ('https://estansa7.com/book-consult?expert_id='.$Reservation->provider_id.'&book_step=3');
+     if($userused == 0)
+     {
+        return ('https://estansa7.com/book-consult?expert_id='.$Reservation->provider_id.'&book_step=3');
+     }
 
      return   PaymobHelpers::payment(677122,$request->user(),$Reservation);
 
@@ -196,6 +197,7 @@ class ReservationController extends Controller
             ]);
         }
         else
+        $userused = Userused::create(['user_id'=>$id]);
         return 0;
     }
 
