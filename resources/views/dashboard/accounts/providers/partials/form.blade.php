@@ -85,6 +85,17 @@
       
     </select>
 </div>
+
+<div class="form-group">
+    <label> الخدمة مجانية</label>
+    <select name="free_session" class="form-control">
+        
+       
+    
+        <option value='0'>نعم</option>
+        <option value='1'>لا</option>
+    </select>
+</div>
     {{ BsForm::image('avatar')->collection('avatars')->files($provider->getMediaResource('avatars')) }}
     {{ BsForm::image('cv')->collection('cv')->files($provider->getMediaResource('cv')) }}
     {{ BsForm::image('default')->collection('default')->files($provider->getMediaResource('cv')) }}
