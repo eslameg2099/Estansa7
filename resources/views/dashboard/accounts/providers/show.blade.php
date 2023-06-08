@@ -67,7 +67,7 @@
                 <td>{{ $provider->account_bank }}</td>
             </tr>
             <tr>
-                <th width="200">@lang('provider.free_session')</th>
+                <th width="200">@lang('provider.attributes.free_session')</th>
                 <td>{{ $provider->free_session }}</td>
             </tr>
             
