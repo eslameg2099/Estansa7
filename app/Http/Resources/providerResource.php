@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Support\Date;
 use App\Support\Price;
 use App\Models\Reservation;
+use Laraeast\LaravelSettings\Facades\Settings;
 
 /** @mixin \App\Models\Customer */
 class providerResource extends JsonResource
@@ -35,7 +36,7 @@ class providerResource extends JsonResource
             'categories' => miniCategoryProviderResource::collection($this->categories),
             'certificates'=> MediaResource::collection($this->getMedia('default')),
             'cv'=> $this->getFirstMediaUrl("cv"),
-            'unit_price'=>new price($this->unit_price),
+            'unit_price'=>new price($this->getprice()),
             'wallet'=>new price($this->wallet),
             'skills'=> $this->skills,
             'experience'=>$this->experienceyears(),

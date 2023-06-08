@@ -121,6 +121,16 @@ class Provider extends User
         }
     }
 
+    public function getprice()
+    {
+        if($this->free_session == '1')
+        {
+        return "رسوم خدمة الموقع".Settings::get('free_fees') ;
+        }
+        else
+        $this->unit_price;
+    }
+
 
     public function checkfavorited($user_id)
     {
