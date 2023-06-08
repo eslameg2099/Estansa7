@@ -15,6 +15,7 @@ use ChristianKuri\LaravelFavorite\Models\Favorite;
 
 use App\Http\Filters\Filterable;
 use App\Http\Filters\ProviderFilter;
+use Laraeast\LaravelSettings\Facades\Settings;
 
 class Provider extends User 
 {
@@ -125,7 +126,7 @@ class Provider extends User
     {
         if($this->free_session == '1')
         {
-        return Settings::get('free_fees') ;
+        return Settings::get('free_fees');
         }
         else
         $this->unit_price;
