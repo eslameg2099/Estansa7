@@ -53,7 +53,7 @@ return [
 'certificate'=>'الشهادات',
 'category_parent'=>'القسم الرئيسي',
 'textmail'=>'نص الايميل',
-
+'free_session'=>'استشارة مجانا',
     ],
     'dialogs' => [
         'delete' => [

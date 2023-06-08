@@ -83,6 +83,12 @@ class RegisterRequest extends FormRequest
                     return $this->type == User::Provider_TYPE;
                 }),'numeric','between:0,5',
             ],
+            'free_session'=> [
+                Rule::requiredIf(function () {
+                    return $this->type == User::Provider_TYPE;
+                }),'numeric','between:0,1',
+
+            ],
             'type' => [
                 'nullable',
                 Rule::in([

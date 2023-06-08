@@ -51,6 +51,17 @@
       
     </select>
 </div>
+
+<div class="form-group">
+    <label>عدد سنوات الخبرة</label>
+    <select name="free_session" class="form-control">
+        
+       
+    
+        <option value='0'>نعم</option>
+        <option value='1'>لا</option>
+    </select>
+</div>
 @endisset
 
 
