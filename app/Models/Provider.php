@@ -108,6 +108,20 @@ class Provider extends User
     }
 
 
+    public  function free_session()
+    {
+        switch($this->free_session) {
+            case('0'):
+            return "نعم";
+                break;
+            case('1'):
+            return "لا" ;
+                break;
+           
+        }
+    }
+
+
     public function checkfavorited($user_id)
     {
        $favorited= Favorite::where('user_id',$user_id)->where('favoriteable_id',$this->id)->first();

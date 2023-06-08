@@ -68,7 +68,7 @@
             </tr>
             <tr>
                 <th width="200">@lang('provider.attributes.free_session')</th>
-                <td>{{ $provider->free_session }}</td>
+                <td>{{ $provider->free_session() }}</td>
             </tr>
             
             <tr>
