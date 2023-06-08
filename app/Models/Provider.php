@@ -125,7 +125,7 @@ class Provider extends User
     {
         if($this->free_session == '1')
         {
-        return "رسوم خدمة الموقع".Settings::get('free_fees') ;
+        return Settings::get('free_fees') ;
         }
         else
         $this->unit_price;
