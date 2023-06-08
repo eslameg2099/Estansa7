@@ -67,6 +67,11 @@
                 <td>{{ $provider->account_bank }}</td>
             </tr>
             <tr>
+                <th width="200">@lang('provider.free_session')</th>
+                <td>{{ $provider->free_session }}</td>
+            </tr>
+            
+            <tr>
                 <th width="200">@lang('provider.stauts')</th>
                 <td>
                 @if($provider->provider_verified_at != null )
