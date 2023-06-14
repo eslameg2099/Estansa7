@@ -124,12 +124,10 @@ class RegisterController extends Controller
             'email'=>$user->email,
             'type'=>'active',
             'title'=>'active account',
-            
+            'date'=> $user->created_at,
+
 
         ]); 
-
-
-      
-       
+   
     }
 }
