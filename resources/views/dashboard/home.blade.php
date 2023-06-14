@@ -103,7 +103,7 @@
 
     @component('dashboard::components.table-box')
         @slot('title')
-            @lang('reservations.actions.list') ({{ $Reservations->where('stauts','2')->total() }})
+            @lang('reservations.actions.list') ({{ $Reservations->where('stauts','2')->count() }})
         @endslot
 
         <thead>
