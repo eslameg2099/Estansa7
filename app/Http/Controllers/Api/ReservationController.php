@@ -93,7 +93,6 @@ class ReservationController extends Controller
        ]);
 
        ///free
-       $Reservation->update(['stauts'=> '2']); 
 
       
 
@@ -101,6 +100,7 @@ class ReservationController extends Controller
      if($userused == 0 && $request->free == true)
      {
         event(new updateavailable_times($Reservation->availabletime));
+        $Reservation->update(['stauts'=> '2']); 
 
         $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
             'user' => $Reservation->customer->name,
