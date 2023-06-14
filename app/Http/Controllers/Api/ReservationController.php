@@ -39,7 +39,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $Reservations = Reservation::auth()->filter()->OrderByDESC('id')->simplePaginate();
+        $Reservations = Reservation::auth()->where('stauts','2')->filter()->OrderByDESC('id')->simplePaginate();
         return ReservationResource::collection($Reservations);
     }
 
