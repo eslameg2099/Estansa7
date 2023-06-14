@@ -95,21 +95,22 @@ class ReservationController extends Controller
        ///free
        $Reservation->update(['stauts'=> '2']); 
 
-       $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
-        'user' => $Reservation->customer->name,
-        'code'=> $Reservation->id,
-        'email'=>$Reservation->provider->email,
-        'type'=>'done',
-        'title'=>'تم تاكيد حجز الجلسة بنجاح',
-        'date'=> $Reservation->day_at,
-        
-       ]); 
+      
 
-     event(new updateavailable_times($Reservation->availabletime));
 
      if($userused == 0 && $request->free == true)
      {
-        
+        event(new updateavailable_times($Reservation->availabletime));
+
+        $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+            'user' => $Reservation->customer->name,
+            'code'=> $Reservation->id,
+            'email'=>$Reservation->provider->email,
+            'type'=>'done',
+            'title'=>'تم تاكيد حجز الجلسة بنجاح',
+            'date'=> $Reservation->day_at,
+            
+           ]); 
         return ('https://estansa7.com/book-consult?expert_id='.$Reservation->provider_id.'&book_step=3');
      }
 
@@ -238,14 +239,15 @@ class ReservationController extends Controller
             $message = "تم الدفع والحجز بنجاح";
             PaymobHelpers::transactions_reservation($reservation);
 
-        /*    $response = Http::post('https://est.ragabkalbida.com/api/sendmail', $data = [
-                'user' => $reservation->coustomer->name,
+            $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+                'user' => $reservation->customer->name,
                 'code'=> $reservation->id,
-                'name'=>$reservation->provider->name,
-                'email'=>$reservation->created_at,
-                'type'=>'donereservation',
-    
-            ]); */
+                'email'=>$reservation->provider->email,
+                'type'=>'done',
+                'title'=>'تم تاكيد حجز الجلسة بنجاح',
+                'date'=> $reservation->day_at,
+                
+               ]); 
 
             return redirect('https://estansa7.com/book-consult?expert_id='.$reservation->provider_id.'&book_step=3');
 
