@@ -4,7 +4,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>{{ \App\Models\Reservation::whereDate('day_at', today())->count() }}</h3>
+                    <h3>{{ \App\Models\Reservation::whereDate('day_at', today())->where('stauts','2')->count() }}</h3>
 
                     <p>{{ __('الاستشارات اليومية') }}</p>
                 </div>
@@ -103,7 +103,7 @@
 
     @component('dashboard::components.table-box')
         @slot('title')
-            @lang('reservations.actions.list') ({{ $Reservations->total() }})
+            @lang('reservations.actions.list') ({{ $Reservations->where('stauts','2')->total() }})
         @endslot
 
         <thead>
