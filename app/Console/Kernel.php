@@ -36,7 +36,8 @@ class Kernel extends ConsoleKernel
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');
-
+        $schedule->command('Daily:Reservation')
+        ->dailyAt(’7:00′);
         require base_path('routes/console.php');
     }
 }
