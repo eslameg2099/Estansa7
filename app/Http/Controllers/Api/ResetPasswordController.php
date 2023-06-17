@@ -60,7 +60,7 @@ class ResetPasswordController extends Controller
       
 
 
-        $response = Http::post('https://ma.estansa7.com/api/sendmail', $data = [
+        $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
             'user' => $user->name,
             'code'=> $resetPasswordCode->code,
             'email'=>$user->email,
