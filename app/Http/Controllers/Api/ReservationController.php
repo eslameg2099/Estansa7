@@ -102,7 +102,7 @@ class ReservationController extends Controller
         event(new updateavailable_times($Reservation->availabletime));
         $Reservation->update(['stauts'=> '2']); 
 
-        $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+        $response = Http::post('https://ma.estansa7.com/api/sendmail', $data = [
             'user' => $Reservation->customer->name,
             'code'=> $Reservation->id,
             'email'=>$Reservation->provider->email,
@@ -239,7 +239,7 @@ class ReservationController extends Controller
             $message = "تم الدفع والحجز بنجاح";
             PaymobHelpers::transactions_reservation($reservation);
 
-            $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+            $response = Http::post('https://ma.estansa7.com/api/sendmail', $data = [
                 'user' => $reservation->customer->name,
                 'code'=> $reservation->id,
                 'email'=>$reservation->provider->email,

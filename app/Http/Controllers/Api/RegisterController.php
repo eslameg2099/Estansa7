@@ -52,7 +52,7 @@ class RegisterController extends Controller
 
         event(new Registered($user));
 
-       $this->sendVerificationCode($user);
+        $this->sendVerificationCode($user);
 
         return $user->getResource()->additional([
             'token' => $user->createTokenForDevice(
@@ -118,13 +118,13 @@ class RegisterController extends Controller
             'code' => rand(111111, 999999),
         ]);
 
-       $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+       $response = Http::post('https://ma.estansa7.com/api/sendmail', $data = [
             'user' => $user->name,
             'code'=> $verification->code,
             'email'=>$user->email,
             'type'=>'active',
             'title'=>'active account',
-            'date'=> $user->created_at,
+          
 
 
         ]); 
