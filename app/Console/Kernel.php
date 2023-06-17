@@ -26,6 +26,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('Daily:Reservation')->daily();
+
     }
 
     /**
@@ -36,7 +38,6 @@ class Kernel extends ConsoleKernel
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');
-        $schedule->command('Daily:Reservation')->daily();
         
 
         require base_path('routes/console.php');
