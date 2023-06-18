@@ -52,7 +52,7 @@ class DailyReservation extends Command
                 'code'=> $reservation->id,
                 'email'=>$reservation->provider->email,
                 'type'=>'remberprovider',
-                'title'=>'نذكرك بمعاد جلسة اليوم',
+                'title'=>'نذكرك بموعد جلسة اليوم',
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=>$reservation->from,
                ]); 
@@ -62,7 +62,7 @@ class DailyReservation extends Command
                 'code'=> $reservation->id,
                 'email'=>$reservation->customer->email,
                 'type'=>'remberprovider',
-                'title'=>'نذكرك بمعاد جلسة اليوم',
+                'title'=>'نذكرك بموعد جلسة اليوم',
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=> $reservation->from,
 
