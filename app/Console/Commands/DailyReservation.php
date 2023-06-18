@@ -41,12 +41,18 @@ class DailyReservation extends Command
     {
         $reservations = Reservation::with('customer','category','provider')
         ->whereDate('day_at', today())
-        ->where('stauts','3')
+        ->where('stauts','2')
         ->get();
         foreach ($reservations as $reservation){
 
-            $reservation->update(['stauts'=> '2']); 
-
+            $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+                'user' => $reservation->customer->name,
+                'code'=> $reservation->id,
+                'email'=>$reservation->provider->email,
+                'type'=>'done',
+                'title'=>'تم تاكيد حجز الجلسة بنجاح',
+                'date'=> $reservation->day_at,
+               ]); 
 
         }
         return 0;
