@@ -16,6 +16,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $reservations = Reservation::where('stauts','2')
+        ->whereDate('day_at',today())->get();
+        return ;
         $Reservations = Reservation::with('customer','category','provider')
         ->whereDate('day_at', today())
         ->where('stauts','2')
