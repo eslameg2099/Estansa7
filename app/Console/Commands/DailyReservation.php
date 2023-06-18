@@ -45,17 +45,11 @@ class DailyReservation extends Command
         ->get();
         foreach ($reservations as $reservation){
 
-            $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
-                'user' => $reservation->customer->name,
-                'code'=> $reservation->id,
-                'email'=>$reservation->provider->email,
-                'type'=>'done',
-                'title'=>'تم تاكيد حجز الجلسة بنجاح',
-                'date'=> $reservation->day_at,
-               ]); 
+            $reservation->update(['stauts'=> '3']); 
+
 
         }
-        
+        return 0;
       
     }
 }
