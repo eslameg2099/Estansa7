@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 use App\Models\Reservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+
 class DailyReservation extends Command
 {
     /**
