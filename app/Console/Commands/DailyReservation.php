@@ -55,6 +55,8 @@ class DailyReservation extends Command
                 'title'=>'نذكرك بموعد جلسة اليوم',
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=>$reservation->from,
+                'wait_time' => Carbon::parse($reservation->from)->format('h:i') - Carbon::parse(today())->format('h:i'),
+
                ]); 
 
                $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
@@ -65,6 +67,8 @@ class DailyReservation extends Command
                 'title'=>'نذكرك بموعد جلسة اليوم',
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=> $reservation->from,
+                'wait_time' => Carbon::parse($reservation->from)->format('h:i') - Carbon::parse(today())->format('h:i'),
+
 
                ]); 
 
