@@ -53,7 +53,7 @@ class DailyReservation extends Command
                 'email'=>$reservation->provider->email,
                 'type'=>'remberprovider',
                 'title'=>'نذكرك بمعاد جلسة اليوم',
-                'date'=> $reservation->day_at,
+                'date'=> $reservation->day_at->toDateString(),
                 'from'=>$reservation->from,
                ]); 
 
@@ -63,7 +63,7 @@ class DailyReservation extends Command
                 'email'=>$reservation->customer->email,
                 'type'=>'remberprovider',
                 'title'=>'نذكرك بمعاد جلسة اليوم',
-                'date'=> $reservation->day_at,
+                'date'=> $reservation->day_at->toDateString(),
                 'from'=>$reservation->from,
 
                ]); 
