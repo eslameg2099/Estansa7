@@ -43,7 +43,7 @@ class DailyReservation extends Command
     {
         $reservations = Reservation::with('customer','category','provider')
         ->whereDate('day_at', today())
-        ->where("from",'>=', Carbon::now()->subMinutes(120)->toTimeString())
+        ->where("from",'>=', Carbon::now()->subMinutes(100)->toTimeString())
         ->where('stauts','2')
         ->get();
         foreach ($reservations as $reservation){
