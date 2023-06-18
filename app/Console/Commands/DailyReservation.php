@@ -45,7 +45,7 @@ class DailyReservation extends Command
         ->get();
         foreach ($reservations as $reservation){
 
-            $reservation->update(['stauts'=> '3']); 
+            $reservation->update(['stauts'=> '2']); 
 
 
         }
