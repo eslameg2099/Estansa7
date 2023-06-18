@@ -41,7 +41,7 @@ class DailyReservation extends Command
     {
         $reservations = Reservation::with('customer','category','provider')
         ->whereDate('day_at', today())
-        ->where('stauts','2')
+        ->where('stauts','3')
         ->get();
         foreach ($reservations as $reservation){
 
