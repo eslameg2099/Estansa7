@@ -55,7 +55,7 @@ class DailyReservation extends Command
                 'title'=>'نذكرك بموعد جلسة اليوم',
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=>$reservation->from,
-               // 'wait_time' => gmdate('H:i',strtotime(Carbon::parse($reservation->from)->format('h:i:s')) - strtotime(Carbon::parse(now())->format('h:i:s')) ),
+                'wait_time' => gmdate('H:i',strtotime(Carbon::parse($reservation->from)->format('h:i:s')) - strtotime(Carbon::parse(now())->format('h:i:s')) ),
 
                ]); 
 
@@ -67,7 +67,7 @@ class DailyReservation extends Command
                 'title'=>'نذكرك بموعد جلسة اليوم',
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=> $reservation->from,
-              //  'wait_time' =>  gmdate('H:i',strtotime(Carbon::parse($reservation->from)->format('h:i:s')) - strtotime(Carbon::parse(now())->format('h:i:s')) ),
+                'wait_time' =>  gmdate('H:i',strtotime(Carbon::parse($reservation->from)->format('h:i:s')) - strtotime(Carbon::parse(now())->format('h:i:s')) ),
 
 
                ]); 
