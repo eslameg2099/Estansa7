@@ -55,6 +55,7 @@ class DailyReservationWhatsup extends Command
                 'title'=>'نذكرك بموعد جلسة اليوم',
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=>$reservation->from,
+                'nm'=>'1',
                ]); 
 
                $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
@@ -65,6 +66,7 @@ class DailyReservationWhatsup extends Command
                 'title'=>'نذكرك بموعد جلسة اليوم',
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=> $reservation->from,
+                'nm'=>'1',
 
 
                ]); 
