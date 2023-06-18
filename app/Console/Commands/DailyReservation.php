@@ -47,13 +47,25 @@ class DailyReservation extends Command
         ->get();
         foreach ($reservations as $reservation){
 
-            $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
-                'user' => $reservation->customer->name,
+              $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+                'user' => $reservation->provider->name,
                 'code'=> $reservation->id,
                 'email'=>$reservation->provider->email,
-                'type'=>'done',
-                'title'=>'تم تاكيد حجز الجلسة بنجاح',
+                'type'=>'remberprovider',
+                'title'=>'نذكرك بمعاد جلسة اليوم',
                 'date'=> $reservation->day_at,
+                'from'=>$reservation->from,
+               ]); 
+
+               $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+                'user' => $reservation->customer->name,
+                'code'=> $reservation->id,
+                'email'=>$reservation->customer->email,
+                'type'=>'remberprovider',
+                'title'=>'نذكرك بمعاد جلسة اليوم',
+                'date'=> $reservation->day_at,
+                'from'=>$reservation->from,
+
                ]); 
 
         }
