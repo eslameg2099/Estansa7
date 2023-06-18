@@ -45,6 +45,8 @@ class ReservationResource extends JsonResource
             'discount'=> new price($this->discount),
             'created_at' => new Date( $this->created_at),
             'free'=>true,
+            'wait_time' => Carbon::parse($reservation->from)->format('h:i') - Carbon::parse(today())->format('h:i'),
+
 
         ];
     }
