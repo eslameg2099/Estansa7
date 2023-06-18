@@ -45,7 +45,7 @@ class ReservationResource extends JsonResource
             'discount'=> new price($this->discount),
             'created_at' => new Date( $this->created_at),
             'free'=>true,
-            'wait_time' => gmdate('H:i',strtotime($this->from) - strtotime(now()->toDateTimeString('H:i:s')) ),
+            'wait_time' => gmdate('H:i',strtotime($this->from) - strtotime(now()->toDateTimeString('H:i')) ),
             
 
         ];
