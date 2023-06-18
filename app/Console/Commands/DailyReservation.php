@@ -13,7 +13,7 @@ class DailyReservation extends Command
      *
      * @var string
      */
-    protected $signature = 'Daily:Reservation';
+    protected $signature = 'daily:reservation';
 
     /**
      * The console command description.
