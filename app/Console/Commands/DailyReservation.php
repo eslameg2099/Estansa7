@@ -55,7 +55,7 @@ class DailyReservation extends Command
                ]); 
 
         }
-        return 0;
+        
       
     }
 }
