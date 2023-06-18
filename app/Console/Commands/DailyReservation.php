@@ -39,8 +39,10 @@ class DailyReservation extends Command
      */
     public function handle()
     {
-        $reservations = Reservation::where('stauts','2')
-        ->whereDate('day_at',today())->get();
+        $reservations = Reservation::with('customer','category','provider')
+        ->whereDate('day_at', today())
+        ->where('stauts','2')
+        ->get();
         foreach ($reservations as $reservation){
 
             $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
