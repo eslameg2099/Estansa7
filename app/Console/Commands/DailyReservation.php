@@ -47,37 +47,26 @@ class DailyReservation extends Command
         ->get();
         foreach ($reservations as $reservation){
 
-            $phone='201091447746';
-            $curl = curl_init();
-            curl_setopt_array($curl, array(
-              CURLOPT_URL => 'https://graph.facebook.com/v16.0/116077974838171/messages',
-              CURLOPT_RETURNTRANSFER => true,
-              CURLOPT_ENCODING => '',
-              CURLOPT_MAXREDIRS => 10,
-              CURLOPT_TIMEOUT => 0,
-              CURLOPT_FOLLOWLOCATION => true,
-              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-              CURLOPT_CUSTOMREQUEST => 'POST',
-              CURLOPT_POSTFIELDS =>'{
-                "messaging_product": "whatsapp",
-                "to": '. $phone.',
-                "type": "template",
-                "template": {
-                    "name": "hello_world",
-                    "language": {
-                        "code": "en_US"
-                    }
-                }
-            }',
-              CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer EAAH2w2WZAssUBAJvi31ykJL5RGRXJYiav5hswPzzXFDIjCBKc7FYE9Nk5oXd7UjT2YsnrUrQKkU4WFY7aIh0BDneeZCQi6midwxweUaKRHQZAmPZBtXytta5UNZAWFyZAXro1YlINxuSqzv8XOf3ZC2ONw07BbbhUDjtx8SOxnARUtGrGJDmajU',
-                'Content-Type: application/json'
-              ),
-            ));
-            
-            $response = curl_exec($curl);
-            
-            curl_close($curl);
+              $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+                'user' => $reservation->provider->name,
+                'code'=> $reservation->id,
+                'email'=>$reservation->provider->email,
+                'type'=>'remberprovider',
+                'title'=>'نذكرك بموعد جلسة اليوم',
+                'date'=> Carbon::parse($reservation->day_at)->toDateString(),
+                'from'=>$reservation->from,
+               ]); 
+
+               $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+                'user' => $reservation->customer->name,
+                'code'=> $reservation->id,
+                'email'=>$reservation->customer->email,
+                'type'=>'remberprovider',
+                'title'=>'نذكرك بموعد جلسة اليوم',
+                'date'=> Carbon::parse($reservation->day_at)->toDateString(),
+                'from'=> $reservation->from,
+
+               ]); 
 
         }
         return 0;
