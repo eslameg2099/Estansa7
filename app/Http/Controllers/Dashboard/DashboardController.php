@@ -17,7 +17,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-       
+       return now()->toTimeString();
         $reservations = Reservation::with('customer','category','provider')
         ->whereDate('day_at', today())
         ->where('stauts','2')
