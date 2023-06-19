@@ -43,7 +43,7 @@ class DailyReservationWhatsup extends Command
         $reservations = Reservation::with('customer','category','provider')
         ->whereDate('day_at', today())
         ->where('stauts','2')
-       // ->WhereTime('from', '=',Carbon::now()->format('h:i'))
+      
         ->get();
         foreach ($reservations as $reservation){
 
