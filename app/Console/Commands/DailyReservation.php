@@ -55,6 +55,7 @@ class DailyReservation extends Command
                 'title'=>'نذكرك بموعد جلسة اليوم',
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=>$reservation->from,
+                'nm'=>'2',
 
                ]); 
 
@@ -66,6 +67,7 @@ class DailyReservation extends Command
                 'title'=>'نذكرك بموعد جلسة اليوم',
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=> $reservation->from,
+                'nm'=>'2',
 
 
                ]); 
