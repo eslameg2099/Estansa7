@@ -21,7 +21,7 @@ class DashboardController extends Controller
         ->whereDate('day_at', today())
         ->where('stauts','2')
         ->where('from',now()->toTimeString())
-        ->first();
+        ->get();
         return $reservations;
         $Reservations = Reservation::with('customer','category','provider')
         ->whereDate('day_at', today())
