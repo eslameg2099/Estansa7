@@ -17,11 +17,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return Carbon::now()->toTimeString();
         $reservations = Reservation::with('customer','category','provider')
         ->whereDate('day_at', today())
         ->where('stauts','2')
-        ->where('from',Carbon::now()->toDateTimeString())
+        ->where('from',Carbon::now()->toTimeString())
         ->get();
         return $reservations;
         $Reservations = Reservation::with('customer','category','provider')
