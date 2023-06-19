@@ -276,7 +276,7 @@ class ReservationController extends Controller
 
     public function cost_reservation($availabletime)
     {
-        if($availabletime->provider->free_session == '1' ){0;}else $availabletime->provider->unit_price ;
+        if($availabletime->provider->free_session == '1' ){return 0;}else return $availabletime->provider->unit_price ;
     }
 
 }
