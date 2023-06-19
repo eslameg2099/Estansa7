@@ -21,7 +21,7 @@ class DashboardController extends Controller
         $reservations = Reservation::with('customer','category','provider')
         ->whereDate('day_at', today())
         ->where('stauts','2')
-        ->whereDate('from',Carbon::now()->format('h:i:s'))
+        ->where('from',Carbon::now()->format('h:i:s'))
         ->get();
         return $reservations;
         $Reservations = Reservation::with('customer','category','provider')
