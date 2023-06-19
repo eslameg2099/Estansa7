@@ -26,9 +26,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('daily:reservation')->cron('0 */5 * * *');
+        $schedule->command('daily:reservation')->everyMinute();
         $schedule->command('daily:whatsup')->everyMinute();
-
+        //->cron('0 */5 * * *');
 
     }
 
