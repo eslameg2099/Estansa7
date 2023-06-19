@@ -56,6 +56,8 @@ class DailyReservation extends Command
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=>$reservation->from,
                 'nm'=>'1',
+                'time'=> Carbon::parse($reservation->from)->format('h:i A')
+
 
                ]); 
 
@@ -68,6 +70,8 @@ class DailyReservation extends Command
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=> $reservation->from,
                 'nm'=>'1',
+                'time'=> Carbon::parse($reservation->from)->format('h:i A')
+
 
 
                ]); 
