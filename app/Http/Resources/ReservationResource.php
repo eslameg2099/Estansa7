@@ -44,7 +44,7 @@ class ReservationResource extends JsonResource
             'active_url'=>$this->checklink(),
             'discount'=> new price($this->discount),
             'created_at' => new Date( $this->created_at),
-            'free'=>true,
+            'free'=> $this->check_free(),
             'wait_time' => gmdate('H:i',strtotime(Carbon::parse($this->from)->format('h:i:s')) - strtotime(Carbon::parse(now())->format('h:i:s')) ),
             
 

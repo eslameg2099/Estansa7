@@ -87,7 +87,7 @@ class ReservationController extends Controller
         'comment'   => $request->comment,
         'category_id'   => $availabletime->provider->category_id,
         'day_at'   => $request->day_at,
-        'cost'   => $availabletime->provider->unit_price,
+        'cost'   => $this->cost_reservation($availabletime),
         'availabletime_id'=>$availabletime->id,
         'coupon_id'=> $coupon_id,
        ]);
@@ -100,7 +100,7 @@ class ReservationController extends Controller
      if($userused == 0 && $request->free == true)
      {
         event(new updateavailable_times($Reservation->availabletime));
-        $Reservation->update(['stauts'=> '2']); 
+        $Reservation->update(['stauts'=> '2','free'=>'1']); 
 
         $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
             'user' => $Reservation->customer->name,
@@ -271,6 +271,12 @@ class ReservationController extends Controller
         return response()->json([
             'message' => "تم انهاء الجلسة بنجاح",
             ]);
+    }
+
+
+    public function cost_reservation($availabletime)
+    {
+        if($availabletime->provider->free_session == '1' ){0;}else $availabletime->provider->unit_price ;
     }
 
 }

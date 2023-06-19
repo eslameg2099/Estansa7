@@ -43,6 +43,7 @@ class Reservation extends Model
         'availabletime_id',
         'discount',
         'coupon_id',
+        'free',
 
     ];
 
@@ -101,6 +102,20 @@ class Reservation extends Model
         }
         else
         return false;
+    }
+
+
+    public function check_free()
+    {
+        switch(auth()->user()->type) {
+            case('0'):
+                return false;
+                break;
+             case('1'):
+                 return true;
+                 break;    
+        }        
+
     }
     
 
