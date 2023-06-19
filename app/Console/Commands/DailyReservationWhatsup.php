@@ -43,7 +43,7 @@ class DailyReservationWhatsup extends Command
         $reservations = Reservation::with('customer','category','provider')
         ->whereDate('day_at', today())
         ->where('stauts','2')
-        ->where("from",Carbon::now()->toDateTimeString())
+        ->WhereTime('from', '=',Carbon::now()->format('h:i'))
         ->get();
         foreach ($reservations as $reservation){
 
@@ -55,7 +55,7 @@ class DailyReservationWhatsup extends Command
                 'title'=>'نذكرك بموعد جلسة اليوم',
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=>$reservation->from,
-                'nm'=>'1',
+                'nm'=>'2',
                ]); 
 
                $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
@@ -66,7 +66,7 @@ class DailyReservationWhatsup extends Command
                 'title'=>'نذكرك بموعد جلسة اليوم',
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=> $reservation->from,
-                'nm'=>'1',
+                'nm'=>'2',
 
 
                ]); 
