@@ -109,7 +109,8 @@ class ReservationController extends Controller
             'type'=>'done',
             'title'=>'تم تاكيد حجز الجلسة بنجاح',
             'date'=> Carbon::parse($Reservation->day_at)->format('Y/m/d'),
-            
+            'time'=> Carbon::parse($reservation->from)->format('h:i A')
+
            ]); 
         return ('https://estansa7.com/book-consult?expert_id='.$Reservation->provider_id.'&book_step=3');
      }
@@ -246,7 +247,7 @@ class ReservationController extends Controller
                 'type'=>'done',
                 'title'=>'تم تاكيد حجز الجلسة بنجاح',
                 'date'=> Carbon::parse($reservation->day_at)->format('Y/m/d'),
-                
+                'time'=> Carbon::parse($reservation->from)->format('h:i A')
                ]); 
 
             return redirect('https://estansa7.com/book-consult?expert_id='.$reservation->provider_id.'&book_step=3');
