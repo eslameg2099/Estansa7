@@ -54,9 +54,8 @@ class DailyReservation extends Command
                 'type'=>'remberprovider',
                 'title'=>'نذكرك بموعد جلسة اليوم',
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
-                'from'=>$reservation->from,
-               
-                'time'=> Carbon::parse($reservation->from)->format('h:i A')
+                'from'=>$reservation->from,          
+                'time'=> Carbon::parse($reservation->from)->format('h:i A'),
 
 
                ]); 
@@ -69,10 +68,7 @@ class DailyReservation extends Command
                 'title'=>'نذكرك بموعد جلسة اليوم',
                 'date'=> Carbon::parse($reservation->day_at)->toDateString(),
                 'from'=> $reservation->from,
-            
-                'time'=> Carbon::parse($reservation->from)->format('h:i A')
-
-
+                'time'=> Carbon::parse($reservation->from)->format('h:i A'),
 
                ]); 
 
