@@ -122,6 +122,20 @@ class Provider extends User
         }
     }
 
+
+    public  function display_free_session()
+    {
+        switch($this->free_session) {
+            case('0'):
+            return "لا";
+                break;
+            case('1'):
+                return "نعم";
+                break;
+           
+        }
+    }
+
     public function getprice()
     {
         if($this->free_session == '1')
