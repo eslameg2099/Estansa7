@@ -113,10 +113,10 @@ class Provider extends User
     {
         switch($this->free_session) {
             case('0'):
-            return "لا";
+            return false;
                 break;
             case('1'):
-            return "نعم" ;
+            return true ;
                 break;
            
         }

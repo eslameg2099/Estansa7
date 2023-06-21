@@ -49,7 +49,7 @@ class providerResource extends JsonResource
             'reviews'=> ReviewResource::collection($this->reviews()->limit(6)->get())  ,
             'time_available'=>$this->availabletimes->groupBy('day_id'),
             'posts'=> PostResource::collection($this->posts()->limit(6)->get()),
-            'free_session'=> $this->free_session,
+            'free_session'=> $this->free_session(),
             'created_at' => new Date($this->created_at),
             
         ];
