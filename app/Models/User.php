@@ -254,7 +254,7 @@ class User extends Authenticatable implements HasMedia, NotificationTarget
             ->singleFile()
             ->registerMediaConversions(function () {
                 $this->addMediaConversion('thumb')
-                  //  ->width(70)
+                   ->width(70)
                     ->format('png');
 
            /*     $this->addMediaConversion('small')
