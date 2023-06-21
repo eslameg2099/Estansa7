@@ -27,6 +27,7 @@ trait HasMediaTrait
         foreach ($files as $file) {
             if ($file && base64_decode(base64_encode($file)) === $file) {
                 $this->addMediaFromBase64($file)
+                    ->addMediaConversion('thumb')
                     ->usingFileName(time().'.png')
                     ->toMediaCollection($collection);
             }
@@ -36,6 +37,7 @@ trait HasMediaTrait
         if (is_array($files = $request->file($key))) {
             foreach ($files as $file) {
                 $this->addMedia($file)
+                    ->addMediaConversion('thumb')
                     ->usingFileName(Uploader::formatName($file))
                     ->toMediaCollection($collection);
             }
@@ -44,6 +46,7 @@ trait HasMediaTrait
         // Handle normal files that coming from request.
         if (! is_array($file = $request->file($key)) && $request->hasFile($key)) {
             $this->addMediaFromRequest($key)
+                ->addMediaConversion('thumb')
                 ->usingFileName(Uploader::formatName($file))
                 ->toMediaCollection($collection);
         }
