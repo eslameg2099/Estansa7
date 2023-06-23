@@ -33,7 +33,7 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
 
-        return $request->hasFile('certificates');
+        return $request->certificates;
         switch ($request->type) {
             case User::CUSTOMER_TYPE:
             default:
