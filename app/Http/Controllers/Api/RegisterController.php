@@ -89,10 +89,12 @@ class RegisterController extends Controller
       
         //$Provider->uploadFile('certificates');
 
-        if ($request->hasFile('certificates')) {
-            $Provider->addMediaFromRequest('certificates')
-                ->toMediaCollection('certificates');
+        foreach ($request->hasFile('certificates') as $value) {
+
+            $Provider->addMediaFromRequest($value)
+            ->toMediaCollection('certificates');
         }
+     
 
         if ($request->hasFile('cv')) {
             $Provider->addMediaFromRequest('cv')
