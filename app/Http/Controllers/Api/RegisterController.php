@@ -87,7 +87,12 @@ class RegisterController extends Controller
         $Provider ->forceFill($request->only('phone', 'type'))
         ->fill($request->allWithHashedPassword())->save();
       
-        $Provider->uploadFile('certificates');
+        //$Provider->uploadFile('certificates');
+
+        if ($request->hasFile('certificates')) {
+            $Provider->addMediaFromRequest('certificates')
+                ->toMediaCollection('certificates');
+        }
 
         if ($request->hasFile('cv')) {
             $Provider->addMediaFromRequest('cv')
