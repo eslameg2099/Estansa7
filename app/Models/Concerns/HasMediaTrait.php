@@ -30,7 +30,7 @@ trait HasMediaTrait
                 
                     ->usingFileName(time().'.png')
                     ->toMediaCollection($collection)
-                    ->addMediaConversion('thumb');
+                   // ->addMediaConversion('thumb');
             }
         }
 
@@ -40,7 +40,7 @@ trait HasMediaTrait
                 $this->addMedia($file)
                     ->usingFileName(Uploader::formatName($file))
                     ->toMediaCollection($collection)
-                    ->addMediaConversion('thumb');
+                   // ->addMediaConversion('thumb');
             }
         }
 
@@ -49,7 +49,7 @@ trait HasMediaTrait
             $this->addMediaFromRequest($key)
                 ->usingFileName(Uploader::formatName($file))
                 ->toMediaCollection($collection)
-                ->addMediaConversion('thumb');
+             //   ->addMediaConversion('thumb');
         }
     }
 }
