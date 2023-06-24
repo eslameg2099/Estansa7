@@ -33,7 +33,6 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
 
-        return $request->all();
         switch ($request->type) {
             case User::CUSTOMER_TYPE:
             default:
@@ -88,14 +87,9 @@ class RegisterController extends Controller
         $Provider ->forceFill($request->only('phone', 'type'))
         ->fill($request->allWithHashedPassword())->save();
       
-        //$Provider->uploadFile('certificates');
+        $Provider->uploadFile('certificates');
 
-        foreach ($request->hasFile('certificates') as $value) {
-
-            $Provider->addMediaFromRequest($value)
-            ->toMediaCollection('certificates');
-        }
-     
+       
 
         if ($request->hasFile('cv')) {
             $Provider->addMediaFromRequest('cv')
