@@ -29,7 +29,7 @@ trait HasMediaTrait
                 $this->addMediaFromBase64($file)
                 
                     ->usingFileName(time().'.png')
-                    ->toMediaCollection($collection)
+                    ->toMediaCollection($collection);
                    // ->addMediaConversion('thumb');
             }
         }
@@ -39,7 +39,7 @@ trait HasMediaTrait
             foreach ($files as $file) {
                 $this->addMedia($file)
                     ->usingFileName(Uploader::formatName($file))
-                    ->toMediaCollection($collection)
+                    ->toMediaCollection($collection);
                    // ->addMediaConversion('thumb');
             }
         }
@@ -48,7 +48,7 @@ trait HasMediaTrait
         if (! is_array($file = $request->file($key)) && $request->hasFile($key)) {
             $this->addMediaFromRequest($key)
                 ->usingFileName(Uploader::formatName($file))
-                ->toMediaCollection($collection)
+                ->toMediaCollection($collection);
              //   ->addMediaConversion('thumb');
         }
     }
