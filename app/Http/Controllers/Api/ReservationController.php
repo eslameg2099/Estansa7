@@ -113,7 +113,7 @@ class ReservationController extends Controller
 
            ]); 
            $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
-            'user' => $Reservation->provider->name,
+            'user' => $Reservation->customer->name,
             'code'=> $Reservation->id,
             'email'=>$Reservation->customer->email,
             'type'=>'done',
@@ -261,7 +261,7 @@ class ReservationController extends Controller
                ]); 
 
                $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
-                'user' => $Reservation->provider->name,
+                'user' => $Reservation->customer->name,
                 'code'=> $Reservation->id,
                 'email'=>$Reservation->customer->email,
                 'type'=>'done',
