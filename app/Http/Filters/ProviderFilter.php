@@ -78,7 +78,7 @@ class ProviderFilter extends BaseFilters
                 
                 $this->builder->whereBetween('unit_price', [$from, $to]);
             } else {
-                $this->builder->where('unit_price', $value);
+                $this->builder->where('free_session','1');
             }
         }
     

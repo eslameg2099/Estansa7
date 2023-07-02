@@ -107,7 +107,17 @@ class ReservationController extends Controller
             'code'=> $Reservation->id,
             'email'=>$Reservation->provider->email,
             'type'=>'done',
-            'title'=>'تم تاكيد حجز الجلسة بنجاح',
+            'title'=>'تم  حجز استشارة لديكم ',
+            'date'=> Carbon::parse($Reservation->day_at)->format('Y/m/d'),
+            'time'=> Carbon::parse($Reservation->from)->format('h:i A')
+
+           ]); 
+           $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+            'user' => $Reservation->provider->name,
+            'code'=> $Reservation->id,
+            'email'=>$Reservation->customer->email,
+            'type'=>'done',
+            'title'=>'تم تاكيد حجز الاستشارة بنجاح ',
             'date'=> Carbon::parse($Reservation->day_at)->format('Y/m/d'),
             'time'=> Carbon::parse($Reservation->from)->format('h:i A')
 
@@ -245,9 +255,20 @@ class ReservationController extends Controller
                 'code'=> $reservation->id,
                 'email'=>$reservation->provider->email,
                 'type'=>'done',
-                'title'=>'تم تاكيد حجز الجلسة بنجاح',
+                'title'=>'تم  حجز استشارة لديكم ',
                 'date'=> Carbon::parse($reservation->day_at)->format('Y/m/d'),
                 'time'=> Carbon::parse($reservation->from)->format('h:i A')
+               ]); 
+
+               $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+                'user' => $Reservation->provider->name,
+                'code'=> $Reservation->id,
+                'email'=>$Reservation->customer->email,
+                'type'=>'done',
+                'title'=>'تم تاكيد حجز الاستشارة بنجاح ',
+                'date'=> Carbon::parse($Reservation->day_at)->format('Y/m/d'),
+                'time'=> Carbon::parse($Reservation->from)->format('h:i A')
+    
                ]); 
 
             return redirect('https://estansa7.com/book-consult?expert_id='.$reservation->provider_id.'&book_step=3');
