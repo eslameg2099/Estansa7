@@ -25,9 +25,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {  
 
+        $request->getHost();
         $CategoryProviders = CategoryProvider::active()->inRandomOrder()->limit(6)->get();
 
         $Providers_computerscience = Provider::active()->whereHas('categories', function ($builder) {
