@@ -16,8 +16,11 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
+        if($request->getHost() != 'https://estansa7.com')
+        {
+            return response('', 400);
+        }
+        
         return $next($request);
-         //   ->header('Access-Control-Allow-Origin', '*')
-         //   ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     }
 }
