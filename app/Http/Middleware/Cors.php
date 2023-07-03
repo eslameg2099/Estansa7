@@ -16,7 +16,7 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-        if($request->getHost() != 'https://estansa7.com')
+        if($request->getHost() != 'estansa7.com')
         {
             return response('', 400);
         }
