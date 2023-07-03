@@ -19,8 +19,8 @@ class Cors
        /* if($request->getHost() != 'https://estansa7.com/')
         {
             return response('stop', 404);
-        }
+        } */
         
-        return $next($request); */
+        return $next($request); 
     }
 }
