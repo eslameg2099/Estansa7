@@ -18,7 +18,7 @@ class Cors
     {
         if($request->getHost() != 'estansa7.com')
         {
-            return response('', 400);
+            return response('غير مسرح لك', 400);
         }
         
         return $next($request);
