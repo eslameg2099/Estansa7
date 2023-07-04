@@ -16,10 +16,24 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-        if ($request->headers->get('origin') != 'https://backend.estansa7.com/') {
-            return response('Unauthorized.', 401);
+        $allowedHosts = explode(',', env('ALLOWED_DOMAINS'));
+
+        $requestHost = parse_url($request->headers->get('origin'),  PHP_URL_HOST);
+
+        if(!app()->runningUnitTests()) {
+            if(!\in_array($requestHost, $allowedHosts, false)) {
+                $requestInfo = [
+                    'host' => $requestHost,
+                    'ip' => $request->getClientIp(),
+                    'url' => $request->getRequestUri(),
+                    'agent' => $request->header('User-Agent'),
+                ];
+                event(new UnauthorizedAccess($requestInfo));
+
+                throw new SuspiciousOperationException('This host is not allowed');
+            }
         }
-        
-        return $next($request); 
+
+        return $next($request);
     }
 }
