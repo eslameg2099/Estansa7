@@ -16,10 +16,9 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-       /* if($request->getHost() != 'https://estansa7.com/')
-        {
-            return response('stop', 404);
-        } */
+        if ($request->getHost() !== 'https://estansa7.com/') {
+            return response('Unauthorized.', 401);
+        }
         
         return $next($request); 
     }
