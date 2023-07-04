@@ -16,8 +16,11 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-       
-        return $next($request);
-
+        if(request()->headers->get('referer') != 'https://estansa7.com/')
+        {
+            return response('stop', 404);
+        } 
+        
+        return $next($request); 
     }
 }
