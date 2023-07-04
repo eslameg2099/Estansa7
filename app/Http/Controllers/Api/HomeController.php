@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {  
-        return $request->header('Access-Control-Allow-Origin');
+        return $request->header();
         $CategoryProviders = CategoryProvider::active()->inRandomOrder()->limit(6)->get();
 
         $Providers_computerscience = Provider::active()->whereHas('categories', function ($builder) {
