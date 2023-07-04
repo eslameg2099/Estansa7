@@ -17,9 +17,9 @@ return [
 
     'paths' => ['api/*', 'login', 'logout', 'sanctum/csrf-cookie'],
 
-    'allowed_methods' => ['*'],
+    'allowed_methods' => ['https://estansa7.com'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['https://estansa7.com'],
 
     'allowed_origins_patterns' => [],
 
