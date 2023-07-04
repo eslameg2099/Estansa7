@@ -19,8 +19,8 @@ class Cors
      
         if (
            
-                !$request->header('access-token')
-                || $request->header('access-token') != env('APP_API_TOKEN')
+               
+               $request->header('access-token') != 1562
             
         ) {
             return response()->json(['Message' => 'You do not access to this api.'], 403);
