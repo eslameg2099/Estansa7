@@ -18,7 +18,9 @@ class Cors
     {
         if(request()->headers->get('referer') != 'https://estansa7.com/')
         {
-            return response('stop', 404);
+            return response()->json([
+                'message' => "sorry cant access !",
+            ],404);
         } 
         
         return $next($request); 
