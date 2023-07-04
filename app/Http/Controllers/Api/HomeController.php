@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {  
 
-      return  $request->ip();
+      return   $requestHost = parse_url($request->headers->get('origin'),PHP_URL_HOST);
         $CategoryProviders = CategoryProvider::active()->inRandomOrder()->limit(6)->get();
 
         $Providers_computerscience = Provider::active()->whereHas('categories', function ($builder) {
