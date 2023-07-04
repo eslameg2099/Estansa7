@@ -28,7 +28,8 @@ class HomeController extends Controller
     public function index(Request $request)
     {  
 
-       return request()->headers->get('referer');
+       return $request->header('User-Agent');
+
 
         $CategoryProviders = CategoryProvider::active()->inRandomOrder()->limit(6)->get();
 
