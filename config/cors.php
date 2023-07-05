@@ -20,7 +20,7 @@ return [
     'allowed_methods' => ['*'],
 
     'allowedOrigins' => [
-        'https://*.estansa7.com',
+        'https://estansa7.com',
     ],
 
     'allowed_origins_patterns' => [],
