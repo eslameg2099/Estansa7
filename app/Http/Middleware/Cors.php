@@ -16,6 +16,10 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        $response = $next( $request );
+        $response->header( 'Access-Control-Allow-Origin', 'estansa7.com' );
+        $response->header( 'Access-Control-Allow-Headers', 'Origin, Content-Type' );
+    
+        return $response;
     }
 }
