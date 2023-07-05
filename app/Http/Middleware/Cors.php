@@ -18,7 +18,7 @@ class Cors
     {
         
         $allowedOrigins = ['estansa7.com', 'example1.com', 'example2.com'];
-        $origin = $_SERVER['HTTP_ORIGIN'];
+        $origin = $request->header('host');
     
         if (in_array($origin, $allowedOrigins)) {
             return $next($request)
