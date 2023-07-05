@@ -17,7 +17,7 @@ class Cors
     public function handle($request, Closure $next)
     {
         $response = $next( $request );
-        $response->header( 'Access-Control-Allow-Origin', 'https://estansa7.com' );
+        $response->header( 'Access-Control-Allow-Origin', 'estansa7.com' );
         $response->header( 'Access-Control-Allow-Headers', 'Origin, Content-Type' );
     
         return $response;
