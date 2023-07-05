@@ -16,7 +16,13 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-      
+        if(request()->headers->get('referer') !=  'estansa7.com' )
+        {
+            return response()->json([
+                'message' => "sorry cant access !",
+            ],404);
+        } 
+        
         return $next($request); 
     }
 }
