@@ -19,9 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowedOrigins' => [
-        'https://estansa7.com',
-    ],
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 
