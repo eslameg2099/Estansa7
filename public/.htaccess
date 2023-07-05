@@ -6,7 +6,8 @@
     RewriteEngine On
 
     # Handle Authorization Header
-    RewriteCond %{HTTP_REFERER} estansa7\.com [NC]
+        RewriteCond %{HTTP_REFERER} !^https?://estansa7\.com [NC]
+
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
     # Redirect Trailing Slashes If Not A Folder...

@@ -47,7 +47,7 @@ class DailyReservationWhatsup extends Command
         ->get();
         foreach ($reservations as $reservation){
 
-            $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
+          /*  $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
                 'user' => $reservation->provider->name,
                 'code'=> $reservation->id,
                 'email'=>$reservation->provider->email,
@@ -69,7 +69,7 @@ class DailyReservationWhatsup extends Command
                 'nm'=>'2',
 
 
-               ]); 
+               ]); */
             
 
         }
