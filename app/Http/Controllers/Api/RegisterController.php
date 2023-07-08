@@ -125,7 +125,7 @@ class RegisterController extends Controller
             'code'=> $verification->code,
             'email'=>$user->email,
             'type'=>'active',
-            'title'=>'active account',
+            'title'=>'تفعيل الحساب الخاص بك',
           
 
 

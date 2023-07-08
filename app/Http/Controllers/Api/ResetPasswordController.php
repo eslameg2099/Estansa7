@@ -65,7 +65,7 @@ class ResetPasswordController extends Controller
             'code'=> $resetPasswordCode->code,
             'email'=>$user->email,
             'type'=>'rest',
-            'title'=>'rest account',
+            'title'=>'اعادة تعين كلمة المرور',
             
 
         ]); 
