@@ -54,6 +54,7 @@ class providerResource extends JsonResource
             'free_session'=> $this->free_session(),
             'created_at' => new Date($this->created_at),
             
+            
         ];
     }
 }
