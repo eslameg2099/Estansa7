@@ -42,7 +42,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             EnsureFrontendRequestsAreStateful::class,
-            'throttle:api',
+                'throttle:30,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\SetApplicationLocale::class,
             \App\Http\Middleware\DeleteMediaMiddleware::class,
