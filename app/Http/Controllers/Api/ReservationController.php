@@ -261,13 +261,13 @@ class ReservationController extends Controller
                ]); 
 
                $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
-                'user' => $Reservation->customer->name,
-                'code'=> $Reservation->id,
-                'email'=>$Reservation->customer->email,
+                'user' => $reservation->customer->name,
+                'code'=> $reservation->id,
+                'email'=>$reservation->customer->email,
                 'type'=>'done',
                 'title'=>'تم تاكيد حجز الاستشارة بنجاح ',
-                'date'=> Carbon::parse($Reservation->day_at)->format('Y/m/d'),
-                'time'=> Carbon::parse($Reservation->from)->format('h:i A')
+                'date'=> Carbon::parse($reservation->day_at)->format('Y/m/d'),
+                'time'=> Carbon::parse($reservation->from)->format('h:i A')
     
                ]); 
 
