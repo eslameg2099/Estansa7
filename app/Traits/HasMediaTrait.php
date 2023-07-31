@@ -40,12 +40,7 @@ if (is_array($files = $request->file($key))) {
     }
 }
 
-// Handle normal files that coming from request.
-if (! is_array($file = $request->file($key)) && $request->hasFile($key)) {
-    $this->addMediaFromRequest($key)
-        ->usingFileName(time().'.png')
-        ->toMediaCollection($collection);
-}
+
 
         
     }
