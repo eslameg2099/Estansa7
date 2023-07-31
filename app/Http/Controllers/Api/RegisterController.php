@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use App\Models\Customer;
 use App\Models\Provider;
+use App\Traits\mail;
+
 
 use App\Models\Verification;
 use Illuminate\Routing\Controller;
@@ -120,16 +122,8 @@ class RegisterController extends Controller
             'code' => rand(111111, 999999),
         ]);
 
-       $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
-            'user' => $user->name,
-            'code'=> $verification->code,
-            'email'=>$user->email,
-            'type'=>'active',
-            'title'=>'تفعيل الحساب الخاص بك',
-          
 
-
-        ]); 
-   
+        mail::sendmail($user->name,$verification->code,$user->email,'active','تفعيل الحساب الخاص بك');
+    
     }
 }
