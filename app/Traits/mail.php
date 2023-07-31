@@ -17,6 +17,7 @@ trait mail
             'title'=>$title,
         ]); 
    
+        
     }
    
    
