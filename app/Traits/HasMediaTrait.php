@@ -25,17 +25,29 @@ trait HasMediaTrait
         foreach ($files as $file) {
             if ($file && base64_decode(base64_encode($file)) === $file) {
                 $this->addMediaFromBase64($file)
-                    ->usingFileName(time())
+                    ->usingFileName(time().'.png')
                     ->toMediaCollection($collection);
             }
         }
 
-        // Handle normal files that coming from request.
-        if ($request->hasFile($key)) {
-            $this->addMediaFromRequest($key)
-                ->usingFileName(time())
-                ->toMediaCollection($collection);
-        }
+      
+// Handle normal files that coming from request.
+if (is_array($files = $request->file($key))) {
+    foreach ($files as $file) {
+        $this->addMedia($file)
+            ->usingFileName(time().'.png')
+            ->toMediaCollection($collection);
+    }
+}
+
+// Handle normal files that coming from request.
+if (! is_array($file = $request->file($key)) && $request->hasFile($key)) {
+    $this->addMediaFromRequest($key)
+        ->usingFileName(time().'.png')
+        ->toMediaCollection($collection);
+}
+
         
     }
+
 }
