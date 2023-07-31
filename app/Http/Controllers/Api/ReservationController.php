@@ -18,12 +18,13 @@ use Carbon\Carbon;
 use App\Http\Resources\ReservationResource;
 use Illuminate\Validation\ValidationException;
 use App\Models\Helpers\PaymobHelpers;
+use App\Traits\mail;
 
 use function PHPUnit\Framework\returnCallback;
 
 class ReservationController extends Controller
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use AuthorizesRequests, ValidatesRequests,mail;
 
     /**
      * EstateController constructor.
@@ -101,27 +102,8 @@ class ReservationController extends Controller
      {
         event(new updateavailable_times($Reservation->availabletime));
         $Reservation->update(['stauts'=> '2','free'=>'1']); 
-
-        $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
-            'user' => $Reservation->customer->name,
-            'code'=> $Reservation->id,
-            'email'=>$Reservation->provider->email,
-            'type'=>'done',
-            'title'=>'تم  حجز استشارة لديكم ',
-            'date'=> Carbon::parse($Reservation->day_at)->format('Y/m/d'),
-            'time'=> Carbon::parse($Reservation->from)->format('h:i A')
-
-           ]); 
-           $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
-            'user' => $Reservation->customer->name,
-            'code'=> $Reservation->id,
-            'email'=>$Reservation->customer->email,
-            'type'=>'done',
-            'title'=>'تم تاكيد حجز الاستشارة بنجاح ',
-            'date'=> Carbon::parse($Reservation->day_at)->format('Y/m/d'),
-            'time'=> Carbon::parse($Reservation->from)->format('h:i A')
-
-           ]); 
+        $this->sendmail($Reservation->customer->name,$Reservation->id,$Reservation->provider->email,'done','تم  حجز استشارة لديكم ',Carbon::parse($Reservation->day_at)->format('Y/m/d'),Carbon::parse($Reservation->from)->format('h:i A'));
+        $this->sendmail($Reservation->customer->name,$Reservation->id,$Reservation->customer->email,'done','تم تاكيد حجز الاستشارة بنجاح ',Carbon::parse($Reservation->day_at)->format('Y/m/d'),Carbon::parse($Reservation->from)->format('h:i A'));
         return ('https://estansa7.com/book-consult?expert_id='.$Reservation->provider_id.'&book_step=3');
      }
 
@@ -250,26 +232,9 @@ class ReservationController extends Controller
             $message = "تم الدفع والحجز بنجاح";
             PaymobHelpers::transactions_reservation($reservation);
 
-            $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
-                'user' => $reservation->customer->name,
-                'code'=> $reservation->id,
-                'email'=>$reservation->provider->email,
-                'type'=>'done',
-                'title'=>'تم  حجز استشارة لديكم ',
-                'date'=> Carbon::parse($reservation->day_at)->format('Y/m/d'),
-                'time'=> Carbon::parse($reservation->from)->format('h:i A')
-               ]); 
-
-               $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
-                'user' => $reservation->customer->name,
-                'code'=> $reservation->id,
-                'email'=>$reservation->customer->email,
-                'type'=>'done',
-                'title'=>'تم تاكيد حجز الاستشارة بنجاح ',
-                'date'=> Carbon::parse($reservation->day_at)->format('Y/m/d'),
-                'time'=> Carbon::parse($reservation->from)->format('h:i A')
-    
-               ]); 
+            $this->sendmail($reservation->customer->name,$reservation->id,$reservation->provider->email,'done','تم  حجز استشارة لديكم ',Carbon::parse($reservation->day_at)->format('Y/m/d'),Carbon::parse($reservation->from)->format('h:i A'));
+            $this->sendmail($reservation->customer->name,$reservation->id,$reservation->customer->email,'done','تم تاكيد حجز الاستشارة بنجاح ',Carbon::parse($reservation->day_at)->format('Y/m/d'),Carbon::parse($reservation->from)->format('h:i A'));
+         
 
             return redirect('https://estansa7.com/book-consult?expert_id='.$reservation->provider_id.'&book_step=3');
 

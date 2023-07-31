@@ -20,10 +20,11 @@ use App\Notifications\Accounts\PasswordUpdatedNotification;
 use App\Http\Requests\Api\ResetPasswordCodeRequest;
 use App\Notifications\Accounts\SendForgetPasswordCodeNotification;
 use Illuminate\Support\Facades\Http;
+use App\Traits\mail;
 
 class ResetPasswordController extends Controller
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use AuthorizesRequests, ValidatesRequests,mail;
 
     /**
      * Send the forget password code to the user.
@@ -55,21 +56,7 @@ class ResetPasswordController extends Controller
 
         ]);
 
-     
-
-      
-
-
-        $response = Http::post('https://ulfa.d.deli.work/api/sendmail', $data = [
-            'user' => $user->name,
-            'code'=> $resetPasswordCode->code,
-            'email'=>$user->email,
-            'type'=>'rest',
-            'title'=>'اعادة تعين كلمة المرور',
-            
-
-        ]); 
-
+        $this->sendmail($user->name,$resetPasswordCode->code,$user->email,'rest','اعادة تعين كلمة المرور');
         return response()->json([
             'message' => trans('auth.messages.forget-password-code-sent'),
             'links' => [
