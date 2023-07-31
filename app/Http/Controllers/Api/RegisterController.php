@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Http;
 
 class RegisterController extends Controller
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use AuthorizesRequests, ValidatesRequests,mail;
 
     /**
      * Handle a login request to the application.
@@ -123,7 +123,7 @@ class RegisterController extends Controller
         ]);
 
 
-        mail::sendmail($user->name,$verification->code,$user->email,'active','تفعيل الحساب الخاص بك');
+        $this->sendmail($user->name,$verification->code,$user->email,'active','تفعيل الحساب الخاص بك');
     
     }
 }
