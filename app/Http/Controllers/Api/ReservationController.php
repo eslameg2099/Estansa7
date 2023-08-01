@@ -214,9 +214,8 @@ class ReservationController extends Controller
 
     public function paymob_payment_verify(Request $request)
     {
-return $request->all();
         $string = $request['amount_cents'] . $request['created_at'] . $request['currency'] . $request['error_occured'] . $request['has_parent_transaction'] . $request['id'] . $request['integration_id'] . $request['is_3d_secure'] . $request['is_auth'] . $request['is_capture'] . $request['is_refunded'] . $request['is_standalone_payment'] . $request['is_voided'] . $request['order'] . $request['owner'] . $request['pending'] . $request['source_data_pan'] . $request['source_data_sub_type'] . $request['source_data_type'] . $request['success'];
-        if ($request['success'] == true)
+        if ($request['success'] == "true")
         {
             $reservation  =  Reservation::where('payment_id',$request['order'])->firstorfail();  
             $reservation->update(['stauts'=> '2']); 
