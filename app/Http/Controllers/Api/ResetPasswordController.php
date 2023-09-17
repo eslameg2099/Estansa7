@@ -56,7 +56,7 @@ class ResetPasswordController extends Controller
 
         ]);
 
-        $this->sendmail($user->name,$resetPasswordCode->code,$user->email,'rest','اعادة تعين كلمة المرور');
+        $this->sendmail($user->name,$resetPasswordCode->code,$user->email,'rest','اعادة تعين كلمة المرور',$user->created_at,$user->created_at);
         return response()->json([
             'message' => trans('auth.messages.forget-password-code-sent'),
             'links' => [
