@@ -122,8 +122,7 @@ class RegisterController extends Controller
             'code' => rand(111111, 999999),
         ]);
 
-
-        $this->sendmail($user->name,$verification->code,$user->email,'active','تفعيل الحساب الخاص بك');
+        $this->sendmail($user->name,$verification->code,$user->email,'active','تفعيل الحساب الخاص بك',$user->created_at,$user->created_at);
     
     }
 }
