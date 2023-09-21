@@ -52,6 +52,7 @@ class providerResource extends JsonResource
             'time_available'=>$this->availabletimes->groupBy('day_id'),
             'posts'=> PostResource::collection($this->posts()->limit(6)->get()),
             'free_session'=> $this->free_session(),
+            'availabletime_count'=>$this->availabletimes->where('active','1')->count(),
             'created_at' => new Date($this->created_at),
             
             
