@@ -81,7 +81,7 @@ class AvailableTime extends Model
      }
 
 
-      public function scopeActive($query)
+    public function scopeActive($query)
     {
         return $query->where('active','1');
     }
