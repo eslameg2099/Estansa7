@@ -138,7 +138,12 @@ class Provider extends User
 
     public function getprice()
     {
-        $this->unit_price;
+        if($this->free_session == '1')
+        {
+        return "يقدم جلسات مجانية";
+        }
+        else
+       return  $this->unit_price;
     }
 
 
