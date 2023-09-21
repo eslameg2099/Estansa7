@@ -29,7 +29,7 @@ class miniproviderResource  extends JsonResource
             'avatar' => $this->getAvatar(),
             'bio'=> $this->bio,
             'category_name'=> $this->category->name,
-            'unit_price'=>new price($this->unit_price),
+            'unit_price'=>new price($this->getprice()),
             'availabletime_count'=>$this->availabletimes->where('active','1')->count(),
             'reservation_count'=> $this->Reservations->count(),
             'experience'=>$this->experienceyears(),
