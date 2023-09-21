@@ -140,7 +140,7 @@ class Provider extends User
     {
         if($this->free_session == '1')
         {
-        return Settings::get('free_fees');
+        return "يقدم جلسات مجانية";
         }
         else
         $this->unit_price;
