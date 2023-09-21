@@ -30,7 +30,7 @@ class miniproviderResource  extends JsonResource
             'bio'=> $this->bio,
             'category_name'=> $this->category->name,
             'unit_price'=>new price($this->unit_price),
-            'availabletime_count'=>$this->availabletimes->count(),
+            'availabletime_count'=>$this->availabletimes->active()->count(),
             'reservation_count'=> $this->Reservations->count(),
             'experience'=>$this->experienceyears(),
             'rate'=> $this->checkreview() ,
