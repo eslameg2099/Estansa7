@@ -1,4 +1,3 @@
-@can('forceDelete', $customer)
     <a href="#customer-{{ $customer->id }}-force-delete-model"
        class="btn btn-outline-danger btn-sm"
        data-toggle="modal">
@@ -32,4 +31,4 @@
             </div>
         </div>
     </div>
-@endcan
+
