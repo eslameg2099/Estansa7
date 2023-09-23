@@ -173,7 +173,6 @@ class CustomerController extends Controller
      */
     public function forceDelete(Customer $customer)
     {
-        $this->authorize('forceDelete', $customer);
 
         $customer->forceDelete();
 
